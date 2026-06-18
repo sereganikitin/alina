@@ -41,14 +41,15 @@ const VARIANTS: Variant[] = [
     label: "Беж · рука у подбородка",
     image: "/photos/hero-beige-2.jpg",
     dark: false,
+    // фон дострочен по краям -> отдалено, на всю ширину без полей
     size: "cover",
-    position: "center 40%",
+    position: "center 38%",
     bg: "var(--background)",
   },
 ];
 
 export default function Hero() {
-  const [index, setIndex] = useState(1); // по умолчанию вариант 2 (беж, рука у виска)
+  const [index, setIndex] = useState(2); // финал: вариант 3 (беж, рука у подбородка)
   const v = VARIANTS[index];
 
   // Сообщаем фиксированной шапке о смене фона (для пересчёта контраста)
