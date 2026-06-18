@@ -76,12 +76,6 @@ export default function Hero() {
           backgroundColor: v.bg,
         }}
       />
-      {/* Подложки-градиенты под цвет фона: текст читается поверх фото */}
-      <div
-        className={`absolute inset-x-0 top-0 h-2/5 bg-gradient-to-b to-transparent ${
-          v.dark ? "from-black/60" : "from-background/90 via-background/40"
-        }`}
-      />
       {/* Контент: цитата сверху, буллеты снизу */}
       <div className="relative z-10 flex min-h-[100svh] flex-col">
         {/* Цитата вверху (над головой, на фоне) */}
