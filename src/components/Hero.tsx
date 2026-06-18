@@ -80,10 +80,10 @@ export default function Hero() {
       <div className="relative z-10 flex min-h-[100svh] flex-col">
         {/* Цитата вверху (над головой, на фоне) */}
         <div className="px-6 pt-28 md:px-12 md:pt-32">
-          <figure className="max-w-md">
-            <div className={`mb-4 h-px w-16 ${ruleColor}`} />
+          <figure className="max-w-xl">
+            <div className={`mb-5 h-px w-16 ${ruleColor}`} />
             <blockquote
-              className={`font-display text-[1.6rem] italic leading-snug sm:text-3xl md:text-4xl ${textColor}`}
+              className={`font-display text-[1.85rem] italic leading-[1.15] sm:text-4xl md:text-5xl lg:text-[3.25rem] ${textColor}`}
             >
               «Тебе нужно больше&nbsp;помощи, чем ты&nbsp;думаешь»
             </blockquote>
