@@ -3,6 +3,7 @@
  * Тексты — черновик по беседам; цифры/условия подтвердит Алина.
  */
 import Wave from "./Wave";
+import BookingForm from "./BookingForm";
 
 const FACTS = [
   { label: "Формат", value: "Онлайн, из любой точки мира" },
@@ -38,18 +39,17 @@ export default function Consultation() {
           ))}
         </dl>
 
-        {/* Черновик — уточнит Алина */}
-        <p className="mt-8 text-base leading-relaxed text-muted">
-          Записаться можно в Telegram или WhatsApp — отвечаю лично. Позже здесь
-          появится форма записи прямо на сайте.
-        </p>
-
-        <a
-          href="#contacts"
-          className="mt-8 inline-flex items-center justify-center rounded-full bg-terracotta px-8 py-3.5 font-display text-lg text-cream transition-opacity hover:opacity-90"
-        >
-          Записаться
-        </a>
+        <div className="mt-12">
+          <h3 className="font-display text-2xl text-terracotta">
+            Записаться на консультацию
+          </h3>
+          <p className="mt-3 text-base leading-relaxed text-muted">
+            Оставьте контакты — Алина свяжется с вами лично.
+          </p>
+          <div className="mt-6 max-w-xl">
+            <BookingForm />
+          </div>
+        </div>
       </div>
     </section>
   );
