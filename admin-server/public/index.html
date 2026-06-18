@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Админка — Алина Дубовская</title>
+    <style>
+      :root {
+        --bg: #ece5db; --cream: #f5f0e8; --fg: #2b2620;
+        --muted: #8a7e6f; --terra: #a8674e; --line: #d8cdbd;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        background: var(--bg); color: var(--fg); }
+      h1, h2, h3 { font-weight: 600; }
+      a { color: var(--terra); }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 24px 16px 80px; }
+      .card { background: var(--cream); border: 1px solid var(--line); border-radius: 16px; padding: 20px; margin-bottom: 16px; }
+      label { display: block; font-size: 13px; color: var(--muted); margin: 12px 0 4px; }
+      input[type=text], input[type=password], textarea, input[type=email] {
+        width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px;
+        background: #fff; color: var(--fg); font: inherit; }
+      textarea { resize: vertical; min-height: 70px; }
+      button { font: inherit; cursor: pointer; border: 0; border-radius: 999px; padding: 10px 18px; }
+      .btn { background: var(--terra); color: var(--cream); }
+      .btn-ghost { background: transparent; border: 1px solid var(--line); color: var(--fg); padding: 7px 14px; }
+      .btn-sm { padding: 5px 12px; font-size: 13px; }
+      .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+      .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+      .tab { background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; }
+      .tab.active { background: var(--fg); color: var(--cream); border-color: var(--fg); }
+      .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+      .muted { color: var(--muted); font-size: 13px; }
+      .item { border: 1px solid var(--line); border-radius: 12px; padding: 12px; margin-bottom: 10px; background: #fff; }
+      .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+      .thumb { height: 64px; border-radius: 8px; border: 1px solid var(--line); object-fit: cover; }
+      .media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); gap: 12px; }
+      .media-card { border: 1px solid var(--line); border-radius: 12px; padding: 8px; background:#fff; font-size: 12px; }
+      .media-card img { width: 100%; height: 100px; object-fit: cover; border-radius: 8px; }
+      .pdfbox { width:100%; height:100px; display:flex; align-items:center; justify-content:center; background:var(--bg); border-radius:8px; font-size:28px; }
+      .save-bar { position: sticky; bottom: 0; background: var(--bg); padding: 12px 0; border-top: 1px solid var(--line); display:flex; gap:10px; align-items:center; }
+      .toast { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); background: var(--fg); color: var(--cream); padding: 10px 18px; border-radius: 999px; opacity: 0; transition: opacity .2s; }
+      .toast.show { opacity: 1; }
+      .login { max-width: 360px; margin: 12vh auto; }
+      .hidden { display: none; }
+      table { width: 100%; border-collapse: collapse; font-size: 14px; }
+      th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+      .field-img-prev { height:56px; border-radius:8px; border:1px solid var(--line); margin-top:6px; }
+    </style>
+  </head>
+  <body>
+    <!-- ЛОГИН -->
+    <div id="login" class="login card hidden">
+      <h2>Вход в админку</h2>
+      <label>Логин</label>
+      <input id="l-login" type="text" autocomplete="username" />
+      <label>Пароль</label>
+      <input id="l-pass" type="password" autocomplete="current-password" />
+      <div style="margin-top:16px"><button class="btn" onclick="doLogin()">Войти</button></div>
+      <div id="l-err" class="muted" style="color:#b3402b;margin-top:10px"></div>
+    </div>
+
+    <!-- ПАНЕЛЬ -->
+    <div id="panel" class="wrap hidden">
+      <div class="topbar">
+        <h1 style="margin:0">Сайт Алины Дубовской</h1>
+        <div class="row">
+          <a class="muted" href="https://alina.cd-agency.ru" target="_blank">Открыть сайт ↗</a>
+          <button class="btn-ghost btn-sm" onclick="doLogout()">Выйти</button>
+        </div>
+      </div>
+      <div class="tabs">
+        <button class="tab active" data-tab="content" onclick="showTab('content')">Тексты</button>
+        <button class="tab" data-tab="media" onclick="showTab('media')">Медиа</button>
+        <button class="tab" data-tab="bookings" onclick="showTab('bookings')">Заявки</button>
+        <button class="tab" data-tab="settings" onclick="showTab('settings')">Пароль</button>
+      </div>
+
+      <div id="tab-content"></div>
+      <div id="tab-media" class="hidden"></div>
+      <div id="tab-bookings" class="hidden"></div>
+      <div id="tab-settings" class="hidden">
+        <div class="card">
+          <h3>Сменить пароль</h3>
+          <label>Новый пароль</label>
+          <input id="new-pass" type="password" />
+          <div style="margin-top:12px"><button class="btn" onclick="changePass()">Сохранить пароль</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="/admin/app.js"></script>
+  </body>
+</html>

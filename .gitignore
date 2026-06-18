@@ -45,3 +45,6 @@ next-env.d.ts
 
 # Расшифровки встреч (приватные)
 /design/transcripts/
+
+# Зависимости админ-сервиса
+admin-server/node_modules

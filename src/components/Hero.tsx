@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Wave from "./Wave";
+import { useContent } from "@/lib/useContent";
 
 type Variant = {
   id: string;
@@ -41,6 +42,9 @@ const VARIANTS: Variant[] = [
 export default function Hero() {
   const [index, setIndex] = useState(1); // финал: беж, рука у подбородка
   const v = VARIANTS[index];
+  const c = useContent();
+  // фото шапки можно менять из админки (для основного варианта)
+  const heroImage = v.id === "beige-2" ? c.hero.image || v.image : v.image;
 
   // Сообщаем фиксированной шапке о смене фона (для пересчёта контраста)
   useEffect(() => {
@@ -60,7 +64,7 @@ export default function Hero() {
       <div
         className="absolute inset-0 bg-no-repeat"
         style={{
-          backgroundImage: `url(${v.image})`,
+          backgroundImage: `url(${heroImage})`,
           backgroundSize: v.size,
           backgroundPosition: v.position,
           backgroundColor: v.bg,
@@ -75,7 +79,7 @@ export default function Hero() {
             <blockquote
               className={`font-display text-[1.85rem] leading-[1.15] sm:text-4xl md:text-5xl lg:text-[3.25rem] ${textColor}`}
             >
-              «Тебе нужно больше&nbsp;помощи, чем ты&nbsp;думаешь»
+              {c.hero.quote}
             </blockquote>
           </figure>
         </div>
@@ -87,8 +91,8 @@ export default function Hero() {
           <ul
             className={`flex flex-col gap-2 text-sm tracking-wide sm:flex-row sm:gap-10 ${textColor}`}
           >
-            <li>Более 100 часов супервизий</li>
-            <li>Более 200 часов личной терапии</li>
+            <li>{c.hero.bullet1}</li>
+            <li>{c.hero.bullet2}</li>
           </ul>
         </div>
       </div>

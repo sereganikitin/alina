@@ -1,17 +1,10 @@
-/**
- * Раздел «Обо мне».
- * Фото в арке + подпись над аркой, регалии и методы.
- * Тексты — черновик из ТЗ; финальные формулировки пишет Алина.
- */
-const METHODS = [
-  "EMDR-терапия",
-  "IFS-подход (работа с частями)",
-  "Соматические практики",
-  "Проективные методики",
-  "Интегральные методики из разных подходов",
-];
+"use client";
 
+import { useContent } from "@/lib/useContent";
+
+/** Раздел «Обо мне»: фото в арке + регалии и методы. Тексты — из админки. */
 export default function About() {
+  const c = useContent();
   return (
     <section
       id="about"
@@ -19,7 +12,6 @@ export default function About() {
       className="bg-background px-6 py-24 md:px-12 md:py-32"
     >
       <div className="mx-auto grid max-w-5xl items-center gap-12 md:grid-cols-2 md:gap-16">
-        {/* Фото в арке с подписью над ней */}
         <div className="flex flex-col items-center">
           <p className="mb-5 font-display text-sm uppercase tracking-[0.3em] text-muted">
             Обо мне
@@ -27,26 +19,24 @@ export default function About() {
           <div className="relative w-full max-w-sm overflow-hidden rounded-t-[999px] rounded-b-3xl shadow-sm">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/photos/about.jpg"
+              src={c.about.image}
               alt="Алина"
               className="aspect-[3/4] w-full object-cover object-[center_15%]"
             />
           </div>
         </div>
 
-        {/* Регалии и методы */}
         <div>
           <h2 className="font-display text-3xl leading-snug md:text-4xl">
-            Психолог, EMDR-терапевт, IFS-терапевт, танцевально-двигательный
-            терапевт
+            {c.about.title}
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-foreground/80">
-            Действительный член Национальной ассоциации EMDR.
+            {c.about.lead}
           </p>
 
           <h3 className="mt-10 font-display text-xl text-terracotta">Методы</h3>
           <ul className="mt-4 flex flex-col gap-2.5">
-            {METHODS.map((m) => (
+            {c.about.methods.map((m) => (
               <li key={m} className="flex items-start gap-3 text-foreground/85">
                 <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
                 <span>{m}</span>

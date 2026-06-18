@@ -2,9 +2,8 @@
 
 import { useState } from "react";
 
-// TODO: подключить отправку в Telegram-бота (нужен токен бота + chat id).
-// Пока пусто — форма работает в демо-режиме (данные не отправляются).
-const BOOKING_ENDPOINT = "";
+// Заявки уходят в админку (сохраняются в базе заявок).
+const BOOKING_ENDPOINT = "/api/bookings";
 
 type Status = "idle" | "sending" | "sent" | "demo" | "error";
 

@@ -1,7 +1,11 @@
+"use client";
+
+import { useContent } from "@/lib/useContent";
+
 /**
  * Контакты + подвал. Тёмный фон, светлый текст.
- * Соцсети — пока НЕактивные иконки (подключим через админку).
- * Документы — заглушки.
+ * Соцсети — пока НЕактивные иконки (подключим позже).
+ * Текст и документы (PDF) — из админки.
  */
 type IconProps = { className?: string };
 
@@ -37,13 +41,8 @@ const SOCIALS = [
   { label: "Instagram", Icon: InstagramIcon },
 ];
 
-const DOCS = [
-  { label: "Политика конфиденциальности", href: "#" },
-  { label: "Согласие на обработку персональных данных", href: "#" },
-  { label: "Договор оферты", href: "#" },
-];
-
 export default function Contacts() {
+  const c = useContent();
   return (
     <footer
       id="contacts"
@@ -53,7 +52,7 @@ export default function Contacts() {
       <div className="mx-auto max-w-5xl">
         <h2 className="font-display text-4xl md:text-5xl">Контакты</h2>
         <p className="mt-5 max-w-xl text-lg leading-relaxed text-cream/70">
-          Написать можно в любой удобный мессенджер — отвечаю лично.
+          {c.contacts.note}
         </p>
 
         {/* Соцсети — пока неактивны (подключим через админку) */}
@@ -72,9 +71,14 @@ export default function Contacts() {
         </div>
 
         <ul className="mt-14 flex flex-wrap gap-x-8 gap-y-2 text-sm text-cream/50">
-          {DOCS.map((d) => (
+          {c.contacts.docs.map((d) => (
             <li key={d.label}>
-              <a href={d.href} className="underline-offset-4 hover:underline">
+              <a
+                href={d.url || "#"}
+                target={d.url ? "_blank" : undefined}
+                rel={d.url ? "noopener noreferrer" : undefined}
+                className="underline-offset-4 hover:underline"
+              >
                 {d.label}
               </a>
             </li>

@@ -1,34 +1,17 @@
-/**
- * Раздел «Принципы работы»: с чем и с кем работаю + ссылка на метод.
- * Светлый фон с волнистым разделителем сверху (переход от секции «Обо мне»).
- * Тексты — черновик из ТЗ; финальные формулировки пишет Алина.
- */
+"use client";
+
 import Wave from "./Wave";
+import { useContent } from "@/lib/useContent";
 
-const REQUESTS = [
-  "Травма любого характера",
-  "Травма привязанности",
-  "Потеря и горе",
-  "Абьюз (моральный / физический / сексуализированный)",
-  "ПТСР",
-  "РПП",
-  "Тема границ",
-  "Чувство стыда и вины",
-  "Созависимые отношения",
-  "Сепарация от родителей",
-  "Поиск ресурса",
-  "Психосоматика",
-  "Принятие тела",
-];
-
+/** Раздел «Принципы работы»: с чем и с кем работаю. Тексты — из админки. */
 export default function Principles() {
+  const c = useContent();
   return (
     <section
       id="principles"
       data-nav-theme="light"
       className="relative bg-cream px-6 pb-24 pt-32 md:px-12 md:pb-32 md:pt-40"
     >
-      {/* Волнистый разделитель: беж секции «Обо мне» спускается в кремовый */}
       <Wave
         className="absolute left-0 top-0 h-16 w-full rotate-180 md:h-24"
         fill="var(--background)"
@@ -41,7 +24,7 @@ export default function Principles() {
           С чем я работаю
         </h3>
         <ul className="mt-6 flex flex-wrap gap-3">
-          {REQUESTS.map((r) => (
+          {c.principles.requests.map((r) => (
             <li
               key={r}
               className="rounded-full border border-line bg-background/60 px-4 py-2 text-sm text-foreground/85"
@@ -55,9 +38,7 @@ export default function Principles() {
           С кем я работаю
         </h3>
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-foreground/80">
-          {/* Черновик — уточнит Алина */}
-          Со взрослыми людьми в долгосрочной онлайн-терапии. Подробности об
-          условиях и форматах — в разделе «Консультация».
+          {c.principles.withWhom}
         </p>
 
         <a

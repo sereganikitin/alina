@@ -1,24 +1,10 @@
-/**
- * Раздел «Образование».
- * Плейсхолдеры под сканы дипломов — реальные добавим позже через админку.
- * Подписи — черновик по беседам/ТЗ, уточнит Алина.
- */
-const DIPLOMAS = [
-  "Высшее психологическое образование",
-  "Преподаватель психологии",
-  "EMDR-терапевт",
-  "IFS-терапевт",
-  "Танцевально-двигательный терапевт",
-  "Действительный член Национальной ассоциации EMDR",
-];
+"use client";
 
-const EXTRA = [
-  "Регулярное ежегодное повышение квалификации",
-  "Публикация в «Psychologies»",
-  "Опыт преподавания психологии — 4 года",
-];
+import { useContent } from "@/lib/useContent";
 
+/** Раздел «Образование». Сканы дипломов — из админки (плейсхолдер, если не загружены). */
 export default function Education() {
+  const c = useContent();
   return (
     <section
       id="education"
@@ -28,28 +14,30 @@ export default function Education() {
       <div className="mx-auto max-w-5xl">
         <h2 className="font-display text-4xl md:text-5xl">Образование</h2>
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-foreground/80">
-          {/* Черновик — уточнит Алина */}
-          Непрерывный профессиональный путь: в профессии с 17 лет, более 10 лет
-          практики. Дипломы государственного образца — ниже.
+          {c.education.lead}
         </p>
 
         <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {DIPLOMAS.map((d) => (
+          {c.education.diplomas.map((d) => (
             <li
-              key={d}
+              key={d.title}
               className="overflow-hidden rounded-2xl border border-line bg-cream"
             >
-              {/* Плейсхолдер скана диплома */}
-              <div className="flex aspect-[4/3] items-center justify-center bg-line/60">
-                <span className="text-sm text-muted">скан появится</span>
-              </div>
-              <p className="px-5 py-4 text-foreground/85">{d}</p>
+              {d.scan ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={d.scan} alt={d.title} className="aspect-[4/3] w-full object-cover" />
+              ) : (
+                <div className="flex aspect-[4/3] items-center justify-center bg-line/60">
+                  <span className="text-sm text-muted">скан появится</span>
+                </div>
+              )}
+              <p className="px-5 py-4 text-foreground/85">{d.title}</p>
             </li>
           ))}
         </ul>
 
         <ul className="mt-10 flex flex-col gap-2.5">
-          {EXTRA.map((e) => (
+          {c.education.extra.map((e) => (
             <li key={e} className="flex items-start gap-3 text-foreground/85">
               <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
               <span>{e}</span>

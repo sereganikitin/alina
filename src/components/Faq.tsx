@@ -1,40 +1,17 @@
-/**
- * Раздел «Частые вопросы» — нативный аккордеон (<details>), без JS.
- * Вопросы/ответы — черновик по беседам; финал за Алиной.
- */
+"use client";
+
 import Wave from "./Wave";
+import { useContent } from "@/lib/useContent";
 
-const QA = [
-  {
-    q: "Как проходит первая сессия?",
-    a: "Знакомимся, я расспрашиваю о запросе и о том, что привело вас в терапию, рассказываю, как устроена наша работа, и мы вместе намечаем направление. Это встреча, на которой можно ничего не решать заранее.",
-  },
-  {
-    q: "В каком формате мы работаем?",
-    a: "Только онлайн — я работаю с людьми из разных стран. Терапия долгосрочная, со встречами раз в неделю; другая регулярность — по договорённости.",
-  },
-  {
-    q: "Сколько стоит сессия?",
-    a: "8 000 ₽ за сессию. Оплата в рублях; для клиентов из других стран — по курсу.",
-  },
-  {
-    q: "С кем вы работаете?",
-    a: "Со взрослыми. Я работаю с русскоязычными клиентами в любом часовом поясе, если есть свободные места в расписании.",
-  },
-  {
-    q: "Можно ли гарантировать результат?",
-    a: "Психолог не может обещать конкретный результат — это было бы нечестно. Я могу гарантировать профессиональную, бережную работу и встречу, на которой мы движемся к вашему запросу.",
-  },
-];
-
+/** Раздел «Частые вопросы» — нативный аккордеон. Вопросы — из админки. */
 export default function Faq() {
+  const c = useContent();
   return (
     <section
       id="faq"
       data-nav-theme="light"
       className="relative bg-background px-6 pb-24 pt-32 md:px-12 md:pb-32 md:pt-40"
     >
-      {/* Переход от секции «Консультация» (cream) */}
       <Wave
         className="absolute left-0 top-0 h-16 w-full rotate-180 md:h-24"
         fill="var(--cream)"
@@ -44,7 +21,7 @@ export default function Faq() {
         <h2 className="font-display text-4xl md:text-5xl">Частые вопросы</h2>
 
         <div className="mt-10 divide-y divide-line border-y border-line">
-          {QA.map((item) => (
+          {c.faq.map((item) => (
             <details key={item.q} className="group py-5">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-xl text-foreground">
                 {item.q}
