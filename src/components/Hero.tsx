@@ -1,0 +1,149 @@
+"use client";
+
+import { useState } from "react";
+import Wave from "./Wave";
+
+const NAV = [
+  { label: "Обо мне", href: "#about" },
+  { label: "Принципы работы", href: "#principles" },
+  { label: "О подходе", href: "#approach" },
+  { label: "Консультация", href: "#booking" },
+  { label: "FAQ", href: "#faq" },
+  { label: "Контакты", href: "#contacts" },
+];
+
+type Variant = {
+  id: string;
+  label: string;
+  image: string;
+  dark: boolean; // тёмное фото -> золотой/светлый текст
+  // Кадрирование: size — зум (даёт вертикальный запас), position — сдвиг.
+  // Чем больше Y в position, тем выше «поднимается» фото (меньше места над головой).
+  size: string;
+  position: string;
+};
+
+const VARIANTS: Variant[] = [
+  {
+    id: "dark",
+    label: "Тёмное фото",
+    image: "/photos/hero-dark.jpg",
+    dark: true,
+    size: "auto 130%",
+    position: "center 30%",
+  },
+  {
+    id: "beige-1",
+    label: "Беж · рука у виска",
+    image: "/photos/hero-beige-1.jpg",
+    dark: false,
+    size: "auto 135%",
+    position: "center 42%",
+  },
+  {
+    id: "beige-2",
+    label: "Беж · рука у подбородка",
+    image: "/photos/hero-beige-2.jpg",
+    dark: false,
+    size: "auto 135%",
+    position: "center 40%",
+  },
+];
+
+export default function Hero() {
+  const [index, setIndex] = useState(1); // по умолчанию вариант 2 (беж, рука у виска)
+  const v = VARIANTS[index];
+
+  // Цвета текста в зависимости от фона фото
+  const textColor = v.dark ? "text-gold" : "text-foreground";
+  const navColor = v.dark
+    ? "text-gold/90 hover:text-gold"
+    : "text-foreground/80 hover:text-foreground";
+  const ruleColor = v.dark ? "bg-gold/40" : "bg-foreground/30";
+
+  return (
+    <section className="relative min-h-[100svh] w-full overflow-hidden">
+      {/* Фон-фото */}
+      <div
+        className="absolute inset-0 bg-no-repeat"
+        style={{
+          backgroundImage: `url(${v.image})`,
+          backgroundSize: v.size,
+          backgroundPosition: v.position,
+        }}
+      />
+      {/* Лёгкое затемнение/осветление для читаемости текста */}
+      <div
+        className={
+          v.dark
+            ? "absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-black/30"
+            : "absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-white/20"
+        }
+      />
+
+      {/* Контент */}
+      <div className="relative z-10 flex min-h-[100svh] flex-col">
+        {/* Верхнее меню */}
+        <header className="flex items-center justify-between px-6 py-6 md:px-12">
+          <span
+            className={`font-display text-2xl tracking-wide ${textColor}`}
+          >
+            Алина
+          </span>
+          <nav className="hidden gap-7 text-sm tracking-wide md:flex">
+            {NAV.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className={`transition-colors ${navColor}`}
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+        </header>
+
+        {/* Цитата сбоку */}
+        <div className="flex flex-1 items-center px-6 md:px-12">
+          <figure className="max-w-md">
+            <div className={`mb-5 h-px w-16 ${ruleColor}`} />
+            <blockquote
+              className={`font-display text-3xl italic leading-snug md:text-4xl ${textColor}`}
+            >
+              «Тебе нужно больше&nbsp;помощи, чем ты&nbsp;думаешь»
+            </blockquote>
+          </figure>
+        </div>
+
+        {/* Буллеты по нижнему краю */}
+        <div className="px-6 pb-24 md:px-12 md:pb-28">
+          <ul
+            className={`flex flex-col gap-2 text-sm tracking-wide sm:flex-row sm:gap-10 ${textColor}`}
+          >
+            <li>Более 100 часов супервизий</li>
+            <li>Более 200 часов личной терапии</li>
+          </ul>
+        </div>
+      </div>
+
+      {/* Волна по нижнему краю */}
+      <Wave className="absolute bottom-0 left-0 z-10 h-16 w-full md:h-24" />
+
+      {/* Переключатель вариантов (временный, для согласования) */}
+      <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-2 rounded-xl bg-black/70 p-3 text-xs text-white backdrop-blur">
+        <span className="opacity-70">Вариант шапки:</span>
+        {VARIANTS.map((variant, i) => (
+          <button
+            key={variant.id}
+            onClick={() => setIndex(i)}
+            className={`rounded-md px-3 py-1.5 text-left transition-colors ${
+              i === index ? "bg-white text-black" : "hover:bg-white/20"
+            }`}
+          >
+            {i + 1}. {variant.label}
+          </button>
+        ))}
+      </div>
+    </section>
+  );
+}
