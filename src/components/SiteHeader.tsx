@@ -14,13 +14,14 @@ const NAV = [
 /**
  * Фиксированная шапка. Контраст подстраивается под фон секции под ней:
  * секции помечены data-nav-theme="dark" (тёмный фон) | "light" (светлый фон).
+ * На мобиле — бургер с полноэкранным меню.
  */
 export default function SiteHeader() {
   const [onDark, setOnDark] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const HEADER_MID = 32; // точка замера — середина шапки
-
+    const HEADER_MID = 32;
     const compute = () => {
       const sections =
         document.querySelectorAll<HTMLElement>("[data-nav-theme]");
@@ -43,7 +44,7 @@ export default function SiteHeader() {
     compute();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
-    window.addEventListener("navthemerefresh", compute); // смена варианта в Hero
+    window.addEventListener("navthemerefresh", compute);
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
@@ -52,20 +53,34 @@ export default function SiteHeader() {
     };
   }, []);
 
-  const brand = onDark ? "text-gold" : "text-foreground";
-  const link = onDark
+  // Блокируем прокрутку фона, когда открыто мобильное меню
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  // Цвет иконки/брендов: при открытом меню фон светлый -> тёмный текст
+  const light = onDark && !open;
+  const brand = light ? "text-gold" : "text-foreground";
+  const link = light
     ? "text-white/90 hover:text-white"
     : "text-foreground/75 hover:text-foreground";
+  const burger = light ? "bg-white" : "bg-foreground";
 
   return (
-    <header className="fixed inset-x-0 top-0 z-40">
+    <header className="fixed inset-x-0 top-0 z-50">
       <div className="flex items-center justify-between px-6 py-5 md:px-12">
         <a
           href="#top"
+          onClick={() => setOpen(false)}
           className={`font-display text-2xl tracking-wide transition-colors ${brand}`}
         >
           Алина
         </a>
+
+        {/* Десктоп-меню */}
         <nav className="hidden gap-7 text-sm tracking-wide md:flex">
           {NAV.map((item) => (
             <a
@@ -77,7 +92,48 @@ export default function SiteHeader() {
             </a>
           ))}
         </nav>
+
+        {/* Бургер (мобилка) */}
+        <button
+          type="button"
+          aria-label={open ? "Закрыть меню" : "Открыть меню"}
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+          className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-[5px] md:hidden"
+        >
+          <span
+            className={`h-0.5 w-6 rounded-full transition-all ${burger} ${
+              open ? "translate-y-[7px] rotate-45" : ""
+            }`}
+          />
+          <span
+            className={`h-0.5 w-6 rounded-full transition-all ${burger} ${
+              open ? "opacity-0" : ""
+            }`}
+          />
+          <span
+            className={`h-0.5 w-6 rounded-full transition-all ${burger} ${
+              open ? "-translate-y-[7px] -rotate-45" : ""
+            }`}
+          />
+        </button>
       </div>
+
+      {/* Полноэкранное мобильное меню */}
+      {open && (
+        <nav className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-7 bg-background md:hidden">
+          {NAV.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              onClick={() => setOpen(false)}
+              className="font-display text-2xl text-foreground transition-colors hover:text-terracotta"
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+      )}
     </header>
   );
 }

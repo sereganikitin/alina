@@ -76,31 +76,36 @@ export default function Hero() {
           backgroundColor: v.bg,
         }}
       />
-      {/* Лёгкое затемнение/осветление для читаемости текста */}
+      {/* Подложки-градиенты под цвет фона: текст читается поверх фото */}
       <div
-        className={
-          v.dark
-            ? "absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-black/30"
-            : "absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-white/20"
-        }
+        className={`absolute inset-x-0 top-0 h-2/5 bg-gradient-to-b to-transparent ${
+          v.dark ? "from-black/60" : "from-background/90 via-background/40"
+        }`}
+      />
+      <div
+        className={`absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t to-transparent ${
+          v.dark ? "from-black/70" : "from-background/95 via-background/40"
+        }`}
       />
 
-      {/* Контент */}
+      {/* Контент: цитата сверху, буллеты снизу */}
       <div className="relative z-10 flex min-h-[100svh] flex-col">
-        {/* Цитата сбоку */}
-        <div className="flex flex-1 items-center px-6 pt-24 md:px-12">
+        {/* Цитата вверху (над головой, на фоне) */}
+        <div className="px-6 pt-28 md:px-12 md:pt-32">
           <figure className="max-w-md">
-            <div className={`mb-5 h-px w-16 ${ruleColor}`} />
+            <div className={`mb-4 h-px w-16 ${ruleColor}`} />
             <blockquote
-              className={`font-display text-3xl italic leading-snug md:text-4xl ${textColor}`}
+              className={`font-display text-[1.6rem] italic leading-snug sm:text-3xl md:text-4xl ${textColor}`}
             >
               «Тебе нужно больше&nbsp;помощи, чем ты&nbsp;думаешь»
             </blockquote>
           </figure>
         </div>
 
+        <div className="flex-1" />
+
         {/* Буллеты по нижнему краю */}
-        <div className="px-6 pb-24 md:px-12 md:pb-28">
+        <div className="px-6 pb-12 md:px-12 md:pb-28">
           <ul
             className={`flex flex-col gap-2 text-sm tracking-wide sm:flex-row sm:gap-10 ${textColor}`}
           >
