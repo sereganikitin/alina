@@ -43,7 +43,7 @@ const VARIANTS: Variant[] = [
     dark: false,
     // фон дострочен по краям -> отдалено, на всю ширину без полей
     size: "cover",
-    position: "center 38%",
+    position: "center 52%",
     bg: "var(--background)",
   },
 ];
@@ -82,12 +82,6 @@ export default function Hero() {
           v.dark ? "from-black/60" : "from-background/90 via-background/40"
         }`}
       />
-      <div
-        className={`absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t to-transparent ${
-          v.dark ? "from-black/70" : "from-background/95 via-background/40"
-        }`}
-      />
-
       {/* Контент: цитата сверху, буллеты снизу */}
       <div className="relative z-10 flex min-h-[100svh] flex-col">
         {/* Цитата вверху (над головой, на фоне) */}
