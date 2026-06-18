@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
+import FloatingContact from "@/components/FloatingContact";
 
 const playfair = Playfair_Display({
   variable: "--font-display",
@@ -34,6 +35,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <SiteHeader />
         {children}
+        <FloatingContact />
       </body>
     </html>
   );

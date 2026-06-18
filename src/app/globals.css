@@ -27,3 +27,26 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
+
+/* Мерцание плавающей кнопки для привлечения внимания */
+@keyframes fab-attn {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  12% {
+    transform: scale(1.12) rotate(-6deg);
+  }
+  24% {
+    transform: scale(1) rotate(0deg);
+  }
+  36% {
+    transform: scale(1.12) rotate(6deg);
+  }
+  48% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+.fab-attn {
+  animation: fab-attn 2s ease-in-out infinite;
+}

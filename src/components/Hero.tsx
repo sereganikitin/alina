@@ -97,7 +97,7 @@ export default function Hero() {
       <Wave className="absolute bottom-0 left-0 z-10 h-16 w-full md:h-24" />
 
       {/* Переключатель вариантов (временный, для согласования) */}
-      <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-2 rounded-xl bg-black/70 p-3 text-xs text-white backdrop-blur">
+      <div className="fixed bottom-4 left-4 z-50 flex flex-col gap-2 rounded-xl bg-black/70 p-3 text-xs text-white backdrop-blur">
         <span className="opacity-70">Вариант шапки:</span>
         {VARIANTS.map((variant, i) => (
           <button
