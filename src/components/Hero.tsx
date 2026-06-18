@@ -21,10 +21,10 @@ const VARIANTS: Variant[] = [
   {
     id: "beige-1",
     label: "Беж · рука у виска",
-    image: "/photos/hero-beige-1.jpg",
+    image: "/photos/hero-beige-3.jpg",
     dark: false,
     size: "cover",
-    position: "center 42%",
+    position: "center 25%",
     bg: "var(--background)",
   },
   {
