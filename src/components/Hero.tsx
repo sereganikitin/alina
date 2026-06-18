@@ -18,16 +18,6 @@ type Variant = {
 
 const VARIANTS: Variant[] = [
   {
-    id: "dark",
-    label: "Тёмное фото",
-    image: "/photos/hero-dark.jpg",
-    dark: true,
-    // на всю ширину; голова прижата к верху (показываем нижнюю часть кадра)
-    size: "cover",
-    position: "center 55%",
-    bg: "#131310",
-  },
-  {
     id: "beige-1",
     label: "Беж · рука у виска",
     image: "/photos/hero-beige-1.jpg",
@@ -49,7 +39,7 @@ const VARIANTS: Variant[] = [
 ];
 
 export default function Hero() {
-  const [index, setIndex] = useState(2); // финал: вариант 3 (беж, рука у подбородка)
+  const [index, setIndex] = useState(1); // финал: беж, рука у подбородка
   const v = VARIANTS[index];
 
   // Сообщаем фиксированной шапке о смене фона (для пересчёта контраста)
@@ -83,7 +73,7 @@ export default function Hero() {
           <figure className="max-w-xl">
             <div className={`mb-5 h-px w-16 ${ruleColor}`} />
             <blockquote
-              className={`font-display text-[1.85rem] italic leading-[1.15] sm:text-4xl md:text-5xl lg:text-[3.25rem] ${textColor}`}
+              className={`font-display text-[1.85rem] leading-[1.15] sm:text-4xl md:text-5xl lg:text-[3.25rem] ${textColor}`}
             >
               «Тебе нужно больше&nbsp;помощи, чем ты&nbsp;думаешь»
             </blockquote>

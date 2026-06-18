@@ -75,9 +75,9 @@ export default function SiteHeader() {
         <a
           href="#top"
           onClick={() => setOpen(false)}
-          className={`font-display text-2xl tracking-wide transition-colors ${brand}`}
+          className={`font-display text-[1.6rem] font-semibold tracking-wide transition-colors md:text-3xl ${brand}`}
         >
-          Алина
+          Алина Дубовская
         </a>
 
         {/* Десктоп-меню */}
