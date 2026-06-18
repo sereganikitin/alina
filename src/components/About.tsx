@@ -29,7 +29,7 @@ export default function About() {
             <img
               src="/photos/about.jpg"
               alt="Алина"
-              className="aspect-[3/4] w-full object-cover"
+              className="aspect-[3/4] w-full object-cover object-[center_15%]"
             />
           </div>
         </div>

@@ -20,6 +20,8 @@ export const metadata: Metadata = {
   title: "Алина — психолог, EMDR- и IFS-терапевт",
   description:
     "Психолог, EMDR-терапевт, IFS-терапевт, танцевально-двигательный терапевт. Работа с травмой, ПТСР, границами, психосоматикой.",
+  // Пока сайт не готов — полностью скрываем от поисковиков
+  robots: { index: false, follow: false, nocache: true },
 };
 
 export default function RootLayout({
