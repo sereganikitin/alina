@@ -23,7 +23,11 @@ const REQUESTS = [
 
 export default function Principles() {
   return (
-    <section id="principles" className="relative bg-cream px-6 pb-24 pt-32 md:px-12 md:pb-32 md:pt-40">
+    <section
+      id="principles"
+      data-nav-theme="light"
+      className="relative bg-cream px-6 pb-24 pt-32 md:px-12 md:pb-32 md:pt-40"
+    >
       {/* Волнистый разделитель: беж секции «Обо мне» спускается в кремовый */}
       <Wave
         className="absolute left-0 top-0 h-16 w-full rotate-180 md:h-24"

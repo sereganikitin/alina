@@ -1,16 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Wave from "./Wave";
-
-const NAV = [
-  { label: "Обо мне", href: "#about" },
-  { label: "Принципы работы", href: "#principles" },
-  { label: "О подходе", href: "#approach" },
-  { label: "Консультация", href: "#booking" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Контакты", href: "#contacts" },
-];
 
 type Variant = {
   id: string;
@@ -31,9 +22,9 @@ const VARIANTS: Variant[] = [
     label: "Тёмное фото",
     image: "/photos/hero-dark.jpg",
     dark: true,
-    // чуть отдалено и поднято; пустота сливается с тёмным фоном фото
-    size: "auto 90%",
-    position: "center 18%",
+    // на всю ширину; голова прижата к верху (показываем нижнюю часть кадра)
+    size: "cover",
+    position: "center 55%",
     bg: "#131310",
   },
   {
@@ -60,15 +51,20 @@ export default function Hero() {
   const [index, setIndex] = useState(1); // по умолчанию вариант 2 (беж, рука у виска)
   const v = VARIANTS[index];
 
+  // Сообщаем фиксированной шапке о смене фона (для пересчёта контраста)
+  useEffect(() => {
+    window.dispatchEvent(new Event("navthemerefresh"));
+  }, [index]);
+
   // Цвета текста в зависимости от фона фото
   const textColor = v.dark ? "text-gold" : "text-foreground";
-  const navColor = v.dark
-    ? "text-gold/90 hover:text-gold"
-    : "text-foreground/80 hover:text-foreground";
   const ruleColor = v.dark ? "bg-gold/40" : "bg-foreground/30";
 
   return (
-    <section className="relative min-h-[100svh] w-full overflow-hidden">
+    <section
+      className="relative min-h-[100svh] w-full overflow-hidden"
+      data-nav-theme={v.dark ? "dark" : "light"}
+    >
       {/* Фон-фото */}
       <div
         className="absolute inset-0 bg-no-repeat"
@@ -90,28 +86,8 @@ export default function Hero() {
 
       {/* Контент */}
       <div className="relative z-10 flex min-h-[100svh] flex-col">
-        {/* Верхнее меню */}
-        <header className="flex items-center justify-between px-6 py-6 md:px-12">
-          <span
-            className={`font-display text-2xl tracking-wide ${textColor}`}
-          >
-            Алина
-          </span>
-          <nav className="hidden gap-7 text-sm tracking-wide md:flex">
-            {NAV.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className={`transition-colors ${navColor}`}
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
-        </header>
-
         {/* Цитата сбоку */}
-        <div className="flex flex-1 items-center px-6 md:px-12">
+        <div className="flex flex-1 items-center px-6 pt-24 md:px-12">
           <figure className="max-w-md">
             <div className={`mb-5 h-px w-16 ${ruleColor}`} />
             <blockquote
