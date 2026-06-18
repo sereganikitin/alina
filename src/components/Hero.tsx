@@ -19,8 +19,10 @@ type Variant = {
   dark: boolean; // тёмное фото -> золотой/светлый текст
   // Кадрирование: size — зум (даёт вертикальный запас), position — сдвиг.
   // Чем больше Y в position, тем выше «поднимается» фото (меньше места над головой).
+  // bg — цвет подложки за фото (для «отдаления» без видимого шва).
   size: string;
   position: string;
+  bg: string;
 };
 
 const VARIANTS: Variant[] = [
@@ -29,8 +31,10 @@ const VARIANTS: Variant[] = [
     label: "Тёмное фото",
     image: "/photos/hero-dark.jpg",
     dark: true,
-    size: "cover",
-    position: "center 30%",
+    // чуть отдалено и поднято; пустота сливается с тёмным фоном фото
+    size: "auto 90%",
+    position: "center 18%",
+    bg: "#131310",
   },
   {
     id: "beige-1",
@@ -39,6 +43,7 @@ const VARIANTS: Variant[] = [
     dark: false,
     size: "cover",
     position: "center 42%",
+    bg: "var(--background)",
   },
   {
     id: "beige-2",
@@ -47,6 +52,7 @@ const VARIANTS: Variant[] = [
     dark: false,
     size: "cover",
     position: "center 40%",
+    bg: "var(--background)",
   },
 ];
 
@@ -70,6 +76,7 @@ export default function Hero() {
           backgroundImage: `url(${v.image})`,
           backgroundSize: v.size,
           backgroundPosition: v.position,
+          backgroundColor: v.bg,
         }}
       />
       {/* Лёгкое затемнение/осветление для читаемости текста */}
