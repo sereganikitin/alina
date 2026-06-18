@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Записи встреч (приватные, не в репозиторий)
+*.webm
+
+# Расшифровки встреч (приватные)
+/design/transcripts/

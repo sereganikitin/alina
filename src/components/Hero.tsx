@@ -29,7 +29,7 @@ const VARIANTS: Variant[] = [
     label: "Тёмное фото",
     image: "/photos/hero-dark.jpg",
     dark: true,
-    size: "auto 130%",
+    size: "cover",
     position: "center 30%",
   },
   {
@@ -37,7 +37,7 @@ const VARIANTS: Variant[] = [
     label: "Беж · рука у виска",
     image: "/photos/hero-beige-1.jpg",
     dark: false,
-    size: "auto 135%",
+    size: "cover",
     position: "center 42%",
   },
   {
@@ -45,7 +45,7 @@ const VARIANTS: Variant[] = [
     label: "Беж · рука у подбородка",
     image: "/photos/hero-beige-2.jpg",
     dark: false,
-    size: "auto 135%",
+    size: "cover",
     position: "center 40%",
   },
 ];
