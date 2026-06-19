@@ -85,7 +85,7 @@ export default function Hero() {
         </div>
 
         {/* Цифры столбиком: число сверху, подпись снизу */}
-        <div className="px-6 pt-20 md:px-12 md:pt-28">
+        <div className="px-6 pt-6 md:px-12 md:pt-10">
           <dl className="flex flex-col gap-7 md:gap-9">
             {c.hero.stats.map((s) => (
               <div key={s.label}>
