@@ -112,19 +112,18 @@ export default function Hero() {
       {/* Волна по нижнему краю */}
       <Wave className="absolute bottom-0 left-0 z-10 h-16 w-full md:h-24" />
 
-      {/* Переключатель вариантов (временный, для согласования) */}
-      <div className="fixed bottom-4 left-4 z-50 flex flex-col gap-2 rounded-xl bg-black/70 p-3 text-xs text-white backdrop-blur">
-        <span className="opacity-70">Вариант шапки:</span>
+      {/* Переключатель вариантов фото — маленький и неприметный (временный) */}
+      <div className="fixed bottom-3 left-3 z-50 flex items-center gap-1.5 rounded-full bg-black/25 px-2 py-1.5 opacity-35 backdrop-blur transition-opacity hover:opacity-100">
         {VARIANTS.map((variant, i) => (
           <button
             key={variant.id}
             onClick={() => setIndex(i)}
-            className={`rounded-md px-3 py-1.5 text-left transition-colors ${
-              i === index ? "bg-white text-black" : "hover:bg-white/20"
+            title={variant.label}
+            aria-label={variant.label}
+            className={`h-2.5 w-2.5 rounded-full transition-colors ${
+              i === index ? "bg-white" : "bg-white/40 hover:bg-white/80"
             }`}
-          >
-            {i + 1}. {variant.label}
-          </button>
+          />
         ))}
       </div>
     </section>
