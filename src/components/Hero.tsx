@@ -91,7 +91,7 @@ export default function Hero() {
               <div key={s.label}>
                 <dd
                   className={`font-display text-5xl leading-none md:text-6xl ${
-                    v.dark ? "text-gold" : "text-[#2b1c12]"
+                    v.dark ? "text-gold" : "text-[#c2a87c]"
                   }`}
                 >
                   {s.value}
