@@ -84,31 +84,31 @@ export default function Hero() {
           </figure>
         </div>
 
-        <div className="flex-1" />
-
         {/* Цифры столбиком: подпись сверху, крупное число снизу */}
-        <div className="px-6 pb-12 md:px-12 md:pb-24">
+        <div className="px-6 pt-10 md:px-12 md:pt-14">
           <dl className="flex flex-col gap-5 md:gap-6">
             {c.hero.stats.map((s) => (
               <div key={s.label}>
+                <dd
+                  className={`font-display text-5xl leading-none md:text-6xl ${
+                    v.dark ? "text-gold" : "text-[#5b4636]"
+                  }`}
+                >
+                  {s.value}
+                </dd>
                 <dt
-                  className={`text-[11px] uppercase tracking-[0.2em] sm:text-xs ${
+                  className={`mt-2 text-[11px] uppercase tracking-[0.2em] sm:text-xs ${
                     v.dark ? "text-gold/70" : "text-muted"
                   }`}
                 >
                   {s.label}
                 </dt>
-                <dd
-                  className={`font-display text-5xl leading-none md:text-6xl ${
-                    v.dark ? "text-gold" : "text-terracotta"
-                  }`}
-                >
-                  {s.value}
-                </dd>
               </div>
             ))}
           </dl>
         </div>
+
+        <div className="flex-1" />
       </div>
 
       {/* Волна по нижнему краю */}
