@@ -7,9 +7,9 @@ export const DEFAULT_CONTENT = {
     quote: "«Тебе нужно больше помощи, чем ты думаешь»",
     image: "/photos/hero-beige-2.jpg",
     stats: [
-      { value: "10", label: "лет в практике" },
       { value: "15 000+", label: "часов сессий" },
       { value: "200+", label: "клиентов" },
+      { value: "10", label: "лет в практике" },
     ],
   },
   about: {

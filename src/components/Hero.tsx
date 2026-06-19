@@ -86,22 +86,24 @@ export default function Hero() {
 
         <div className="flex-1" />
 
-        {/* Цифры по нижнему краю (крупное число + подпись) */}
-        <div className="px-6 pb-12 md:px-12 md:pb-28">
-          <dl className="flex gap-8 sm:gap-14">
+        {/* Цифры столбиком: подпись сверху, крупное число снизу */}
+        <div className="px-6 pb-12 md:px-12 md:pb-24">
+          <dl className="flex flex-col gap-5 md:gap-6">
             {c.hero.stats.map((s) => (
               <div key={s.label}>
                 <dt
-                  className={`font-display text-[2rem] leading-none sm:text-4xl md:text-5xl ${textColor}`}
-                >
-                  {s.value}
-                </dt>
-                <dd
-                  className={`mt-2 text-[11px] uppercase tracking-[0.18em] sm:text-xs ${
+                  className={`text-[11px] uppercase tracking-[0.2em] sm:text-xs ${
                     v.dark ? "text-gold/70" : "text-muted"
                   }`}
                 >
                   {s.label}
+                </dt>
+                <dd
+                  className={`font-display text-5xl leading-none md:text-6xl ${
+                    v.dark ? "text-gold" : "text-terracotta"
+                  }`}
+                >
+                  {s.value}
                 </dd>
               </div>
             ))}
