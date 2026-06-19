@@ -5,9 +5,12 @@
 export const DEFAULT_CONTENT = {
   hero: {
     quote: "«Тебе нужно больше помощи, чем ты думаешь»",
-    bullet1: "Более 100 часов супервизий",
-    bullet2: "Более 200 часов личной терапии",
     image: "/photos/hero-beige-2.jpg",
+    stats: [
+      { value: "10", label: "лет в практике" },
+      { value: "15 000+", label: "часов сессий" },
+      { value: "200+", label: "клиентов" },
+    ],
   },
   about: {
     title:

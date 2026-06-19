@@ -4,9 +4,12 @@
 const DEFAULTS = {
   hero: {
     quote: "«Тебе нужно больше помощи, чем ты думаешь»",
-    bullet1: "Более 100 часов супервизий",
-    bullet2: "Более 200 часов личной терапии",
     image: "/photos/hero-beige-2.jpg",
+    stats: [
+      { value: "10", label: "лет в практике" },
+      { value: "15 000+", label: "часов сессий" },
+      { value: "200+", label: "клиентов" },
+    ],
   },
   about: {
     title:
@@ -263,7 +266,9 @@ function renderContent() {
   root.innerHTML = "";
   const c = content;
   root.append(
-    section("Шапка", fArea("Цитата", c.hero, "quote"), fText("Буллет 1", c.hero, "bullet1"), fText("Буллет 2", c.hero, "bullet2"), fMedia("Фото шапки", c.hero, "image", "image/*")),
+    section("Шапка", fArea("Цитата", c.hero, "quote"),
+      listObj("Цифры (число + подпись)", c.hero.stats, [{ key: "value", label: "Число" }, { key: "label", label: "Подпись" }], () => ({ value: "", label: "" })),
+      fMedia("Фото шапки", c.hero, "image", "image/*")),
     section("Обо мне", fArea("Заголовок", c.about, "title"), fArea("Подпись", c.about, "lead"), listText("Методы", c.about.methods), fMedia("Фото в арке", c.about, "image", "image/*")),
     section("Образование", fArea("Вступление", c.education, "lead"),
       listObj("Дипломы", c.education.diplomas, [{ key: "title", label: "Название" }, { key: "scan", label: "Скан", type: "image" }], () => ({ title: "", scan: "" })),

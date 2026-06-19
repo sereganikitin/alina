@@ -86,14 +86,26 @@ export default function Hero() {
 
         <div className="flex-1" />
 
-        {/* Буллеты по нижнему краю */}
+        {/* Цифры по нижнему краю (крупное число + подпись) */}
         <div className="px-6 pb-12 md:px-12 md:pb-28">
-          <ul
-            className={`flex flex-col gap-2 text-sm tracking-wide sm:flex-row sm:gap-10 ${textColor}`}
-          >
-            <li>{c.hero.bullet1}</li>
-            <li>{c.hero.bullet2}</li>
-          </ul>
+          <dl className="flex gap-8 sm:gap-14">
+            {c.hero.stats.map((s) => (
+              <div key={s.label}>
+                <dt
+                  className={`font-display text-[2rem] leading-none sm:text-4xl md:text-5xl ${textColor}`}
+                >
+                  {s.value}
+                </dt>
+                <dd
+                  className={`mt-2 text-[11px] uppercase tracking-[0.18em] sm:text-xs ${
+                    v.dark ? "text-gold/70" : "text-muted"
+                  }`}
+                >
+                  {s.label}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </div>
 
