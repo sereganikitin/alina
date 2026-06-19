@@ -84,14 +84,14 @@ export default function Hero() {
           </figure>
         </div>
 
-        {/* Цифры столбиком: подпись сверху, крупное число снизу */}
-        <div className="px-6 pt-10 md:px-12 md:pt-14">
+        {/* Цифры столбиком: число сверху, подпись снизу */}
+        <div className="px-6 pt-20 md:px-12 md:pt-28">
           <dl className="flex flex-col gap-5 md:gap-6">
             {c.hero.stats.map((s) => (
               <div key={s.label}>
                 <dd
                   className={`font-display text-5xl leading-none md:text-6xl ${
-                    v.dark ? "text-gold" : "text-[#5b4636]"
+                    v.dark ? "text-gold" : "text-[#2b1c12]"
                   }`}
                 >
                   {s.value}
