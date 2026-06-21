@@ -96,7 +96,7 @@ export default function SiteHeader() {
             Алина Дубовская
           </span>
           <span
-            className={`mt-1.5 block font-sans text-[0.65rem] uppercase tracking-[0.3em] md:text-xs ${sub}`}
+            className={`mt-1.5 block font-sans text-[0.65rem] tracking-[0.2em] md:text-xs ${sub}`}
           >
             психолог
           </span>
@@ -149,7 +149,7 @@ export default function SiteHeader() {
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="font-display text-2xl text-foreground transition-colors hover:text-terracotta"
+              className="font-sans text-2xl text-foreground transition-colors hover:text-terracotta"
             >
               {item.label}
             </a>

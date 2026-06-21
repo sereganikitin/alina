@@ -13,7 +13,7 @@ export default function About() {
     >
       <div className="mx-auto grid max-w-5xl items-center gap-12 md:grid-cols-2 md:gap-16">
         <div className="flex flex-col items-center">
-          <p className="mb-5 font-display text-sm uppercase tracking-[0.3em] text-muted">
+          <p className="mb-5 font-sans text-sm tracking-normal text-muted">
             Обо мне
           </p>
           <div className="relative w-full max-w-sm overflow-hidden rounded-t-[999px] rounded-b-3xl shadow-sm">

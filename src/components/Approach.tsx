@@ -28,7 +28,7 @@ export default function Approach() {
 
         <a
           href="#booking"
-          className="mt-12 inline-flex items-center gap-2 font-display text-lg text-foreground underline decoration-gold decoration-1 underline-offset-8 transition-colors hover:text-terracotta"
+          className="mt-12 inline-flex items-center gap-2 font-sans text-lg text-foreground underline decoration-gold decoration-1 underline-offset-8 transition-colors hover:text-terracotta"
         >
           Записаться на консультацию
           <span aria-hidden="true">→</span>

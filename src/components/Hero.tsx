@@ -125,11 +125,11 @@ export default function Hero() {
                   {STAT_ICONS[i]}
                 </span>
                 <span className="leading-tight">
-                  <span className="block whitespace-nowrap font-display text-lg text-terracotta sm:text-[1.7rem]">
+                  <span className="block whitespace-nowrap font-sans text-lg font-semibold text-terracotta sm:text-[1.7rem]">
                     {s.value}
                   </span>
                   <span
-                    className={`mt-0.5 block text-[0.72rem] uppercase tracking-normal sm:text-[0.8rem] ${
+                    className={`mt-0.5 block text-[0.72rem] tracking-normal sm:text-[0.8rem] ${
                       v.dark ? "text-gold/70" : "text-muted"
                     }`}
                   >
@@ -143,11 +143,11 @@ export default function Hero() {
                 {LockIcon}
               </span>
               <span className="leading-tight">
-                <span className="block whitespace-nowrap font-display text-lg text-terracotta sm:text-[1.7rem]">
+                <span className="block whitespace-nowrap font-sans text-lg font-semibold text-terracotta sm:text-[1.7rem]">
                   Безопасность
                 </span>
                 <span
-                  className={`mt-0.5 block whitespace-nowrap text-[0.72rem] uppercase tracking-normal sm:text-[0.8rem] ${
+                  className={`mt-0.5 block whitespace-nowrap text-[0.72rem] tracking-normal sm:text-[0.8rem] ${
                     v.dark ? "text-gold/70" : "text-muted"
                   }`}
                 >
@@ -161,7 +161,7 @@ export default function Hero() {
         <div className="flex-1" />
 
         {/* Кнопка записи + ссылка «как проходит работа» — ближе к волне */}
-        <div className="px-6 pb-20 md:px-12 md:pb-24">
+        <div className="px-6 pb-28 md:px-12 md:pb-32">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-4 sm:gap-x-7">
             <a
               href="#booking"

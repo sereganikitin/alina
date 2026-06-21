@@ -24,7 +24,7 @@ export default function Consultation() {
         <dl className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2">
           {c.consultation.facts.map((f) => (
             <div key={f.label} className="bg-cream p-6">
-              <dt className="font-display text-sm uppercase tracking-[0.2em] text-muted">
+              <dt className="font-sans text-sm tracking-normal text-muted">
                 {f.label}
               </dt>
               <dd className="mt-2 text-lg text-foreground/85">{f.value}</dd>
