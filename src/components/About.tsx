@@ -3,7 +3,8 @@
 import { useContent } from "@/lib/useContent";
 
 /** Раздел «Обо мне»: фото в арке по центру; слева над волнистой линией —
- *  заголовок, справа под линией — регалии. Линия повторяет форму волн сайта.
+ *  заголовок, справа под линией — регалии. Линия во всю ширину экрана,
+ *  на заднем плане (за фото и текстом), повторяет форму волн сайта.
  *  Блок «Методы» временно скрыт (см. ниже), вернёмся к нему позже. */
 export default function About() {
   const c = useContent();
@@ -13,10 +14,10 @@ export default function About() {
       data-nav-theme="light"
       className="relative overflow-hidden bg-background px-6 py-24 md:px-12 md:py-32"
     >
-      <div className="relative z-10 mx-auto max-w-5xl">
-        {/* Волнистая линия — форма как у волн сайта, только контур, на 25% высоты */}
+      <div className="relative mx-auto max-w-5xl">
+        {/* Волнистая линия — во всю ширину экрана, на заднем плане, форма как у волн */}
         <svg
-          className="pointer-events-none absolute inset-x-0 top-[25%] hidden h-16 w-full -translate-y-1/2 md:block md:h-24"
+          className="pointer-events-none absolute left-1/2 top-[25%] hidden h-16 w-screen -translate-x-1/2 -translate-y-1/2 md:block md:h-24"
           viewBox="0 0 1440 120"
           preserveAspectRatio="none"
           aria-hidden="true"
@@ -30,9 +31,9 @@ export default function About() {
           />
         </svg>
 
-        <div className="grid items-start gap-10 md:grid-cols-[0.8fr_auto_1.4fr] md:gap-12">
-          {/* Заголовок — слева, над линией */}
-          <h2 className="font-display text-5xl font-semibold leading-none md:text-right lg:text-6xl">
+        <div className="grid items-start gap-10 md:grid-cols-[0.8fr_auto_1.6fr] md:gap-12">
+          {/* Заголовок — слева, над линией, в одну строку */}
+          <h2 className="font-display text-5xl font-semibold leading-none md:whitespace-nowrap md:text-right">
             Обо мне
           </h2>
 
@@ -46,7 +47,7 @@ export default function About() {
             />
           </div>
 
-          {/* Регалии — справа, под линией; пошире, чтобы не выглядело столбиком */}
+          {/* Регалии — справа, под линией, во всю ширину колонки */}
           <div className="md:self-end md:pb-6">
             <p className="font-display text-2xl leading-snug text-foreground md:text-[1.7rem]">
               {c.about.title}
