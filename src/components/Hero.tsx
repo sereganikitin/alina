@@ -129,7 +129,7 @@ export default function Hero() {
                     {s.value}
                   </span>
                   <span
-                    className={`mt-0.5 block text-[0.72rem] tracking-normal sm:text-[0.8rem] ${
+                    className={`mt-0.5 block text-sm lowercase tracking-normal sm:text-base ${
                       v.dark ? "text-gold/70" : "text-muted"
                     }`}
                   >
@@ -147,7 +147,7 @@ export default function Hero() {
                   Безопасность
                 </span>
                 <span
-                  className={`mt-0.5 block whitespace-nowrap text-[0.72rem] tracking-normal sm:text-[0.8rem] ${
+                  className={`mt-0.5 block whitespace-nowrap text-sm lowercase tracking-normal sm:text-base ${
                     v.dark ? "text-gold/70" : "text-muted"
                   }`}
                 >
