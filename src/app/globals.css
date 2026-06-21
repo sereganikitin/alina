@@ -8,6 +8,8 @@
   --gold: #b8975a; /* золото для тёмных фото */
   --terracotta: #9e5a45; /* терракотово-коричневый акцент */
   --line: #d8cdbd; /* линии/разделители */
+  /* Заголовки: Moniqa, с фолбэком на Playfair (в т.ч. для кириллицы) */
+  --font-display: var(--font-moniqa), var(--font-playfair), Georgia, serif;
 }
 
 @theme inline {

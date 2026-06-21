@@ -1,11 +1,20 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import FloatingContact from "@/components/FloatingContact";
 
+// Заголовки — Moniqa Heading (regular). Файл лежит в public/fonts.
+const moniqa = localFont({
+  variable: "--font-moniqa",
+  src: "../../public/fonts/Moniqa-Heading.ttf",
+  display: "swap",
+});
+
+// Playfair — glyph-fallback для заголовков (например, кириллица, если её нет в Moniqa).
 const playfair = Playfair_Display({
-  variable: "--font-display",
+  variable: "--font-playfair",
   subsets: ["latin", "cyrillic"],
   display: "swap",
 });
@@ -32,7 +41,7 @@ export default function RootLayout({
   return (
     <html
       lang="ru"
-      className={`${playfair.variable} ${inter.variable} h-full antialiased`}
+      className={`${moniqa.variable} ${playfair.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <SiteHeader />
