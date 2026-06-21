@@ -125,11 +125,11 @@ export default function Hero() {
                   {STAT_ICONS[i]}
                 </span>
                 <span className="leading-tight">
-                  <span className="block whitespace-nowrap font-display text-lg text-terracotta sm:text-[1.7rem]">
+                  <span className="block whitespace-nowrap font-display text-lg leading-none text-terracotta sm:text-[1.7rem]">
                     {s.value}
                   </span>
                   <span
-                    className={`mt-0.5 block text-sm lowercase tracking-normal sm:text-base ${
+                    className={`mt-1 block text-sm lowercase leading-tight tracking-normal sm:text-base ${
                       v.dark ? "text-gold/70" : "text-muted"
                     }`}
                   >
@@ -143,11 +143,11 @@ export default function Hero() {
                 {LockIcon}
               </span>
               <span className="leading-tight">
-                <span className="block whitespace-nowrap font-display text-lg text-terracotta sm:text-[1.7rem]">
+                <span className="block whitespace-nowrap font-display text-lg leading-none text-terracotta sm:text-[1.7rem]">
                   Безопасность
                 </span>
                 <span
-                  className={`mt-0.5 block whitespace-nowrap text-sm lowercase tracking-normal sm:text-base ${
+                  className={`mt-1 block whitespace-nowrap text-sm lowercase leading-tight tracking-normal sm:text-base ${
                     v.dark ? "text-gold/70" : "text-muted"
                   }`}
                 >
@@ -165,13 +165,13 @@ export default function Hero() {
           <div className="flex flex-wrap items-center gap-x-6 gap-y-4 sm:gap-x-7">
             <a
               href="#booking"
-              className="inline-flex items-center justify-center rounded-full bg-terracotta px-6 py-3 font-sans text-sm text-cream shadow-lg transition-opacity hover:opacity-90 sm:px-7 sm:py-3.5 sm:text-base"
+              className="inline-flex items-center justify-center rounded-full bg-terracotta px-6 py-3 font-sans text-sm lowercase text-cream shadow-lg transition-opacity hover:opacity-90 sm:px-7 sm:py-3.5 sm:text-base"
             >
               Записаться на первую встречу
             </a>
             <a
               href="#principles"
-              className={`group inline-flex items-center gap-2.5 font-sans text-sm transition-colors hover:text-terracotta sm:text-base ${
+              className={`group inline-flex items-center gap-2.5 font-sans text-sm lowercase transition-colors hover:text-terracotta sm:text-base ${
                 v.dark ? "text-gold" : "text-foreground"
               }`}
             >
