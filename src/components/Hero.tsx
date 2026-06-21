@@ -33,10 +33,14 @@ const PersonIcon = (
 // Часы — с делениями на циферблате (6 делений)
 const clockCls = "h-8 w-8 sm:h-10 sm:w-10";
 const ClockIcon = (
-  <svg viewBox="0 0 24 24" className={clockCls} fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="8" />
-    <path d="M12 7.8V12l2.8 1.6" />
-    <path d="M12 4.2V5.4 M18.8 8.1L17.7 8.7 M18.8 15.9L17.7 15.3 M12 19.8V18.6 M5.2 15.9L6.3 15.3 M5.2 8.1L6.3 8.7" />
+  <svg viewBox="0 0 24 24" className={clockCls} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="9" />
+    {/* деления 12 / 3 / 6 / 9 */}
+    <path d="M12 4.4V6.4 M19.6 12H17.6 M12 19.6V17.6 M4.4 12H6.4" />
+    {/* стрелки: длинная вверх-вправо, короткая вверх-влево */}
+    <path d="M12 12L16 8 M12 12L9.4 9.4" />
+    {/* центр */}
+    <circle cx="12" cy="12" r="1.15" fill="currentColor" stroke="none" />
   </svg>
 );
 // Ноутбук: экран + трапециевидная база (чтобы читался как ноут)
