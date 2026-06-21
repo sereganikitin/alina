@@ -128,7 +128,7 @@ export default function Hero() {
                     {s.value}
                   </span>
                   <span
-                    className={`mt-0.5 block text-[0.72rem] uppercase tracking-[0.12em] sm:text-[0.8rem] sm:tracking-[0.14em] ${
+                    className={`mt-0.5 block text-[0.72rem] uppercase tracking-normal sm:text-[0.8rem] ${
                       v.dark ? "text-gold/70" : "text-muted"
                     }`}
                   >
@@ -146,7 +146,7 @@ export default function Hero() {
                   Безопасность
                 </span>
                 <span
-                  className={`mt-0.5 block text-[0.72rem] uppercase tracking-[0.12em] sm:text-[0.8rem] sm:tracking-[0.14em] ${
+                  className={`mt-0.5 block text-[0.72rem] uppercase tracking-normal sm:whitespace-nowrap sm:text-[0.8rem] ${
                     v.dark ? "text-gold/70" : "text-muted"
                   }`}
                 >
