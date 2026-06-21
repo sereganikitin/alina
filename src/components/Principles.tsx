@@ -25,13 +25,25 @@ export default function Principles() {
         {/* Фото под заголовком: по ширине текста, сверху идеально круглая дуга.
             aspect-[4/3] => высота 0.75·ширины >= ширина/2, поэтому rounded-t-full
             даёт ровный полукруг (радиус = половина ширины блока). */}
-        <div className="mt-10 aspect-[4/3] overflow-hidden rounded-t-full md:mt-12">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={c.principles.image}
-            alt="Алина"
-            className="h-full w-full object-cover object-[center_25%]"
-          />
+        <div className="relative mt-10 md:mt-12">
+          <div className="aspect-[4/3] overflow-hidden rounded-t-full">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={c.principles.image}
+              alt="Алина"
+              className="h-full w-full object-cover object-[center_25%]"
+            />
+          </div>
+
+          {/* Текстовый блок в пустом углу справа от дуги */}
+          <div className="mt-8 md:absolute md:right-0 md:top-[10%] md:mt-0 md:w-[34%]">
+            <h3 className="font-display text-2xl text-terracotta">
+              {c.principles.side.title}
+            </h3>
+            <p className="mt-4 text-base leading-relaxed text-foreground/80">
+              {c.principles.side.text}
+            </p>
+          </div>
         </div>
 
         <h3 className="mt-14 font-display text-2xl text-terracotta">

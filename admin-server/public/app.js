@@ -67,6 +67,10 @@ const DEFAULTS = {
     withWhom:
       "Со взрослыми людьми в долгосрочной онлайн-терапии. Подробности об условиях и форматах — в разделе «Консультация».",
     image: "/photos/principles.jpg",
+    side: {
+      title: "Бережно и по делу",
+      text: "Здесь будет текст блока рядом с фото — пара предложений о подходе и о том, как проходит работа. Пока это заглушка, чтобы оценить вёрстку и расположение.",
+    },
   },
   approach: {
     paragraphs: [
@@ -285,7 +289,7 @@ function renderContent() {
     section("Образование", fArea("Вступление", c.education, "lead"),
       listObj("Дипломы", c.education.diplomas, [{ key: "title", label: "Название" }, { key: "scan", label: "Скан", type: "image" }], () => ({ title: "", scan: "" })),
       listText("Доп. строки", c.education.extra)),
-    section("Принципы работы", listText("Запросы (с чем работаю)", c.principles.requests), fArea("С кем я работаю", c.principles, "withWhom"), fMedia("Фото (внизу секции, дуга сверху)", c.principles, "image", "image/*")),
+    section("Принципы работы", listText("Запросы (с чем работаю)", c.principles.requests), fArea("С кем я работаю", c.principles, "withWhom"), fMedia("Фото (дуга сверху)", c.principles, "image", "image/*"), fArea("Блок у фото — заголовок", c.principles.side, "title"), fArea("Блок у фото — текст", c.principles.side, "text")),
     section("О подходе", listText("Абзацы", c.approach.paragraphs)),
     section("Консультация",
       listObj("Факты", c.consultation.facts, [{ key: "label", label: "Заголовок" }, { key: "value", label: "Значение" }], () => ({ label: "", value: "" })),
