@@ -18,10 +18,13 @@ const NAV = [
  */
 export default function SiteHeader() {
   const [onDark, setOnDark] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const HEADER_MID = 32;
+    // Высота «плашки» шапки: ниже неё контент срезается фоном.
+    const HEADER_H = 76;
     const compute = () => {
       const sections =
         document.querySelectorAll<HTMLElement>("[data-nav-theme]");
@@ -33,6 +36,11 @@ export default function SiteHeader() {
         }
       });
       setOnDark(dark);
+
+      // Hero — первая секция с data-nav-theme. Пока он на экране — шапка прозрачная;
+      // как только ушёл под шапку — включаем фон-плашку (контент срезается под меню).
+      const hero = document.querySelector<HTMLElement>("[data-nav-theme]");
+      setScrolled(hero ? hero.getBoundingClientRect().bottom <= HEADER_H : true);
     };
 
     let raf = 0;
@@ -64,20 +72,36 @@ export default function SiteHeader() {
   // Цвет иконки/брендов: при открытом меню фон светлый -> тёмный текст
   const light = onDark && !open;
   const brand = light ? "text-gold" : "text-foreground";
+  const sub = light ? "text-white/70" : "text-muted";
   const link = light
     ? "text-white/90 hover:text-white"
     : "text-foreground/75 hover:text-foreground";
   const burger = light ? "bg-white" : "bg-foreground";
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
-      <div className="flex items-center justify-between px-6 py-5 md:px-12">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        scrolled && !open
+          ? "border-b border-white/15 bg-background/50 shadow-[0_8px_30px_rgba(0,0,0,0.06)] backdrop-blur-xl backdrop-saturate-150"
+          : ""
+      }`}
+    >
+      <div className="flex items-center justify-between px-6 py-4 md:px-12">
         <a
           href="#top"
           onClick={() => setOpen(false)}
-          className={`font-display text-[1.6rem] font-semibold tracking-wide transition-colors md:text-3xl ${brand}`}
+          className="transition-colors"
         >
-          Алина Дубовская
+          <span
+            className={`block font-display text-[1.6rem] font-semibold leading-none tracking-wide md:text-3xl ${brand}`}
+          >
+            Алина Дубовская
+          </span>
+          <span
+            className={`mt-1.5 block font-sans text-[0.65rem] uppercase tracking-[0.3em] md:text-xs ${sub}`}
+          >
+            психолог
+          </span>
         </a>
 
         {/* Десктоп-меню */}

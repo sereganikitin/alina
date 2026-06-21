@@ -18,7 +18,7 @@ type Variant = {
 };
 
 // Минималистичные контурные иконки (стиль как у конвертика формы).
-const iconCls = "h-6 w-6";
+const iconCls = "h-5 w-5 sm:h-6 sm:w-6";
 const PersonIcon = (
   <svg viewBox="0 0 24 24" className={iconCls} fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
     <circle cx="12" cy="8" r="3.2" />
@@ -83,7 +83,6 @@ export default function Hero() {
 
   // Цвета текста в зависимости от фона фото
   const textColor = v.dark ? "text-gold" : "text-foreground";
-  const ruleColor = v.dark ? "bg-gold/40" : "bg-foreground/30";
 
   return (
     <section
@@ -105,7 +104,6 @@ export default function Hero() {
         {/* Цитата вверху (над головой, на фоне) */}
         <div className="px-6 pt-28 md:px-12 md:pt-32">
           <figure className="max-w-xl">
-            <div className={`mb-5 h-px w-16 ${ruleColor}`} />
             <blockquote
               className={`font-display text-[1.85rem] leading-[1.15] sm:text-4xl md:text-5xl lg:text-[3.25rem] ${textColor}`}
             >
@@ -114,21 +112,23 @@ export default function Hero() {
           </figure>
         </div>
 
+        <div className="flex-1" />
+
         {/* Бейджи 2×2: иконка + число/подпись (вместо крупных цифр) */}
-        <div className="px-6 pt-8 md:px-12 md:pt-10">
-          <ul className="grid max-w-xl grid-cols-2 gap-x-8 gap-y-7 sm:gap-x-10">
+        <div className="px-6 md:px-12">
+          <ul className="grid max-w-xl grid-cols-2 gap-x-5 gap-y-5 sm:gap-x-10 sm:gap-y-7">
             {/* три цифры из контента + постоянный бейдж «Конфиденциально» */}
             {c.hero.stats.slice(0, 3).map((s, i) => (
-              <li key={s.label} className="flex items-center gap-3.5">
-                <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-2 border-terracotta/60 text-terracotta">
+              <li key={s.label} className="flex items-center gap-2.5 sm:gap-3.5">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-terracotta text-terracotta sm:h-16 sm:w-16">
                   {STAT_ICONS[i]}
                 </span>
                 <span className="leading-tight">
-                  <span className="block font-display text-[1.7rem] text-terracotta">
+                  <span className="block font-display text-lg text-terracotta sm:text-[1.7rem]">
                     {s.value}
                   </span>
                   <span
-                    className={`mt-0.5 block text-[0.8rem] uppercase tracking-[0.14em] ${
+                    className={`mt-0.5 block text-[0.72rem] uppercase tracking-[0.12em] sm:text-[0.8rem] sm:tracking-[0.14em] ${
                       v.dark ? "text-gold/70" : "text-muted"
                     }`}
                   >
@@ -137,31 +137,35 @@ export default function Hero() {
                 </span>
               </li>
             ))}
-            <li className="flex items-center gap-3.5">
-              <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-2 border-terracotta/60 text-terracotta">
+            <li className="flex items-center gap-2.5 sm:gap-3.5">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-terracotta text-terracotta sm:h-16 sm:w-16">
                 {LockIcon}
               </span>
               <span
-                className={`font-display text-xl leading-tight ${
-                  v.dark ? "text-gold" : "text-foreground"
+                className={`font-sans text-base leading-tight sm:text-xl ${
+                  v.dark ? "text-gold/70" : "text-muted"
                 }`}
               >
                 Конфиденциально
               </span>
             </li>
           </ul>
+        </div>
 
-          {/* Кнопка записи + ссылка «как проходит работа» */}
-          <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-4">
+        <div className="flex-1" />
+
+        {/* Кнопка записи + ссылка «как проходит работа» — ближе к волне */}
+        <div className="px-6 pb-20 md:px-12 md:pb-24">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-4 sm:gap-x-7">
             <a
               href="#booking"
-              className="inline-flex items-center justify-center rounded-full bg-terracotta px-7 py-3.5 font-sans text-base text-cream shadow-lg transition-opacity hover:opacity-90"
+              className="inline-flex items-center justify-center rounded-full bg-terracotta px-6 py-3 font-sans text-sm text-cream shadow-lg transition-opacity hover:opacity-90 sm:px-7 sm:py-3.5 sm:text-base"
             >
               Записаться на первую встречу
             </a>
             <a
               href="#principles"
-              className={`group inline-flex items-center gap-2.5 font-sans text-base transition-colors hover:text-terracotta ${
+              className={`group inline-flex items-center gap-2.5 font-sans text-sm transition-colors hover:text-terracotta sm:text-base ${
                 v.dark ? "text-gold" : "text-foreground"
               }`}
             >
@@ -172,8 +176,6 @@ export default function Hero() {
             </a>
           </div>
         </div>
-
-        <div className="flex-1" />
       </div>
 
       {/* Волна по нижнему краю */}
