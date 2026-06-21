@@ -96,7 +96,7 @@ export default function SiteHeader() {
             Алина Дубовская
           </span>
           <span
-            className={`mt-1.5 block font-sans text-[0.65rem] uppercase tracking-[0.3em] md:text-xs ${sub}`}
+            className={`mt-1.5 block font-sans text-[0.65rem] lowercase tracking-[0.3em] md:text-xs ${sub}`}
           >
             психолог
           </span>

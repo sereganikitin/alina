@@ -18,7 +18,7 @@ type Variant = {
 };
 
 // Минималистичные контурные иконки (стиль как у конвертика формы).
-const iconCls = "h-5 w-5 sm:h-6 sm:w-6";
+const iconCls = "h-6 w-6 sm:h-7 sm:w-7";
 const PersonIcon = (
   <svg viewBox="0 0 24 24" className={iconCls} fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
     <circle cx="12" cy="8" r="3.2" />
@@ -121,7 +121,7 @@ export default function Hero() {
             {/* три цифры из контента + постоянный бейдж «Конфиденциально» */}
             {c.hero.stats.slice(0, 3).map((s, i) => (
               <li key={s.label} className="flex items-center gap-2.5 sm:gap-3.5">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-terracotta text-terracotta sm:h-14 sm:w-14">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-[1.5px] border-terracotta text-[#989782] sm:h-14 sm:w-14">
                   {STAT_ICONS[i]}
                 </span>
                 <span className="leading-tight">
@@ -129,8 +129,8 @@ export default function Hero() {
                     {s.value}
                   </span>
                   <span
-                    className={`mt-1 block text-sm lowercase leading-tight tracking-normal sm:text-base ${
-                      v.dark ? "text-gold/70" : "text-muted"
+                    className={`mt-1 block text-sm lowercase leading-tight tracking-normal transition-colors sm:text-base ${
+                      v.dark ? "text-white/90 hover:text-white" : "text-foreground/75 hover:text-foreground"
                     }`}
                   >
                     {s.label}
@@ -139,7 +139,7 @@ export default function Hero() {
               </li>
             ))}
             <li className="flex items-center gap-2.5 sm:gap-3.5">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-terracotta text-terracotta sm:h-14 sm:w-14">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-[1.5px] border-terracotta text-[#989782] sm:h-14 sm:w-14">
                 {LockIcon}
               </span>
               <span className="leading-tight">
@@ -147,8 +147,8 @@ export default function Hero() {
                   Безопасность
                 </span>
                 <span
-                  className={`mt-1 block whitespace-nowrap text-sm lowercase leading-tight tracking-normal sm:text-base ${
-                    v.dark ? "text-gold/70" : "text-muted"
+                  className={`mt-1 block whitespace-nowrap text-sm lowercase leading-tight tracking-normal transition-colors sm:text-base ${
+                    v.dark ? "text-white/90 hover:text-white" : "text-foreground/75 hover:text-foreground"
                   }`}
                 >
                   Гарантирую конфиденциальность
