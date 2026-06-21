@@ -117,7 +117,7 @@ export default function Hero() {
 
         {/* Бейджи 2×2: иконка + число/подпись (вместо крупных цифр) */}
         <div className="px-6 md:px-12">
-          <ul className="grid max-w-xs grid-cols-1 gap-y-6 lg:max-w-xl lg:grid-cols-2 lg:gap-x-10 lg:gap-y-8 xl:max-w-2xl xl:gap-x-14">
+          <ul className="grid max-w-xs grid-cols-1 gap-y-6 lg:max-w-xl lg:grid-cols-2 lg:gap-x-6 lg:gap-y-8 xl:gap-x-8">
             {/* три цифры из контента + постоянный бейдж «Конфиденциально» */}
             {c.hero.stats.slice(0, 3).map((s, i) => (
               <li key={s.label} className="flex items-center gap-2.5 sm:gap-3.5">
