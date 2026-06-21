@@ -38,18 +38,18 @@ export default function About() {
           </div>
         </div>
 
-        {/* Методы — терракотовый прямоугольник со скруглёнными углами, перекрывает низ */}
-        <div className="relative z-10 mt-10 md:-mt-12 md:ml-auto md:w-[80%]">
-          <div className="rounded-[2.5rem] bg-terracotta px-6 py-8 shadow-lg sm:px-10 sm:py-10">
-            <div className="rounded-2xl bg-cream p-6 sm:p-8">
-              <h3 className="font-display text-xl text-terracotta">Методы</h3>
+        {/* Методы — терракотовая «капсула» (по бокам полная дуга), текст цвета фона */}
+        <div className="relative z-10 mt-10 md:-mt-24 md:ml-auto md:w-[54%]">
+          <div className="rounded-[2.5rem] bg-terracotta px-10 py-12 shadow-lg sm:px-14 md:rounded-full">
+            <div className="mx-auto max-w-xs">
+              <h3 className="font-display text-xl text-background">Методы</h3>
               <ul className="mt-4 flex flex-col gap-2.5">
                 {c.about.methods.map((m) => (
                   <li
                     key={m}
-                    className="flex items-start gap-3 text-foreground/85"
+                    className="flex items-start gap-3 text-background/90"
                   >
-                    <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                    <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-background/70" />
                     <span>{m}</span>
                   </li>
                 ))}
