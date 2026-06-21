@@ -69,6 +69,7 @@ export const DEFAULT_CONTENT = {
     ],
     withWhom:
       "Со взрослыми людьми в долгосрочной онлайн-терапии. Подробности об условиях и форматах — в разделе «Консультация».",
+    image: "/photos/principles.jpg",
   },
   approach: {
     paragraphs: [

@@ -18,7 +18,9 @@ export default function Principles() {
       />
 
       <div className="mx-auto max-w-5xl">
-        <h2 className="font-display text-4xl md:text-5xl">Принципы работы</h2>
+        <h2 className="text-center font-display text-4xl md:text-5xl">
+          Принципы работы
+        </h2>
 
         <h3 className="mt-12 font-display text-2xl text-terracotta">
           С чем я работаю
@@ -48,6 +50,22 @@ export default function Principles() {
           Подробнее о методе
           <span aria-hidden="true">→</span>
         </a>
+      </div>
+
+      {/* Фото Алины — во всю ширину, сверху обрезано дугой, прижато к низу секции */}
+      <div
+        className="-mx-6 -mb-24 mt-16 overflow-hidden md:-mx-12 md:-mb-32 md:mt-24"
+        style={{
+          borderTopLeftRadius: "50% 22%",
+          borderTopRightRadius: "50% 22%",
+        }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={c.principles.image}
+          alt="Алина"
+          className="h-[55vh] w-full object-cover object-top md:h-[72vh]"
+        />
       </div>
     </section>
   );
