@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 const THEMES = [
   { id: "base", label: "Базовый" },
   { id: "warm", label: "Тёплый" },
-  { id: "dark", label: "Тёмный" },
+  { id: "east", label: "Восточный" },
 ];
 
 function applyTheme(t: string) {
