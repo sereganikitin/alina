@@ -78,8 +78,10 @@ export default function SiteHeader() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        scrolled && !open ? "bg-background" : ""
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        scrolled && !open
+          ? "bg-background/55 backdrop-blur-xl backdrop-saturate-150"
+          : ""
       }`}
     >
       <div className="flex items-center justify-between px-6 py-4 md:px-12">
