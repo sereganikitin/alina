@@ -125,7 +125,7 @@ export default function Hero() {
                   {STAT_ICONS[i]}
                 </span>
                 <span className="leading-tight">
-                  <span className="block whitespace-nowrap font-sans text-lg font-semibold text-terracotta sm:text-[1.7rem]">
+                  <span className="block whitespace-nowrap font-display text-lg text-terracotta sm:text-[1.7rem]">
                     {s.value}
                   </span>
                   <span
@@ -143,7 +143,7 @@ export default function Hero() {
                 {LockIcon}
               </span>
               <span className="leading-tight">
-                <span className="block whitespace-nowrap font-sans text-lg font-semibold text-terracotta sm:text-[1.7rem]">
+                <span className="block whitespace-nowrap font-display text-lg text-terracotta sm:text-[1.7rem]">
                   Безопасность
                 </span>
                 <span
