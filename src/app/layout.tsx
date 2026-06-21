@@ -12,6 +12,13 @@ const moniqa = localFont({
   display: "swap",
 });
 
+// Остальной текст — FactorA Regular. Файл в public/fonts.
+const factorA = localFont({
+  variable: "--font-factora",
+  src: "../../public/fonts/FactorA-Regular.woff2",
+  display: "swap",
+});
+
 // Playfair — glyph-fallback для заголовков (например, кириллица, если её нет в Moniqa).
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -19,8 +26,9 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
+// Inter — glyph-fallback для основного текста.
 const inter = Inter({
-  variable: "--font-sans",
+  variable: "--font-inter",
   subsets: ["latin", "cyrillic"],
   display: "swap",
 });
@@ -41,7 +49,7 @@ export default function RootLayout({
   return (
     <html
       lang="ru"
-      className={`${moniqa.variable} ${playfair.variable} ${inter.variable} h-full antialiased`}
+      className={`${moniqa.variable} ${factorA.variable} ${playfair.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <SiteHeader />

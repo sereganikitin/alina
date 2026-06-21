@@ -10,6 +10,8 @@
   --line: #d8cdbd; /* линии/разделители */
   /* Заголовки: Moniqa, с фолбэком на Playfair (в т.ч. для кириллицы) */
   --font-display: var(--font-moniqa), var(--font-playfair), Georgia, serif;
+  /* Остальной текст: FactorA, с фолбэком на Inter */
+  --font-sans: var(--font-factora), var(--font-inter), Arial, sans-serif;
 }
 
 @theme inline {
