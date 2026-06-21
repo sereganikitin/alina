@@ -23,7 +23,6 @@ export default function SiteHeader() {
 
   useEffect(() => {
     const HEADER_MID = 32;
-    const HEADER_H = 76;
     const compute = () => {
       const sections =
         document.querySelectorAll<HTMLElement>("[data-nav-theme]");
@@ -36,10 +35,10 @@ export default function SiteHeader() {
       });
       setOnDark(dark);
 
-      // Над hero (первая секция) шапка прозрачная — на загрузке её не видно.
-      // Как только hero ушёл под шапку — включаем фон-плашку цвета страницы.
-      const hero = document.querySelector<HTMLElement>("[data-nav-theme]");
-      setScrolled(hero ? hero.getBoundingClientRect().bottom <= HEADER_H : true);
+      // На самом верху (загрузка) шапка прозрачная — её не видно поверх hero.
+      // При любом скролле включаем фон-плашку, чтобы контент (в т.ч. hero)
+      // срезался под меню и текст не наезжал на текст шапки.
+      setScrolled(window.scrollY > 8);
     };
 
     let raf = 0;
