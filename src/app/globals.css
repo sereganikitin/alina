@@ -65,27 +65,25 @@ body {
   --terracotta: #9e5a45; /* акцент как на базовом макете (кнопки, кружки, форма) */
   --line: #d4c3a6;
 }
-/* Песочная текстура (фото) на фонах секций — заметная, под лёгкой вуалью
-   цвета секции (вуаль ~22% задаёт тон, песок виден напрямую). */
-[data-theme="east"] .bg-background {
+/* Песочная текстура — ТОЛЬКО на фоновых секциях (не на полях/карточках/кнопках,
+   которые тоже используют bg-background/bg-cream). Деликатно: вуаль ~62%. */
+[data-theme="east"] section.bg-background,
+[data-theme="east"] section.bg-cream {
   background-image: linear-gradient(
-      rgba(230, 215, 192, 0.22),
-      rgba(230, 215, 192, 0.22)
+      rgba(230, 215, 192, 0.62),
+      rgba(230, 215, 192, 0.62)
     ),
     url("/textures/sand.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
-[data-theme="east"] .bg-cream {
+[data-theme="east"] section.bg-cream {
   background-image: linear-gradient(
-      rgba(241, 231, 212, 0.22),
-      rgba(241, 231, 212, 0.22)
+      rgba(241, 231, 212, 0.62),
+      rgba(241, 231, 212, 0.62)
     ),
     url("/textures/sand.webp");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 /* Лёгкий тёплый фильтр на фото-шапке (только тёплая/восточная темы) */
