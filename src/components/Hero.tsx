@@ -64,7 +64,7 @@ const VARIANTS: Variant[] = [
     dark: false,
     // фон дострочен по краям -> отдалено, на всю ширину без полей
     size: "cover",
-    position: "center 52%",
+    position: "center 46%",
     bg: "var(--background)",
   },
 ];
