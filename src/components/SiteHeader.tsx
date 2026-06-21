@@ -70,7 +70,7 @@ export default function SiteHeader() {
   // Цвет иконки/брендов: при открытом меню фон светлый -> тёмный текст
   const light = onDark && !open;
   const brand = light ? "text-gold" : "text-foreground";
-  const sub = light ? "text-white/70" : "text-muted";
+  const sub = light ? "text-white/90" : "text-foreground/75";
   const link = light
     ? "text-white/90 hover:text-white"
     : "text-foreground/75 hover:text-foreground";
@@ -91,12 +91,12 @@ export default function SiteHeader() {
           className="transition-colors"
         >
           <span
-            className={`block font-display text-[1.6rem] leading-none tracking-wide md:text-3xl ${brand}`}
+            className={`block font-display text-[1.8rem] leading-none tracking-wide md:text-4xl ${brand}`}
           >
             Алина Дубовская
           </span>
           <span
-            className={`mt-1.5 block font-sans text-[0.65rem] lowercase tracking-[0.3em] md:text-xs ${sub}`}
+            className={`mt-1.5 block font-sans text-sm lowercase tracking-wide ${sub}`}
           >
             психолог
           </span>
