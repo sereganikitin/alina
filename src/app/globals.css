@@ -38,6 +38,61 @@ body {
   letter-spacing: 0.05em;
 }
 
+/* ===================================================================== */
+/* ТРОЙНОЙ ШАБЛОН: 3 варианта стиля (цвета + шрифты).                     */
+/* Базовый = :root выше. Тёплый и Тёмный — переопределяют переменные.     */
+/* Переключаются через data-theme на <html> (см. ThemeSwitcher).          */
+/* ===================================================================== */
+
+/* Вариант 2 — более тёплая палитра, классический серив Playfair */
+[data-theme="warm"] {
+  --background: #f1e2cf;
+  --cream: #f9efe0;
+  --foreground: #3a281d;
+  --muted: #9d7c5f;
+  --gold: #c2893a;
+  --terracotta: #b85733;
+  --line: #e7cfb4;
+  --font-display: var(--font-playfair), Georgia, serif;
+  --font-sans: var(--font-inter), Arial, sans-serif;
+}
+[data-theme="warm"] .font-display {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* Вариант 3 — тёмная тема, современный гротеск в заголовках */
+[data-theme="dark"] {
+  --background: #1e1813;
+  --cream: #29201a;
+  --foreground: #efe5d7;
+  --muted: #ab9d88;
+  --gold: #cfa968;
+  --terracotta: #d2825c;
+  --line: #3a3026;
+  --font-display: var(--font-factora), Arial, sans-serif;
+  --font-sans: var(--font-inter), Arial, sans-serif;
+}
+[data-theme="dark"] .font-display {
+  text-transform: none;
+  letter-spacing: 0.01em;
+}
+
+/* Затемнение фото-шапки только в тёмной теме (цельный тёмный hero) */
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: transparent;
+}
+[data-theme="dark"] .hero-scrim {
+  background: linear-gradient(
+    to bottom,
+    rgba(18, 14, 10, 0.55),
+    rgba(18, 14, 10, 0.35)
+  );
+}
+
 /* Мерцание плавающей кнопки для привлечения внимания */
 @keyframes fab-attn {
   0%,

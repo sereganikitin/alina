@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import FloatingContact from "@/components/FloatingContact";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
 
 // Заголовки — Moniqa Heading (regular). Файл лежит в public/fonts.
 const moniqa = localFont({
@@ -52,6 +53,14 @@ export default function RootLayout({
       className={`${moniqa.variable} ${factorA.variable} ${playfair.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        {/* Раннее применение выбранной темы — до отрисовки, чтобы не мигало */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{var t=localStorage.getItem('siteTheme');if(t&&t!=='base')document.documentElement.dataset.theme=t;}catch(e){}",
+          }}
+        />
+        <ThemeSwitcher />
         <SiteHeader />
         {children}
         <FloatingContact />

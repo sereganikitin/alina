@@ -33,6 +33,8 @@ export default function SiteHeader() {
           dark = el.dataset.navTheme === "dark";
         }
       });
+      // В тёмной теме фон везде тёмный — шапка всегда светлым текстом
+      if (document.documentElement.dataset.theme === "dark") dark = true;
       setOnDark(dark);
 
       // На самом верху (загрузка) шапка прозрачная — её не видно поверх hero.

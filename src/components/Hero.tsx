@@ -111,6 +111,8 @@ export default function Hero() {
           backgroundColor: v.bg,
         }}
       />
+      {/* Затемнение фото — активно только в тёмной теме */}
+      <div className="hero-scrim" />
       {/* Контент: цитата сверху, буллеты снизу */}
       <div className="relative z-10 flex min-h-[100svh] flex-col">
         {/* Цитата вверху (над головой, на фоне) */}
