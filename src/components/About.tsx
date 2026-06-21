@@ -26,7 +26,7 @@ export default function About() {
           </div>
 
           {/* Методы — компактный, наползает на низ-право фото */}
-          <div className="relative z-10 mt-8 md:absolute md:left-[75%] md:top-[75%] md:mt-0 md:w-[32rem]">
+          <div className="relative z-10 mt-8 md:absolute md:left-[75%] md:top-[66%] md:mt-0 md:w-[32rem]">
             <div className="rounded-[2rem] bg-terracotta px-12 py-8 text-center shadow-lg md:rounded-full md:px-16">
               <h3 className="font-display text-xl text-background">Методы</h3>
               <ul className="mt-3 inline-flex flex-col gap-1.5 text-left">
