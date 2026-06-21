@@ -17,6 +17,36 @@ type Variant = {
   bg: string;
 };
 
+// Минималистичные контурные иконки (стиль как у конвертика формы).
+const iconCls = "h-6 w-6";
+const PersonIcon = (
+  <svg viewBox="0 0 24 24" className={iconCls} fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="8" r="3.2" />
+    <path d="M5.5 19.2c0-3.5 2.9-5.8 6.5-5.8s6.5 2.3 6.5 5.8" />
+  </svg>
+);
+const ClockIcon = (
+  <svg viewBox="0 0 24 24" className={iconCls} fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="8" />
+    <path d="M12 7.6V12l3 1.8" />
+  </svg>
+);
+const LaptopIcon = (
+  <svg viewBox="0 0 24 24" className={iconCls} fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="4.5" y="5.5" width="15" height="10" rx="1.6" />
+    <path d="M2.5 19h19" />
+  </svg>
+);
+const LockIcon = (
+  <svg viewBox="0 0 24 24" className={iconCls} fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="5" y="10.5" width="14" height="9.5" rx="2.2" />
+    <path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" />
+    <circle cx="12" cy="15" r="1.1" />
+  </svg>
+);
+// Иконки сопоставляются цифрам по позиции (см. defaultContent.ts → hero.stats).
+const STAT_ICONS = [PersonIcon, ClockIcon, LaptopIcon];
+
 const VARIANTS: Variant[] = [
   {
     id: "beige-1",
@@ -84,28 +114,63 @@ export default function Hero() {
           </figure>
         </div>
 
-        {/* Цифры столбиком: число сверху, подпись снизу */}
-        <div className="px-6 pt-6 md:px-12 md:pt-10">
-          <dl className="flex flex-col gap-7 md:gap-9">
-            {c.hero.stats.map((s) => (
-              <div key={s.label}>
-                <dd
-                  className={`font-display text-6xl leading-none md:text-7xl ${
-                    v.dark ? "text-gold" : "text-[#a17c34]"
-                  }`}
-                >
-                  {s.value}
-                </dd>
-                <dt
-                  className={`mt-2.5 text-xs uppercase tracking-[0.2em] sm:text-sm ${
-                    v.dark ? "text-gold/70" : "text-muted"
-                  }`}
-                >
-                  {s.label}
-                </dt>
-              </div>
+        {/* Бейджи 2×2: иконка + число/подпись (вместо крупных цифр) */}
+        <div className="px-6 pt-8 md:px-12 md:pt-10">
+          <ul className="grid max-w-xl grid-cols-2 gap-x-8 gap-y-7 sm:gap-x-10">
+            {/* три цифры из контента + постоянный бейдж «Конфиденциально» */}
+            {c.hero.stats.slice(0, 3).map((s, i) => (
+              <li key={s.label} className="flex items-center gap-3.5">
+                <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-2 border-terracotta/60 text-terracotta">
+                  {STAT_ICONS[i]}
+                </span>
+                <span className="leading-tight">
+                  <span className="block font-display text-[1.7rem] text-terracotta">
+                    {s.value}
+                  </span>
+                  <span
+                    className={`mt-0.5 block text-[0.8rem] uppercase tracking-[0.14em] ${
+                      v.dark ? "text-gold/70" : "text-muted"
+                    }`}
+                  >
+                    {s.label}
+                  </span>
+                </span>
+              </li>
             ))}
-          </dl>
+            <li className="flex items-center gap-3.5">
+              <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-2 border-terracotta/60 text-terracotta">
+                {LockIcon}
+              </span>
+              <span
+                className={`font-display text-xl leading-tight ${
+                  v.dark ? "text-gold" : "text-foreground"
+                }`}
+              >
+                Конфиденциально
+              </span>
+            </li>
+          </ul>
+
+          {/* Кнопка записи + ссылка «как проходит работа» */}
+          <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-4">
+            <a
+              href="#booking"
+              className="inline-flex items-center justify-center rounded-full bg-terracotta px-7 py-3.5 font-sans text-base text-cream shadow-lg transition-opacity hover:opacity-90"
+            >
+              Записаться на первую встречу
+            </a>
+            <a
+              href="#principles"
+              className={`group inline-flex items-center gap-2.5 font-sans text-base transition-colors hover:text-terracotta ${
+                v.dark ? "text-gold" : "text-foreground"
+              }`}
+            >
+              Как проходит работа
+              <span aria-hidden className="transition-transform group-hover:translate-x-1">
+                →
+              </span>
+            </a>
+          </div>
         </div>
 
         <div className="flex-1" />
