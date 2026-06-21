@@ -12,6 +12,11 @@ const DEFAULTS = {
       { value: "Более 15 000", label: "часов сессий" },
       { value: "10 лет", label: "практики" },
     ],
+    security: { title: "Безопасность", note: "Гарантирую конфиденциальность" },
+    cta: {
+      primary: "Записаться на первую встречу",
+      secondary: "Как проходит работа",
+    },
   },
   about: {
     title:
@@ -270,6 +275,10 @@ function renderContent() {
   root.append(
     section("Шапка", fArea("Цитата", c.hero, "quote"),
       listObj("Цифры (число + подпись)", c.hero.stats, [{ key: "value", label: "Число" }, { key: "label", label: "Подпись" }], () => ({ value: "", label: "" })),
+      fArea("Бейдж «безопасность» — заголовок", c.hero.security, "title"),
+      fArea("Бейдж «безопасность» — подпись", c.hero.security, "note"),
+      fArea("Кнопка (текст)", c.hero.cta, "primary"),
+      fArea("Ссылка рядом (текст)", c.hero.cta, "secondary"),
       fMedia("Фото шапки", c.hero, "image", "image/*")),
     section("Обо мне", fArea("Заголовок", c.about, "title"), fArea("Подпись", c.about, "lead"), listText("Методы", c.about.methods), fMedia("Фото в арке", c.about, "image", "image/*")),
     section("Образование", fArea("Вступление", c.education, "lead"),

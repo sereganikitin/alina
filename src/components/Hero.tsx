@@ -30,13 +30,13 @@ const PersonIcon = (
     <path d="M22 17.6c0-1.9-1.1-3.2-2.9-3.3" />
   </svg>
 );
-// Часы — чуть крупнее остальных, с делениями на циферблате
-const clockCls = "h-9 w-9 sm:h-11 sm:w-11";
+// Часы — с делениями на циферблате (6 делений)
+const clockCls = "h-8 w-8 sm:h-10 sm:w-10";
 const ClockIcon = (
   <svg viewBox="0 0 24 24" className={clockCls} fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="9" />
-    <path d="M12 7.5V12l3 1.8" />
-    <path d="M12 3.2V4.4 M16.4 4.4L15.8 5.4 M19.6 7.6L18.6 8.2 M20.8 12H19.6 M19.6 16.4L18.6 15.8 M16.4 19.6L15.8 18.6 M12 20.8V19.6 M7.6 19.6L8.2 18.6 M4.4 16.4L5.4 15.8 M3.2 12H4.4 M4.4 7.6L5.4 8.2 M7.6 4.4L8.2 5.4" />
+    <circle cx="12" cy="12" r="8" />
+    <path d="M12 7.8V12l2.8 1.6" />
+    <path d="M12 4.2V5.4 M18.8 8.1L17.7 8.7 M18.8 15.9L17.7 15.3 M12 19.8V18.6 M5.2 15.9L6.3 15.3 M5.2 8.1L6.3 8.7" />
   </svg>
 );
 // Ноутбук: экран + трапециевидная база (чтобы читался как ноут)
@@ -153,14 +153,14 @@ export default function Hero() {
               </span>
               <span className="leading-tight">
                 <span className="block whitespace-nowrap font-display text-lg leading-none text-terracotta sm:text-[1.7rem]">
-                  Безопасность
+                  {c.hero.security.title}
                 </span>
                 <span
                   className={`mt-1 block whitespace-nowrap text-sm lowercase leading-tight tracking-normal transition-colors sm:text-base ${
                     v.dark ? "text-white/90 hover:text-white" : "text-foreground/75 hover:text-foreground"
                   }`}
                 >
-                  Гарантирую конфиденциальность
+                  {c.hero.security.note}
                 </span>
               </span>
             </li>
@@ -176,7 +176,7 @@ export default function Hero() {
               href="#booking"
               className="inline-flex items-center justify-center rounded-full bg-terracotta px-6 py-3 font-sans text-sm lowercase text-cream shadow-lg transition-opacity hover:opacity-90 sm:px-7 sm:py-3.5 sm:text-base"
             >
-              Записаться на первую встречу
+              {c.hero.cta.primary}
             </a>
             <a
               href="#principles"
@@ -184,7 +184,7 @@ export default function Hero() {
                 v.dark ? "text-gold" : "text-foreground"
               }`}
             >
-              Как проходит работа
+              {c.hero.cta.secondary}
               <span aria-hidden className="transition-transform group-hover:translate-x-1">
                 →
               </span>
