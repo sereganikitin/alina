@@ -69,7 +69,7 @@ body {
    мягкий песок с пониженной контрастностью. Файл: public/textures/sand.jpg */
 [data-theme="east"] .bg-background,
 [data-theme="east"] .bg-cream {
-  background-image: url("/textures/sand.jpg");
+  background-image: url("/textures/sand.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
