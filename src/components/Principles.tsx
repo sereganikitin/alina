@@ -56,15 +56,17 @@ export default function Principles() {
       <div
         className="-mx-6 -mb-24 mt-16 overflow-hidden md:-mx-12 md:-mb-32 md:mt-24"
         style={{
-          borderTopLeftRadius: "50% 22%",
-          borderTopRightRadius: "50% 22%",
+          // Идеально круглая дуга сверху (радиус = половина ширины экрана) + прямая часть снизу
+          height: "calc(50vw + 16rem)",
+          borderTopLeftRadius: "50vw",
+          borderTopRightRadius: "50vw",
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={c.principles.image}
           alt="Алина"
-          className="h-[55vh] w-full object-cover object-top md:h-[72vh]"
+          className="h-full w-full object-cover object-[center_25%]"
         />
       </div>
     </section>
