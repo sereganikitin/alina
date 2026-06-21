@@ -30,10 +30,13 @@ const PersonIcon = (
     <path d="M22 17.6c0-1.9-1.1-3.2-2.9-3.3" />
   </svg>
 );
+// Часы — чуть крупнее остальных, с делениями на циферблате
+const clockCls = "h-9 w-9 sm:h-11 sm:w-11";
 const ClockIcon = (
-  <svg viewBox="0 0 24 24" className={iconCls} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="8" />
-    <path d="M12 7.6V12l3 1.8" />
+  <svg viewBox="0 0 24 24" className={clockCls} fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="9" />
+    <path d="M12 7.5V12l3 1.8" />
+    <path d="M12 3.2V4.4 M16.4 4.4L15.8 5.4 M19.6 7.6L18.6 8.2 M20.8 12H19.6 M19.6 16.4L18.6 15.8 M16.4 19.6L15.8 18.6 M12 20.8V19.6 M7.6 19.6L8.2 18.6 M4.4 16.4L5.4 15.8 M3.2 12H4.4 M4.4 7.6L5.4 8.2 M7.6 4.4L8.2 5.4" />
   </svg>
 );
 // Ноутбук: экран + трапециевидная база (чтобы читался как ноут)
