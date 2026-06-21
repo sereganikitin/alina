@@ -65,12 +65,21 @@ body {
   --terracotta: #b14a2c; /* глиняная терракота */
   --line: #d6bd93;
 }
-/* Песчаная зернистая текстура на фонах секций (мягко, soft-light) */
+/* Песочная текстура (фото) на фонах секций. soft-light + цвет секции =
+   мягкий песок с пониженной контрастностью. Файл: public/textures/sand.jpg */
 [data-theme="east"] .bg-background,
 [data-theme="east"] .bg-cream {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
-  background-size: 170px 170px;
+  background-image: url("/textures/sand.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   background-blend-mode: soft-light;
+}
+
+/* Лёгкий тёплый фильтр на фото-шапке (только тёплая/восточная темы) */
+[data-theme="warm"] .hero-photo,
+[data-theme="east"] .hero-photo {
+  filter: sepia(0.18) saturate(1.12) brightness(1.02);
 }
 
 /* Затемнение фото-шапки (зарезервировано; сейчас прозрачно) */

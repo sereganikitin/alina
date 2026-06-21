@@ -107,7 +107,7 @@ export default function Hero() {
       {/* Фон-фото. На десктопе слегка сдвигаем кадр вправо (Алина правее,
           справа от неё меньше пустоты). Зум 110% даёт запас, чтобы слева не было щели. */}
       <div
-        className="absolute inset-0 bg-no-repeat lg:origin-center lg:translate-x-[5%] lg:scale-110"
+        className="hero-photo absolute inset-0 bg-no-repeat lg:origin-center lg:translate-x-[5%] lg:scale-110"
         style={{
           backgroundImage: `url(${heroImage})`,
           backgroundSize: v.size,
