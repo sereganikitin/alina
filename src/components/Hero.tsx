@@ -18,27 +18,33 @@ type Variant = {
 };
 
 // Минималистичные контурные иконки (стиль как у конвертика формы).
-const iconCls = "h-7 w-7 sm:h-8 sm:w-8";
+const iconCls = "h-8 w-8 sm:h-10 sm:w-10";
+// Группа людей (клиенты): крупный по центру + двое поменьше по бокам
 const PersonIcon = (
-  <svg viewBox="0 0 24 24" className={iconCls} fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="8" r="3.2" />
-    <path d="M5.5 19.2c0-3.5 2.9-5.8 6.5-5.8s6.5 2.3 6.5 5.8" />
+  <svg viewBox="0 0 24 24" className={iconCls} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="8.3" r="2.9" />
+    <path d="M6.6 18.6c0-3 2.4-5 5.4-5s5.4 2 5.4 5" />
+    <circle cx="4.6" cy="9.8" r="1.7" />
+    <path d="M2 17.6c0-1.9 1.1-3.2 2.9-3.3" />
+    <circle cx="19.4" cy="9.8" r="1.7" />
+    <path d="M22 17.6c0-1.9-1.1-3.2-2.9-3.3" />
   </svg>
 );
 const ClockIcon = (
-  <svg viewBox="0 0 24 24" className={iconCls} fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+  <svg viewBox="0 0 24 24" className={iconCls} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <circle cx="12" cy="12" r="8" />
     <path d="M12 7.6V12l3 1.8" />
   </svg>
 );
+// Ноутбук: экран + трапециевидная база (чтобы читался как ноут)
 const LaptopIcon = (
-  <svg viewBox="0 0 24 24" className={iconCls} fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="4.5" y="5.5" width="15" height="10" rx="1.6" />
-    <path d="M2.5 19h19" />
+  <svg viewBox="0 0 24 24" className={iconCls} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="5" y="4.7" width="14" height="9.3" rx="1.2" />
+    <path d="M4 14h16l1.7 3.6H2.3z" />
   </svg>
 );
 const LockIcon = (
-  <svg viewBox="0 0 24 24" className={iconCls} fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+  <svg viewBox="0 0 24 24" className={iconCls} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <rect x="5" y="10.5" width="14" height="9.5" rx="2.2" />
     <path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" />
     <circle cx="12" cy="15" r="1.1" />
