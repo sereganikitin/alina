@@ -18,10 +18,12 @@ const NAV = [
  */
 export default function SiteHeader() {
   const [onDark, setOnDark] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const HEADER_MID = 32;
+    const HEADER_H = 76;
     const compute = () => {
       const sections =
         document.querySelectorAll<HTMLElement>("[data-nav-theme]");
@@ -33,6 +35,11 @@ export default function SiteHeader() {
         }
       });
       setOnDark(dark);
+
+      // Над hero (первая секция) шапка прозрачная — на загрузке её не видно.
+      // Как только hero ушёл под шапку — включаем фон-плашку цвета страницы.
+      const hero = document.querySelector<HTMLElement>("[data-nav-theme]");
+      setScrolled(hero ? hero.getBoundingClientRect().bottom <= HEADER_H : true);
     };
 
     let raf = 0;
@@ -72,8 +79,8 @@ export default function SiteHeader() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        open ? "" : "bg-background"
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+        scrolled && !open ? "bg-background" : ""
       }`}
     >
       <div className="flex items-center justify-between px-6 py-4 md:px-12">
