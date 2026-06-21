@@ -41,11 +41,14 @@ const ClockIcon = (
     <circle cx="12" cy="12" r="1.15" fill="currentColor" stroke="none" />
   </svg>
 );
-// Ноутбук: экран + трапециевидная база (чтобы читался как ноут)
-const LaptopIcon = (
+// Рукопожатие (опыт/контакт)
+const HandshakeIcon = (
   <svg viewBox="0 0 24 24" className={iconCls} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="5" y="4.7" width="14" height="9.3" rx="1.2" />
-    <path d="M4 14h16l1.7 3.6H2.3z" />
+    <path d="m11 17 2 2a1 1 0 1 0 3-3" />
+    <path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" />
+    <path d="m21 3 1 11h-2" />
+    <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" />
+    <path d="M3 4h8" />
   </svg>
 );
 const LockIcon = (
@@ -55,8 +58,9 @@ const LockIcon = (
     <circle cx="12" cy="15" r="1.1" />
   </svg>
 );
-// Иконки сопоставляются цифрам по позиции (см. defaultContent.ts → hero.stats).
-const STAT_ICONS = [PersonIcon, ClockIcon, LaptopIcon];
+// Иконки сопоставляются цифрам по позиции (см. defaultContent.ts → hero.stats):
+// 0 — опыт (рукопожатие), 1 — часы, 2 — клиенты (человечки).
+const STAT_ICONS = [HandshakeIcon, ClockIcon, PersonIcon];
 
 const VARIANTS: Variant[] = [
   {

@@ -53,12 +53,6 @@ body {
   --gold: #c2893a;
   --terracotta: #b85733;
   --line: #e7cfb4;
-  --font-display: var(--font-playfair), Georgia, serif;
-  --font-sans: var(--font-inter), Arial, sans-serif;
-}
-[data-theme="warm"] .font-display {
-  text-transform: none;
-  letter-spacing: 0;
 }
 
 /* Вариант 3 — «Восточный»: марокканская палитра (песок/охра/глина) + текстура */
@@ -70,12 +64,6 @@ body {
   --gold: #c2913a; /* охра */
   --terracotta: #b14a2c; /* глиняная терракота */
   --line: #d6bd93;
-  --font-display: var(--font-playfair), Georgia, serif;
-  --font-sans: var(--font-factora), var(--font-inter), Arial, sans-serif;
-}
-[data-theme="east"] .font-display {
-  text-transform: none;
-  letter-spacing: 0;
 }
 /* Песчаная зернистая текстура на фонах секций (мягко, soft-light) */
 [data-theme="east"] .bg-background,
