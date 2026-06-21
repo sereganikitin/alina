@@ -18,13 +18,10 @@ const NAV = [
  */
 export default function SiteHeader() {
   const [onDark, setOnDark] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const HEADER_MID = 32;
-    // Высота «плашки» шапки: ниже неё контент срезается фоном.
-    const HEADER_H = 76;
     const compute = () => {
       const sections =
         document.querySelectorAll<HTMLElement>("[data-nav-theme]");
@@ -36,11 +33,6 @@ export default function SiteHeader() {
         }
       });
       setOnDark(dark);
-
-      // Hero — первая секция с data-nav-theme. Пока он на экране — шапка прозрачная;
-      // как только ушёл под шапку — включаем фон-плашку (контент срезается под меню).
-      const hero = document.querySelector<HTMLElement>("[data-nav-theme]");
-      setScrolled(hero ? hero.getBoundingClientRect().bottom <= HEADER_H : true);
     };
 
     let raf = 0;
@@ -81,9 +73,9 @@ export default function SiteHeader() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled && !open
-          ? "bg-background/50 shadow-[0_8px_30px_rgba(0,0,0,0.06)] backdrop-blur-xl backdrop-saturate-150"
-          : ""
+        open
+          ? ""
+          : "bg-background/40 shadow-[0_8px_30px_rgba(0,0,0,0.06)] backdrop-blur-xl backdrop-saturate-150"
       }`}
     >
       <div className="flex items-center justify-between px-6 py-4 md:px-12">
