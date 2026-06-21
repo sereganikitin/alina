@@ -31,7 +31,7 @@ export default function About() {
           />
         </svg>
 
-        <div className="grid items-start gap-10 md:grid-cols-[0.8fr_auto_1.6fr] md:gap-12">
+        <div className="relative z-10 grid items-start gap-10 md:grid-cols-[0.8fr_auto_1.6fr] md:gap-12">
           {/* Заголовок — слева, над линией, в одну строку */}
           <h2 className="font-display text-5xl font-semibold leading-none md:whitespace-nowrap md:text-right">
             Обо мне
