@@ -33,7 +33,7 @@ const PersonIcon = (
 // Часы — с делениями на циферблате (6 делений)
 const clockCls = "h-9 w-9 sm:h-11 sm:w-11";
 const ClockIcon = (
-  <svg viewBox="0 0 24 24" className={clockCls} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+  <svg viewBox="0 0 24 24" className={clockCls} fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
     <circle cx="12" cy="12" r="9" />
     {/* стрелки: длинная вверх-вправо, короткая вверх-влево */}
     <path d="M12 12L16 8 M12 12L9.4 9.4" />
