@@ -37,10 +37,10 @@ export default function Principles() {
 
           {/* Текстовый блок в пустом углу справа от дуги */}
           <div className="mt-8 md:absolute md:right-0 md:top-[10%] md:mt-0 md:w-[34%]">
-            <h3 className="font-display text-2xl text-terracotta">
+            <h3 className="font-display text-4xl md:text-5xl">
               {c.principles.side.title}
             </h3>
-            <p className="mt-4 text-base leading-relaxed text-foreground/80">
+            <p className="mt-5 text-lg leading-relaxed text-foreground">
               {c.principles.side.text}
             </p>
           </div>
