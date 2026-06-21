@@ -57,23 +57,35 @@ body {
 
 /* Вариант 3 — «Восточный»: марокканская палитра (песок/охра/глина) + текстура */
 [data-theme="east"] {
-  --background: #e8d5b5; /* песок */
-  --cream: #f2e4c9; /* светлый песок — чередование секций */
+  --background: #e6d7c0; /* песок (чуть меньше жёлтого) */
+  --cream: #f1e7d4; /* светлый песок — чередование секций */
   --foreground: #3a2317; /* тёмный кофе */
   --muted: #97785a;
   --gold: #c2913a; /* охра */
   --terracotta: #b14a2c; /* глиняная терракота */
-  --line: #d6bd93;
+  --line: #d4c3a6;
 }
-/* Песочная текстура (фото) на фонах секций. soft-light + цвет секции =
-   мягкий песок с пониженной контрастностью. Файл: public/textures/sand.jpg */
-[data-theme="east"] .bg-background,
-[data-theme="east"] .bg-cream {
-  background-image: url("/textures/sand.webp");
+/* Песочная текстура (фото) на фонах секций — заметная, под лёгкой вуалью
+   цвета секции (вуаль ~22% задаёт тон, песок виден напрямую). */
+[data-theme="east"] .bg-background {
+  background-image: linear-gradient(
+      rgba(230, 215, 192, 0.22),
+      rgba(230, 215, 192, 0.22)
+    ),
+    url("/textures/sand.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-blend-mode: soft-light;
+}
+[data-theme="east"] .bg-cream {
+  background-image: linear-gradient(
+      rgba(241, 231, 212, 0.22),
+      rgba(241, 231, 212, 0.22)
+    ),
+    url("/textures/sand.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* Лёгкий тёплый фильтр на фото-шапке (только тёплая/восточная темы) */
