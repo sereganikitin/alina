@@ -18,7 +18,7 @@ type Variant = {
 };
 
 // Минималистичные контурные иконки (стиль как у конвертика формы).
-const iconCls = "h-6 w-6 sm:h-7 sm:w-7";
+const iconCls = "h-7 w-7 sm:h-8 sm:w-8";
 const PersonIcon = (
   <svg viewBox="0 0 24 24" className={iconCls} fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
     <circle cx="12" cy="8" r="3.2" />
@@ -121,7 +121,7 @@ export default function Hero() {
             {/* три цифры из контента + постоянный бейдж «Конфиденциально» */}
             {c.hero.stats.slice(0, 3).map((s, i) => (
               <li key={s.label} className="flex items-center gap-2.5 sm:gap-3.5">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-[1.5px] border-terracotta text-[#989782] sm:h-14 sm:w-14">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-[1.5px] border-terracotta text-[#989782] sm:h-16 sm:w-16">
                   {STAT_ICONS[i]}
                 </span>
                 <span className="leading-tight">
@@ -139,7 +139,7 @@ export default function Hero() {
               </li>
             ))}
             <li className="flex items-center gap-2.5 sm:gap-3.5">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-[1.5px] border-terracotta text-[#989782] sm:h-14 sm:w-14">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-[1.5px] border-terracotta text-[#989782] sm:h-16 sm:w-16">
                 {LockIcon}
               </span>
               <span className="leading-tight">
