@@ -8,7 +8,7 @@ import FloatingContact from "@/components/FloatingContact";
 // Заголовки — Moniqa Heading (regular). Файл лежит в public/fonts.
 const moniqa = localFont({
   variable: "--font-moniqa",
-  src: "../../public/fonts/Moniqa-Heading.ttf",
+  src: "../../public/fonts/Moniqa-Paragraph.ttf",
   display: "swap",
 });
 

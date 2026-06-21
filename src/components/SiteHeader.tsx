@@ -91,7 +91,7 @@ export default function SiteHeader() {
           className="transition-colors"
         >
           <span
-            className={`block font-display text-[1.6rem] font-semibold leading-none tracking-wide md:text-3xl ${brand}`}
+            className={`block font-display text-[1.6rem] leading-none tracking-wide md:text-3xl ${brand}`}
           >
             Алина Дубовская
           </span>

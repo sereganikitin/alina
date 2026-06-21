@@ -30,10 +30,8 @@ body {
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
-/* Все заголовки — капсом */
-h1,
-h2,
-h3 {
+/* Всё, что набрано Moniqa (заголовки, подзаголовки, строки у значков и т.п.) — капсом */
+.font-display {
   text-transform: uppercase;
 }
 
