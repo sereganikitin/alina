@@ -89,9 +89,10 @@ export default function Hero() {
       className="relative min-h-[100svh] w-full overflow-hidden"
       data-nav-theme={v.dark ? "dark" : "light"}
     >
-      {/* Фон-фото */}
+      {/* Фон-фото. На десктопе слегка сдвигаем кадр вправо (Алина правее,
+          справа от неё меньше пустоты). Зум 110% даёт запас, чтобы слева не было щели. */}
       <div
-        className="absolute inset-0 bg-no-repeat"
+        className="absolute inset-0 bg-no-repeat lg:origin-center lg:translate-x-[5%] lg:scale-110"
         style={{
           backgroundImage: `url(${heroImage})`,
           backgroundSize: v.size,
@@ -116,7 +117,7 @@ export default function Hero() {
 
         {/* Бейджи 2×2: иконка + число/подпись (вместо крупных цифр) */}
         <div className="px-6 md:px-12">
-          <ul className="grid max-w-xl grid-cols-2 gap-x-5 gap-y-5 sm:gap-x-10 sm:gap-y-7">
+          <ul className="grid max-w-xs grid-cols-1 gap-y-6 lg:max-w-xl lg:grid-cols-2 lg:gap-x-10 lg:gap-y-8 xl:max-w-2xl xl:gap-x-14">
             {/* три цифры из контента + постоянный бейдж «Конфиденциально» */}
             {c.hero.stats.slice(0, 3).map((s, i) => (
               <li key={s.label} className="flex items-center gap-2.5 sm:gap-3.5">
@@ -124,7 +125,7 @@ export default function Hero() {
                   {STAT_ICONS[i]}
                 </span>
                 <span className="leading-tight">
-                  <span className="block font-display text-lg text-terracotta sm:text-[1.7rem]">
+                  <span className="block whitespace-nowrap font-display text-lg text-terracotta sm:text-[1.7rem]">
                     {s.value}
                   </span>
                   <span
@@ -142,11 +143,11 @@ export default function Hero() {
                 {LockIcon}
               </span>
               <span className="leading-tight">
-                <span className="block font-display text-lg text-terracotta sm:text-[1.7rem]">
+                <span className="block whitespace-nowrap font-display text-lg text-terracotta sm:text-[1.7rem]">
                   Безопасность
                 </span>
                 <span
-                  className={`mt-0.5 block text-[0.72rem] uppercase tracking-normal sm:whitespace-nowrap sm:text-[0.8rem] ${
+                  className={`mt-0.5 block text-[0.72rem] uppercase tracking-normal sm:text-[0.8rem] ${
                     v.dark ? "text-gold/70" : "text-muted"
                   }`}
                 >
