@@ -11,7 +11,7 @@ export default function About() {
     <section
       id="about"
       data-nav-theme="light"
-      className="bg-background px-6 py-24 md:px-12 md:py-32"
+      className="overflow-hidden bg-background px-6 py-24 md:px-12 md:py-32"
     >
       <div className="mx-auto grid max-w-5xl items-start gap-10 md:grid-cols-[0.9fr_1.1fr] md:gap-14">
         {/* Фото в арке + наползающий блок «Методы» */}
@@ -26,16 +26,16 @@ export default function About() {
           </div>
 
           {/* Методы — компактный, наползает на низ-право фото */}
-          <div className="relative z-10 mt-8 md:absolute md:left-[76%] md:top-[74%] md:mt-0 md:w-60">
-            <div className="rounded-[1.75rem] bg-terracotta px-6 py-5 shadow-lg">
+          <div className="relative z-10 mt-8 md:absolute md:left-[75%] md:top-[75%] md:mt-0 md:w-[32rem]">
+            <div className="rounded-[2rem] bg-terracotta px-12 py-8 text-center shadow-lg md:rounded-full md:px-16">
               <h3 className="font-display text-xl text-background">Методы</h3>
-              <ul className="mt-3 flex flex-col gap-1.5">
+              <ul className="mt-3 inline-flex flex-col gap-1.5 text-left">
                 {c.about.methods.map((m) => (
                   <li
                     key={m}
-                    className="flex items-start gap-2.5 leading-snug text-background/90"
+                    className="flex items-center gap-2.5 whitespace-nowrap text-background/90"
                   >
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-background/70" />
+                    <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-background/70" />
                     <span>{m}</span>
                   </li>
                 ))}
