@@ -3,7 +3,7 @@
 import Wave from "./Wave";
 import { useContent } from "@/lib/useContent";
 
-/** Раздел «Принципы работы»: с чем и с кем работаю. Тексты — из админки. */
+/** Раздел «Принципы работы»: заголовок → фото с дугой сверху → тексты. */
 export default function Principles() {
   const c = useContent();
   return (
@@ -22,7 +22,19 @@ export default function Principles() {
           Принципы работы
         </h2>
 
-        <h3 className="mt-12 font-display text-2xl text-terracotta">
+        {/* Фото под заголовком: по ширине текста, сверху идеально круглая дуга.
+            aspect-[4/3] => высота 0.75·ширины >= ширина/2, поэтому rounded-t-full
+            даёт ровный полукруг (радиус = половина ширины блока). */}
+        <div className="mt-10 aspect-[4/3] overflow-hidden rounded-t-full md:mt-12">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={c.principles.image}
+            alt="Алина"
+            className="h-full w-full object-cover object-[center_25%]"
+          />
+        </div>
+
+        <h3 className="mt-14 font-display text-2xl text-terracotta">
           С чем я работаю
         </h3>
         <ul className="mt-6 flex flex-wrap gap-3">
@@ -50,24 +62,6 @@ export default function Principles() {
           Подробнее о методе
           <span aria-hidden="true">→</span>
         </a>
-      </div>
-
-      {/* Фото Алины — во всю ширину, сверху обрезано дугой, прижато к низу секции */}
-      <div
-        className="-mx-6 -mb-24 mt-16 overflow-hidden md:-mx-12 md:-mb-32 md:mt-24"
-        style={{
-          // Идеально круглая дуга сверху (радиус = половина ширины экрана) + прямая часть снизу
-          height: "calc(50vw + 16rem)",
-          borderTopLeftRadius: "50vw",
-          borderTopRightRadius: "50vw",
-        }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={c.principles.image}
-          alt="Алина"
-          className="h-full w-full object-cover object-[center_25%]"
-        />
       </div>
     </section>
   );
