@@ -141,12 +141,17 @@ export default function Hero() {
               <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-terracotta text-terracotta sm:h-16 sm:w-16">
                 {LockIcon}
               </span>
-              <span
-                className={`font-sans text-base leading-tight sm:text-xl ${
-                  v.dark ? "text-gold/70" : "text-muted"
-                }`}
-              >
-                Конфиденциально
+              <span className="leading-tight">
+                <span className="block font-display text-lg text-terracotta sm:text-[1.7rem]">
+                  Безопасность
+                </span>
+                <span
+                  className={`mt-0.5 block text-[0.72rem] uppercase tracking-[0.12em] sm:text-[0.8rem] sm:tracking-[0.14em] ${
+                    v.dark ? "text-gold/70" : "text-muted"
+                  }`}
+                >
+                  Гарантирую конфиденциальность
+                </span>
               </span>
             </li>
           </ul>
