@@ -64,7 +64,7 @@ const VARIANTS: Variant[] = [
     dark: false,
     // фон дострочен по краям -> отдалено, на всю ширину без полей
     size: "cover",
-    position: "center 46%",
+    position: "center 41%",
     bg: "var(--background)",
   },
 ];
@@ -147,7 +147,7 @@ export default function Hero() {
                   Безопасность
                 </span>
                 <span
-                  className={`mt-0.5 block text-[0.72rem] uppercase tracking-normal sm:text-[0.8rem] ${
+                  className={`mt-0.5 block whitespace-nowrap text-[0.72rem] uppercase tracking-normal sm:text-[0.8rem] ${
                     v.dark ? "text-gold/70" : "text-muted"
                   }`}
                 >

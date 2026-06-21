@@ -73,9 +73,7 @@ export default function SiteHeader() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        open
-          ? ""
-          : "bg-background/40 shadow-[0_8px_30px_rgba(0,0,0,0.06)] backdrop-blur-xl backdrop-saturate-150"
+        open ? "" : "bg-background"
       }`}
     >
       <div className="flex items-center justify-between px-6 py-4 md:px-12">
