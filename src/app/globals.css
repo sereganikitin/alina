@@ -54,13 +54,15 @@ body {
   --terracotta: #b85733;
   --line: #e7cfb4;
 }
-/* Тёплая тема: мягкая тень листвы на фонах секций (только секции, не поля) */
+/* Тёплая тема: мягкая тень листвы. background-attachment: fixed делает её
+   единой «сценой» на всю страницу — без стыков между секциями. */
 [data-theme="warm"] section.bg-background,
 [data-theme="warm"] section.bg-cream {
   background-image: url("/textures/leaves.svg");
   background-size: cover;
-  background-position: top center;
+  background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 /* Вариант 3 — «Восточный»: марокканская палитра (песок/охра/глина) + текстура */
