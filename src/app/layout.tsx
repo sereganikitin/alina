@@ -60,6 +60,8 @@ export default function RootLayout({
               "try{var t=localStorage.getItem('siteTheme');if(t&&t!=='base')document.documentElement.dataset.theme=t;}catch(e){}",
           }}
         />
+        {/* Сквозной слой тени листвы (виден только в тёплой теме) */}
+        <div className="leaf-layer" aria-hidden="true" />
         <ThemeSwitcher />
         <SiteHeader />
         {children}
