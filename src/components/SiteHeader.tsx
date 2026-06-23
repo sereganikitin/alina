@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useContent } from "@/lib/useContent";
-import { EmdrIcon, IfsIcon } from "./AssocIcons";
+import { EmdrLogo, IfsLogo } from "./AssocIcons";
 
 const NAV = [
   { label: "Обо мне", href: "#about" },
@@ -87,8 +87,8 @@ export default function SiteHeader() {
       }`}
     >
       <div className="flex items-center justify-between px-6 py-4 md:px-12">
-        {/* Значки ассоциаций (вместо имени). Цвет наследует меню (автоконтраст). */}
-        <div className={`flex items-center gap-5 ${brand}`}>
+        {/* Лого ассоциаций (вместо имени). Цвет наследует меню (автоконтраст). */}
+        <div className={`flex items-center gap-5 md:gap-7 ${brand}`}>
           <a
             href={c.contacts.emdrUrl || "#"}
             target={c.contacts.emdrUrl ? "_blank" : undefined}
@@ -97,7 +97,7 @@ export default function SiteHeader() {
             onClick={() => setOpen(false)}
             className="transition-opacity hover:opacity-70"
           >
-            <EmdrIcon className="h-7 w-auto md:h-8" />
+            <EmdrLogo />
           </a>
           <a
             href={c.contacts.ifsUrl || "#"}
@@ -107,7 +107,7 @@ export default function SiteHeader() {
             onClick={() => setOpen(false)}
             className="transition-opacity hover:opacity-70"
           >
-            <IfsIcon className="h-8 w-auto md:h-9" />
+            <IfsLogo />
           </a>
         </div>
 
