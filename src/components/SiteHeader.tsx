@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useContent } from "@/lib/useContent";
+import { EmdrIcon, IfsIcon } from "./AssocIcons";
 
 const NAV = [
   { label: "Обо мне", href: "#about" },
@@ -17,6 +19,7 @@ const NAV = [
  * На мобиле — бургер с полноэкранным меню.
  */
 export default function SiteHeader() {
+  const c = useContent();
   const [onDark, setOnDark] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -70,7 +73,6 @@ export default function SiteHeader() {
   // Цвет иконки/брендов: при открытом меню фон светлый -> тёмный текст
   const light = onDark && !open;
   const brand = light ? "text-gold" : "text-foreground";
-  const sub = light ? "text-white/90" : "text-foreground/75";
   const link = light
     ? "text-white/90 hover:text-white"
     : "text-foreground/75 hover:text-foreground";
@@ -85,22 +87,29 @@ export default function SiteHeader() {
       }`}
     >
       <div className="flex items-center justify-between px-6 py-4 md:px-12">
-        <a
-          href="#top"
-          onClick={() => setOpen(false)}
-          className="transition-colors"
-        >
-          <span
-            className={`block font-display text-[1.8rem] leading-none tracking-wide md:text-4xl ${brand}`}
+        {/* Значки ассоциаций (вместо имени). Цвет наследует меню (автоконтраст). */}
+        <div className={`flex items-center gap-5 ${brand}`}>
+          <a
+            href={c.contacts.emdrUrl || "#"}
+            target={c.contacts.emdrUrl ? "_blank" : undefined}
+            rel={c.contacts.emdrUrl ? "noopener noreferrer" : undefined}
+            aria-label="EMDR Russia"
+            onClick={() => setOpen(false)}
+            className="transition-opacity hover:opacity-70"
           >
-            Алина Дубовская
-          </span>
-          <span
-            className={`mt-1.5 block font-sans text-sm lowercase tracking-wide ${sub}`}
+            <EmdrIcon className="h-7 w-auto md:h-8" />
+          </a>
+          <a
+            href={c.contacts.ifsUrl || "#"}
+            target={c.contacts.ifsUrl ? "_blank" : undefined}
+            rel={c.contacts.ifsUrl ? "noopener noreferrer" : undefined}
+            aria-label="IFS Russia"
+            onClick={() => setOpen(false)}
+            className="transition-opacity hover:opacity-70"
           >
-            психолог
-          </span>
-        </a>
+            <IfsIcon className="h-8 w-auto md:h-9" />
+          </a>
+        </div>
 
         {/* Десктоп-меню */}
         <nav className="hidden gap-7 text-sm tracking-wide md:flex">

@@ -96,6 +96,8 @@ const DEFAULTS = {
   ],
   contacts: {
     note: "Написать можно в любой удобный мессенджер — отвечаю лично.",
+    emdrUrl: "",
+    ifsUrl: "",
     docs: [
       { label: "Политика конфиденциальности", url: "" },
       { label: "Согласие на обработку персональных данных", url: "" },
@@ -296,6 +298,8 @@ function renderContent() {
       fArea("Примечание", c.consultation, "note")),
     section("FAQ", listObj("Вопросы", c.faq, [{ key: "q", label: "Вопрос" }, { key: "a", label: "Ответ", type: "area" }], () => ({ q: "", a: "" }))),
     section("Контакты", fArea("Текст", c.contacts, "note"),
+      fText("Ссылка EMDR Russia (значок в шапке)", c.contacts, "emdrUrl"),
+      fText("Ссылка IFS Russia (значок в шапке)", c.contacts, "ifsUrl"),
       listObj("Документы (PDF)", c.contacts.docs, [{ key: "label", label: "Название" }, { key: "url", label: "Файл PDF", type: "pdf" }], () => ({ label: "", url: "" }))),
     h("div", { class: "save-bar" }, h("button", { class: "btn", onclick: saveContent }, "Сохранить изменения"), h("span", { class: "muted" }, "правки появятся на сайте сразу"))
   );
