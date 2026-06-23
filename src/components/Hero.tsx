@@ -121,7 +121,7 @@ export default function Hero() {
       <div className="relative z-10 flex min-h-[100svh] flex-col">
         {/* Цитата вверху (над головой, на фоне) */}
         <div className="px-6 pt-28 md:px-12 md:pt-32">
-          <figure className="max-w-xl">
+          <figure className="max-w-2xl lg:max-w-3xl">
             <blockquote
               className={`font-display text-[1.85rem] leading-[1.15] sm:text-4xl md:text-5xl lg:text-[3.25rem] ${textColor}`}
             >
