@@ -77,9 +77,13 @@ const VARIANTS: Variant[] = [
     label: "Беж · рука у подбородка",
     image: "/photos/hero-beige-2.jpg",
     dark: false,
-    // фон дострочен по краям -> отдалено, на всю ширину без полей
+    // Текущее фото — широкое (2500×1461), Алина справа, слева пустой беж
+    // в цвет фона. cover без доп. зума ≈ масштаб 1:1 с экраном.
+    // X=72%: на узком экране (кроп по ширине) в кадре остаётся лицо справа.
+    // Y=25%: на десктопе (кроп по высоте) сверху остаётся запас — голова
+    //        не залезает под фиксированное меню.
     size: "cover",
-    position: "center 41%",
+    position: "72% 25%",
     bg: "var(--background)",
   },
 ];
@@ -104,10 +108,10 @@ export default function Hero() {
       className="relative min-h-[100svh] w-full overflow-hidden"
       data-nav-theme={v.dark ? "dark" : "light"}
     >
-      {/* Фон-фото. На десктопе слегка сдвигаем кадр вправо (Алина правее,
-          справа от неё меньше пустоты). Зум 110% даёт запас, чтобы слева не было щели. */}
+      {/* Фон-фото на всю секцию, масштаб 1:1 (cover без доп. зума).
+          Кадрирование задаётся в variant.position (см. VARIANTS). */}
       <div
-        className="hero-photo absolute inset-0 bg-no-repeat lg:origin-center lg:translate-x-[5%] lg:scale-110"
+        className="hero-photo absolute inset-0 bg-no-repeat"
         style={{
           backgroundImage: `url(${heroImage})`,
           backgroundSize: v.size,
