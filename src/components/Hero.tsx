@@ -18,7 +18,7 @@ type Variant = {
 };
 
 // Минималистичные контурные иконки (стиль как у конвертика формы).
-const iconCls = "h-8 w-8 sm:h-10 sm:w-10";
+const iconCls = "h-6 w-6 sm:h-10 sm:w-10";
 // Группа людей (клиенты): крупный по центру + двое поменьше по бокам
 const PersonIcon = (
   <svg viewBox="0 0 24 24" className={iconCls} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -31,7 +31,7 @@ const PersonIcon = (
   </svg>
 );
 // Часы — с делениями на циферблате (6 делений)
-const clockCls = "h-9 w-9 sm:h-11 sm:w-11";
+const clockCls = "h-7 w-7 sm:h-11 sm:w-11";
 const ClockIcon = (
   <svg viewBox="0 0 24 24" className={clockCls} fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
     <circle cx="12" cy="12" r="9" />
@@ -140,19 +140,19 @@ export default function Hero() {
 
         {/* Бейджи 2×2 — по центру ровно между низом цитаты и верхом кнопки */}
         <div className="flex flex-1 items-center px-6 md:px-12">
-          <ul className="grid max-w-xs grid-cols-1 gap-y-6 lg:max-w-xl lg:grid-cols-2 lg:gap-x-6 lg:gap-y-8 xl:gap-x-8">
+          <ul className="grid max-w-[15rem] grid-cols-1 gap-y-3.5 sm:max-w-xs sm:gap-y-6 lg:max-w-xl lg:grid-cols-2 lg:gap-x-6 lg:gap-y-8 xl:gap-x-8">
             {/* три цифры из контента + постоянный бейдж «Конфиденциально» */}
             {c.hero.stats.slice(0, 3).map((s, i) => (
-              <li key={s.label} className="flex items-center gap-2.5 sm:gap-3.5">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-[1.5px] border-terracotta text-terracotta sm:h-16 sm:w-16">
+              <li key={s.label} className="flex items-center gap-2 sm:gap-3.5">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-[1.5px] border-terracotta text-terracotta sm:h-16 sm:w-16">
                   {STAT_ICONS[i]}
                 </span>
                 <span className="leading-tight">
-                  <span className="block whitespace-nowrap font-display text-lg leading-none text-terracotta sm:text-[1.7rem]">
+                  <span className="block whitespace-nowrap font-display text-base leading-none text-terracotta sm:text-[1.7rem]">
                     {s.value}
                   </span>
                   <span
-                    className={`mt-1 block text-sm lowercase leading-tight tracking-normal transition-colors sm:text-base ${
+                    className={`mt-1 block text-xs lowercase leading-tight tracking-normal transition-colors sm:text-base ${
                       v.dark ? "text-white/90 hover:text-white" : "text-foreground/75 hover:text-foreground"
                     }`}
                   >
@@ -161,16 +161,16 @@ export default function Hero() {
                 </span>
               </li>
             ))}
-            <li className="flex items-center gap-2.5 sm:gap-3.5">
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-[1.5px] border-terracotta text-terracotta sm:h-16 sm:w-16">
+            <li className="flex items-center gap-2 sm:gap-3.5">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-[1.5px] border-terracotta text-terracotta sm:h-16 sm:w-16">
                 {LockIcon}
               </span>
               <span className="leading-tight">
-                <span className="block whitespace-nowrap font-display text-lg leading-none text-terracotta sm:text-[1.7rem]">
+                <span className="block whitespace-nowrap font-display text-base leading-none text-terracotta sm:text-[1.7rem]">
                   {c.hero.security.title}
                 </span>
                 <span
-                  className={`mt-1 block whitespace-nowrap text-sm lowercase leading-tight tracking-normal transition-colors sm:text-base ${
+                  className={`mt-1 block text-xs lowercase leading-tight tracking-normal transition-colors sm:whitespace-nowrap sm:text-base ${
                     v.dark ? "text-white/90 hover:text-white" : "text-foreground/75 hover:text-foreground"
                   }`}
                 >
