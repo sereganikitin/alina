@@ -46,8 +46,8 @@ const HandshakeIcon = (
   <svg viewBox="0 0 24 24" className={iconCls} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="m11 17 2 2a1 1 0 1 0 3-3" />
     <path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" />
-    <path d="m21 3 1 11h-2" />
-    <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" />
+    <path d="m21 4 1 10h-2" />
+    <path d="M3 4 2 14l6.5 6.5a1 1 0 1 0 3-3" />
     <path d="M3 4h8" />
   </svg>
 );
@@ -144,7 +144,7 @@ export default function Hero() {
             {/* три цифры из контента + постоянный бейдж «Конфиденциально» */}
             {c.hero.stats.slice(0, 3).map((s, i) => (
               <li key={s.label} className="flex items-center gap-2.5 sm:gap-3.5">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-[1.5px] border-[#c2a771] text-[#c2a771] sm:h-16 sm:w-16">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-[1.5px] border-terracotta text-terracotta sm:h-16 sm:w-16">
                   {STAT_ICONS[i]}
                 </span>
                 <span className="leading-tight">
@@ -162,7 +162,7 @@ export default function Hero() {
               </li>
             ))}
             <li className="flex items-center gap-2.5 sm:gap-3.5">
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-[1.5px] border-[#c2a771] text-[#c2a771] sm:h-16 sm:w-16">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-[1.5px] border-terracotta text-terracotta sm:h-16 sm:w-16">
                 {LockIcon}
               </span>
               <span className="leading-tight">
