@@ -170,7 +170,7 @@ export default function Hero() {
                   {c.hero.security.title}
                 </span>
                 <span
-                  className={`mt-1 block text-xs lowercase leading-tight tracking-normal transition-colors sm:text-sm ${
+                  className={`mt-1 block text-xs lowercase leading-tight tracking-normal transition-colors sm:text-sm xl:whitespace-nowrap ${
                     v.dark ? "text-white/90 hover:text-white" : "text-foreground/75 hover:text-foreground"
                   }`}
                 >
