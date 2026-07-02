@@ -140,7 +140,7 @@ export default function Hero() {
 
         {/* Бейджи 2×2 — по центру ровно между низом цитаты и верхом кнопки */}
         <div className="flex flex-1 items-center px-6 md:px-12">
-          <ul className="grid max-w-[15rem] grid-cols-1 gap-y-3.5 sm:max-w-xs sm:gap-y-5 xl:max-w-xl xl:grid-cols-2 xl:gap-x-8 xl:gap-y-8">
+          <ul className="grid max-w-[15rem] grid-cols-1 gap-y-3.5 sm:max-w-xs sm:gap-y-5 xl:max-w-lg xl:grid-cols-2 xl:gap-x-6 xl:gap-y-8">
             {/* три цифры из контента + постоянный бейдж «Конфиденциально» */}
             {c.hero.stats.slice(0, 3).map((s, i) => (
               <li key={s.label} className="flex items-center gap-2 sm:gap-3 xl:gap-3.5">
@@ -170,7 +170,7 @@ export default function Hero() {
                   {c.hero.security.title}
                 </span>
                 <span
-                  className={`mt-1 block text-xs lowercase leading-tight tracking-normal transition-colors sm:text-sm xl:whitespace-nowrap xl:text-base ${
+                  className={`mt-1 block text-xs lowercase leading-tight tracking-normal transition-colors sm:text-sm ${
                     v.dark ? "text-white/90 hover:text-white" : "text-foreground/75 hover:text-foreground"
                   }`}
                 >
