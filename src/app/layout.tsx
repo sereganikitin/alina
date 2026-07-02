@@ -1,35 +1,18 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
-import localFont from "next/font/local";
 import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import FloatingContact from "@/components/FloatingContact";
-import ThemeSwitcher from "@/components/ThemeSwitcher";
 
-// Заголовки — Moniqa Heading (regular). Файл лежит в public/fonts.
-const moniqa = localFont({
-  variable: "--font-moniqa",
-  src: "../../public/fonts/Moniqa-Paragraph.ttf",
-  display: "swap",
-});
-
-// Остальной текст — FactorA Regular. Файл в public/fonts.
-const factorA = localFont({
-  variable: "--font-factora",
-  src: "../../public/fonts/FactorA-Regular.woff2",
-  display: "swap",
-});
-
-// Playfair — glyph-fallback для заголовков (например, кириллица, если её нет в Moniqa).
+// Заголовки — Playfair Display (засечный), основной текст — Inter.
 const playfair = Playfair_Display({
-  variable: "--font-playfair",
+  variable: "--font-display",
   subsets: ["latin", "cyrillic"],
   display: "swap",
 });
 
-// Inter — glyph-fallback для основного текста.
 const inter = Inter({
-  variable: "--font-inter",
+  variable: "--font-sans",
   subsets: ["latin", "cyrillic"],
   display: "swap",
 });
@@ -50,19 +33,9 @@ export default function RootLayout({
   return (
     <html
       lang="ru"
-      className={`${moniqa.variable} ${factorA.variable} ${playfair.variable} ${inter.variable} h-full antialiased`}
+      className={`${playfair.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        {/* Раннее применение выбранной темы — до отрисовки, чтобы не мигало */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html:
-              "try{var t=localStorage.getItem('siteTheme');if(t&&t!=='base')document.documentElement.dataset.theme=t;}catch(e){}",
-          }}
-        />
-        {/* Сквозной слой тени листвы (виден только в тёплой теме) */}
-        <div className="leaf-layer" aria-hidden="true" />
-        <ThemeSwitcher />
         <SiteHeader />
         {children}
         <FloatingContact />

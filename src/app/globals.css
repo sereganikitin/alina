@@ -8,10 +8,8 @@
   --gold: #b8975a; /* золото для тёмных фото */
   --terracotta: #9e5a45; /* терракотово-коричневый акцент */
   --line: #d8cdbd; /* линии/разделители */
-  /* Заголовки: Moniqa, с фолбэком на Playfair (в т.ч. для кириллицы) */
-  --font-display: var(--font-moniqa), var(--font-playfair), Georgia, serif;
-  /* Остальной текст: FactorA, с фолбэком на Inter */
-  --font-sans: var(--font-factora), var(--font-inter), Arial, sans-serif;
+  /* Шрифты подключает layout.tsx: заголовки — Playfair Display
+     (--font-display), основной текст — Inter (--font-sans). */
 }
 
 @theme inline {
@@ -30,80 +28,6 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
-}
-
-/* Всё, что набрано Moniqa (заголовки, подзаголовки, строки у значков и т.п.) — капсом */
-.font-display {
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-/* ===================================================================== */
-/* ТРОЙНОЙ ШАБЛОН: 3 варианта стиля (цвета + шрифты).                     */
-/* Базовый = :root выше. Тёплый и Тёмный — переопределяют переменные.     */
-/* Переключаются через data-theme на <html> (см. ThemeSwitcher).          */
-/* ===================================================================== */
-
-/* Вариант 2 — более тёплая палитра, классический серив Playfair */
-[data-theme="warm"] {
-  --background: #f1e2cf;
-  --cream: #f9efe0;
-  --foreground: #3a281d;
-  --muted: #9d7c5f;
-  --gold: #c2893a;
-  --terracotta: #b85733;
-  --line: #e7cfb4;
-}
-/* Тёплая тема: мягкая тень листвы — ОДИН сквозной слой поверх контента.
-   Фиксированный композитный слой: без стыков, не режется волной, плавный скролл. */
-.leaf-layer {
-  display: none;
-}
-[data-theme="warm"] .leaf-layer {
-  display: block;
-  position: fixed;
-  inset: 0;
-  z-index: 20;
-  pointer-events: none;
-  background: url("/textures/leaves.svg") center / cover no-repeat;
-  will-change: transform;
-}
-
-/* Вариант 3 — «Восточный»: марокканская палитра (песок/охра/глина) + текстура */
-[data-theme="east"] {
-  --background: #e6d7c0; /* песок (чуть меньше жёлтого) */
-  --cream: #f1e7d4; /* светлый песок — чередование секций */
-  --foreground: #3a2317; /* тёмный кофе */
-  --muted: #97785a;
-  --gold: #c2913a; /* охра */
-  --terracotta: #9e5a45; /* акцент как на базовом макете (кнопки, кружки, форма) */
-  --line: #d4c3a6;
-}
-/* Песочная текстура — ТОЛЬКО на фоновых секциях (не на полях/карточках/кнопках,
-   которые тоже используют bg-background/bg-cream). Деликатно: вуаль ~62%. */
-[data-theme="east"] section.bg-background,
-[data-theme="east"] section.bg-cream {
-  background-image: linear-gradient(
-      rgba(230, 215, 192, 0.62),
-      rgba(230, 215, 192, 0.62)
-    ),
-    url("/textures/sand.webp");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-[data-theme="east"] section.bg-cream {
-  background-image: linear-gradient(
-      rgba(241, 231, 212, 0.62),
-      rgba(241, 231, 212, 0.62)
-    ),
-    url("/textures/sand.webp");
-}
-
-/* Лёгкий тёплый фильтр на фото-шапке (только тёплая/восточная темы) */
-[data-theme="warm"] .hero-photo,
-[data-theme="east"] .hero-photo {
-  filter: sepia(0.18) saturate(1.12) brightness(1.02);
 }
 
 /* Затемнение фото-шапки (зарезервировано; сейчас прозрачно) */
