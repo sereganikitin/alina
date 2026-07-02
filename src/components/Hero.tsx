@@ -18,7 +18,7 @@ type Variant = {
 };
 
 // Минималистичные контурные иконки (стиль как у конвертика формы).
-const iconCls = "h-6 w-6 sm:h-10 sm:w-10";
+const iconCls = "h-6 w-6 sm:h-7 sm:w-7 xl:h-10 xl:w-10";
 // Группа людей (клиенты): крупный по центру + двое поменьше по бокам
 const PersonIcon = (
   <svg viewBox="0 0 24 24" className={iconCls} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -31,7 +31,7 @@ const PersonIcon = (
   </svg>
 );
 // Часы — с делениями на циферблате (6 делений)
-const clockCls = "h-7 w-7 sm:h-11 sm:w-11";
+const clockCls = "h-7 w-7 sm:h-8 sm:w-8 xl:h-11 xl:w-11";
 const ClockIcon = (
   <svg viewBox="0 0 24 24" className={clockCls} fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
     <circle cx="12" cy="12" r="9" />
@@ -46,7 +46,7 @@ const HandshakeIcon = (
   <svg viewBox="0 0 24 24" className={iconCls} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="m11 17 2 2a1 1 0 1 0 3-3" />
     <path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" />
-    <path d="m21 4 1 10h-2" />
+    <path d="m20.6 4h1.4l0.6 10h-2" />
     <path d="M3 4 2 14l6.5 6.5a1 1 0 1 0 3-3" />
     <path d="M3 4h8" />
   </svg>
@@ -129,9 +129,9 @@ export default function Hero() {
       <div className="relative z-10 flex min-h-[100svh] flex-col">
         {/* Цитата вверху (над головой, на фоне) — поднята ближе к имени */}
         <div className="px-6 pt-20 md:px-12 md:pt-24">
-          <figure className="max-w-2xl lg:max-w-3xl">
+          <figure className="max-w-[15rem] sm:max-w-md xl:max-w-3xl">
             <blockquote
-              className={`font-display text-[1.35rem] leading-[1.15] sm:text-[1.6rem] md:text-3xl lg:text-[2.15rem] ${textColor}`}
+              className={`font-display text-[1.2rem] leading-[1.15] sm:text-[1.6rem] xl:text-[2.15rem] ${textColor}`}
             >
               {c.hero.quote}
             </blockquote>
@@ -140,19 +140,19 @@ export default function Hero() {
 
         {/* Бейджи 2×2 — по центру ровно между низом цитаты и верхом кнопки */}
         <div className="flex flex-1 items-center px-6 md:px-12">
-          <ul className="grid max-w-[15rem] grid-cols-1 gap-y-3.5 sm:max-w-xs sm:gap-y-6 lg:max-w-xl lg:grid-cols-2 lg:gap-x-6 lg:gap-y-8 xl:gap-x-8">
+          <ul className="grid max-w-[15rem] grid-cols-1 gap-y-3.5 sm:max-w-xs sm:gap-y-5 xl:max-w-xl xl:grid-cols-2 xl:gap-x-8 xl:gap-y-8">
             {/* три цифры из контента + постоянный бейдж «Конфиденциально» */}
             {c.hero.stats.slice(0, 3).map((s, i) => (
-              <li key={s.label} className="flex items-center gap-2 sm:gap-3.5">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-[1.5px] border-terracotta text-terracotta sm:h-16 sm:w-16">
+              <li key={s.label} className="flex items-center gap-2 sm:gap-3 xl:gap-3.5">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-[1.5px] border-terracotta text-terracotta sm:h-12 sm:w-12 xl:h-16 xl:w-16">
                   {STAT_ICONS[i]}
                 </span>
                 <span className="leading-tight">
-                  <span className="block whitespace-nowrap font-display text-base leading-none text-terracotta sm:text-[1.7rem]">
+                  <span className="block whitespace-nowrap font-display text-base leading-none text-terracotta sm:text-lg xl:text-[1.7rem]">
                     {s.value}
                   </span>
                   <span
-                    className={`mt-1 block text-xs lowercase leading-tight tracking-normal transition-colors sm:text-base ${
+                    className={`mt-1 block text-xs lowercase leading-tight tracking-normal transition-colors sm:text-sm xl:text-base ${
                       v.dark ? "text-white/90 hover:text-white" : "text-foreground/75 hover:text-foreground"
                     }`}
                   >
@@ -161,16 +161,16 @@ export default function Hero() {
                 </span>
               </li>
             ))}
-            <li className="flex items-center gap-2 sm:gap-3.5">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-[1.5px] border-terracotta text-terracotta sm:h-16 sm:w-16">
+            <li className="flex items-center gap-2 sm:gap-3 xl:gap-3.5">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-[1.5px] border-terracotta text-terracotta sm:h-12 sm:w-12 xl:h-16 xl:w-16">
                 {LockIcon}
               </span>
               <span className="leading-tight">
-                <span className="block whitespace-nowrap font-display text-base leading-none text-terracotta sm:text-[1.7rem]">
+                <span className="block whitespace-nowrap font-display text-base leading-none text-terracotta sm:text-lg xl:text-[1.7rem]">
                   {c.hero.security.title}
                 </span>
                 <span
-                  className={`mt-1 block text-xs lowercase leading-tight tracking-normal transition-colors sm:whitespace-nowrap sm:text-base ${
+                  className={`mt-1 block text-xs lowercase leading-tight tracking-normal transition-colors sm:text-sm xl:whitespace-nowrap xl:text-base ${
                     v.dark ? "text-white/90 hover:text-white" : "text-foreground/75 hover:text-foreground"
                   }`}
                 >
@@ -182,17 +182,17 @@ export default function Hero() {
         </div>
 
         {/* Кнопка записи + ссылка «как проходит работа» — ближе к волне */}
-        <div className="px-6 pb-28 md:px-12 md:pb-32">
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-4 sm:gap-x-7">
+        <div className="px-6 pb-20 md:px-12 md:pb-28 xl:pb-32">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-3 sm:gap-x-6 sm:gap-y-4 xl:gap-x-7">
             <a
               href="#booking"
-              className="inline-flex items-center justify-center rounded-full bg-terracotta px-6 py-3 font-sans text-sm lowercase text-cream shadow-lg transition-opacity hover:opacity-90 sm:px-7 sm:py-3.5 sm:text-base"
+              className="inline-flex items-center justify-center rounded-full bg-terracotta px-5 py-2.5 font-sans text-sm lowercase text-cream shadow-lg transition-opacity hover:opacity-90 sm:px-6 sm:py-3 xl:px-7 xl:py-3.5 xl:text-base"
             >
               {c.hero.cta.primary}
             </a>
             <a
               href="#principles"
-              className={`group inline-flex items-center gap-2.5 font-sans text-sm lowercase transition-colors sm:text-base ${
+              className={`group inline-flex items-center gap-2.5 font-sans text-sm lowercase transition-colors xl:text-base ${
                 v.dark ? "text-white/90 hover:text-white" : "text-foreground/75 hover:text-foreground"
               }`}
             >
