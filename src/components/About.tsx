@@ -1,6 +1,7 @@
 "use client";
 
 import { useContent } from "@/lib/useContent";
+import { EmdrLogo, IfsLogo } from "./AssocIcons";
 
 /** Раздел «Обо мне»: фото в арке по центру; слева над волнистой линией —
  *  заголовок, справа под линией — регалии. Линия во всю ширину экрана,
@@ -47,14 +48,19 @@ export default function About() {
             />
           </div>
 
-          {/* Регалии — справа, под линией, во всю ширину колонки */}
-          <div className="md:self-end md:pb-6">
+          {/* Регалии — справа, выровнены по нижнему краю фото (self-end) */}
+          <div className="md:self-end">
             <p className="font-display text-2xl leading-snug text-foreground md:text-[1.7rem]">
               {c.about.title}
             </p>
             <p className="mt-4 text-base leading-relaxed text-muted">
               {c.about.lead}
             </p>
+            {/* Значки ассоциаций (как в шапке) — терракотовые */}
+            <div className="mt-6 flex items-center gap-6 text-terracotta md:gap-7">
+              <EmdrLogo />
+              <IfsLogo />
+            </div>
           </div>
         </div>
       </div>
