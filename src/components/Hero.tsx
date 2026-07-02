@@ -109,9 +109,12 @@ export default function Hero() {
       data-nav-theme={v.dark ? "dark" : "light"}
     >
       {/* Фон-фото на всю секцию, масштаб 1:1 (cover без доп. зума).
-          Кадрирование задаётся в variant.position (см. VARIANTS). */}
+          Кадрирование задаётся в variant.position (см. VARIANTS).
+          На десктопе слегка сдвигаем вправо — Алина ближе к правому краю,
+          беж справа от неё уходит за край; слева открывается тот же беж
+          (bg совпадает с фоном), overflow-hidden секции срезает правый край. */}
       <div
-        className="hero-photo absolute inset-0 bg-no-repeat"
+        className="hero-photo absolute inset-0 bg-no-repeat lg:translate-x-[6%]"
         style={{
           backgroundImage: `url(${heroImage})`,
           backgroundSize: v.size,
