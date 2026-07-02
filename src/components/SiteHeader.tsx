@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useContent } from "@/lib/useContent";
-import { EmdrLogo, IfsLogo } from "./AssocIcons";
 
 const NAV = [
   { label: "Обо мне", href: "#about" },
@@ -19,7 +17,6 @@ const NAV = [
  * На мобиле — бургер с полноэкранным меню.
  */
 export default function SiteHeader() {
-  const c = useContent();
   const [onDark, setOnDark] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -87,29 +84,15 @@ export default function SiteHeader() {
       }`}
     >
       <div className="flex items-center justify-between px-6 py-4 md:px-12">
-        {/* Лого ассоциаций (вместо имени). Цвет наследует меню (автоконтраст). */}
-        <div className={`flex items-center gap-5 md:gap-7 ${brand}`}>
-          <a
-            href={c.contacts.emdrUrl || "#"}
-            target={c.contacts.emdrUrl ? "_blank" : undefined}
-            rel={c.contacts.emdrUrl ? "noopener noreferrer" : undefined}
-            aria-label="EMDR Russia"
-            onClick={() => setOpen(false)}
-            className="transition-opacity hover:opacity-70"
-          >
-            <EmdrLogo />
-          </a>
-          <a
-            href={c.contacts.ifsUrl || "#"}
-            target={c.contacts.ifsUrl ? "_blank" : undefined}
-            rel={c.contacts.ifsUrl ? "noopener noreferrer" : undefined}
-            aria-label="IFS Russia"
-            onClick={() => setOpen(false)}
-            className="transition-opacity hover:opacity-70"
-          >
-            <IfsLogo />
-          </a>
-        </div>
+        {/* Имя (вместо значков ассоциаций). Шрифт как у текста в hero (Playfair),
+            крупнее и жирнее. Цвет наследует меню (автоконтраст). */}
+        <a
+          href="#"
+          onClick={() => setOpen(false)}
+          className={`font-display text-xl font-semibold leading-none tracking-wide transition-opacity hover:opacity-70 sm:text-2xl md:text-[1.7rem] ${brand}`}
+        >
+          Алина Дубовская
+        </a>
 
         {/* Десктоп-меню */}
         <nav className="hidden gap-7 text-sm tracking-wide md:flex">
