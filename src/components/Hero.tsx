@@ -138,10 +138,8 @@ export default function Hero() {
           </figure>
         </div>
 
-        <div className="flex-1" />
-
-        {/* Бейджи 2×2: иконка + число/подпись (вместо крупных цифр) */}
-        <div className="px-6 md:px-12">
+        {/* Бейджи 2×2 — по центру ровно между низом цитаты и верхом кнопки */}
+        <div className="flex flex-1 items-center px-6 md:px-12">
           <ul className="grid max-w-xs grid-cols-1 gap-y-6 lg:max-w-xl lg:grid-cols-2 lg:gap-x-6 lg:gap-y-8 xl:gap-x-8">
             {/* три цифры из контента + постоянный бейдж «Конфиденциально» */}
             {c.hero.stats.slice(0, 3).map((s, i) => (
@@ -182,8 +180,6 @@ export default function Hero() {
             </li>
           </ul>
         </div>
-
-        <div className="flex-1" />
 
         {/* Кнопка записи + ссылка «как проходит работа» — ближе к волне */}
         <div className="px-6 pb-28 md:px-12 md:pb-32">
