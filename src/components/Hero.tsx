@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Wave from "./Wave";
 import { useContent } from "@/lib/useContent";
 
@@ -18,7 +18,7 @@ type Variant = {
 };
 
 // Минималистичные контурные иконки (стиль как у конвертика формы).
-const iconCls = "h-6 w-6 sm:h-7 sm:w-7 xl:h-10 xl:w-10";
+const iconCls = "h-6 w-6 sm:h-7 sm:w-7 2xl:h-10 2xl:w-10";
 // Группа людей (клиенты): крупный по центру + двое поменьше по бокам
 const PersonIcon = (
   <svg viewBox="0 0 24 24" className={iconCls} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -31,7 +31,7 @@ const PersonIcon = (
   </svg>
 );
 // Часы — с делениями на циферблате (6 делений)
-const clockCls = "h-7 w-7 sm:h-8 sm:w-8 xl:h-11 xl:w-11";
+const clockCls = "h-7 w-7 sm:h-8 sm:w-8 2xl:h-11 2xl:w-11";
 const ClockIcon = (
   <svg viewBox="0 0 24 24" className={clockCls} fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
     <circle cx="12" cy="12" r="9" />
@@ -89,7 +89,7 @@ const VARIANTS: Variant[] = [
 ];
 
 export default function Hero() {
-  const [index, setIndex] = useState(1); // финал: беж, рука у подбородка
+  const index = 1; // финал: беж, рука у подбородка (переключатель фото убран)
   const v = VARIANTS[index];
   const c = useContent();
   // фото шапки можно менять из админки (для основного варианта)
@@ -140,19 +140,19 @@ export default function Hero() {
 
         {/* Бейджи 2×2 — по центру ровно между низом цитаты и верхом кнопки */}
         <div className="flex flex-1 items-center px-6 md:px-12">
-          <ul className="grid max-w-[15rem] grid-cols-1 gap-y-3.5 sm:max-w-xs sm:gap-y-5 xl:max-w-lg xl:grid-cols-2 xl:gap-x-6 xl:gap-y-8">
+          <ul className="grid max-w-[15rem] grid-cols-1 gap-y-3.5 sm:max-w-xs sm:gap-y-5 xl:max-w-md xl:grid-cols-2 xl:gap-x-6 xl:gap-y-6 2xl:max-w-lg 2xl:gap-y-8">
             {/* три цифры из контента + постоянный бейдж «Конфиденциально» */}
             {c.hero.stats.slice(0, 3).map((s, i) => (
-              <li key={s.label} className="flex items-center gap-2 sm:gap-3 xl:gap-3.5">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-[1.5px] border-terracotta text-terracotta sm:h-12 sm:w-12 xl:h-14 xl:w-14">
+              <li key={s.label} className="flex items-center gap-2 sm:gap-3 2xl:gap-3.5">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-[1.5px] border-terracotta text-terracotta sm:h-12 sm:w-12 2xl:h-16 2xl:w-16">
                   {STAT_ICONS[i]}
                 </span>
                 <span className="leading-tight">
-                  <span className="block whitespace-nowrap font-display text-base leading-none text-terracotta sm:text-lg xl:text-[1.7rem]">
+                  <span className="block whitespace-nowrap font-display text-base leading-none text-terracotta sm:text-lg 2xl:text-[1.7rem]">
                     {s.value}
                   </span>
                   <span
-                    className={`mt-1 block text-xs lowercase leading-tight tracking-normal transition-colors sm:text-sm xl:text-base ${
+                    className={`mt-1 block text-xs lowercase leading-tight tracking-normal transition-colors sm:text-sm ${
                       v.dark ? "text-white/90 hover:text-white" : "text-foreground/75 hover:text-foreground"
                     }`}
                   >
@@ -161,16 +161,16 @@ export default function Hero() {
                 </span>
               </li>
             ))}
-            <li className="flex items-center gap-2 sm:gap-3 xl:gap-3.5">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-[1.5px] border-terracotta text-terracotta sm:h-12 sm:w-12 xl:h-14 xl:w-14">
+            <li className="flex items-center gap-2 sm:gap-3 2xl:gap-3.5">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-[1.5px] border-terracotta text-terracotta sm:h-12 sm:w-12 2xl:h-16 2xl:w-16">
                 {LockIcon}
               </span>
               <span className="leading-tight">
-                <span className="block whitespace-nowrap font-display text-base leading-none text-terracotta sm:text-lg xl:text-[1.7rem]">
+                <span className="block whitespace-nowrap font-display text-base leading-none text-terracotta sm:text-lg 2xl:text-[1.7rem]">
                   {c.hero.security.title}
                 </span>
                 <span
-                  className={`mt-1 block text-xs lowercase leading-tight tracking-normal transition-colors sm:text-sm xl:whitespace-nowrap xl:text-xs ${
+                  className={`mt-1 block text-xs lowercase leading-tight tracking-normal transition-colors sm:text-sm lg:whitespace-nowrap ${
                     v.dark ? "text-white/90 hover:text-white" : "text-foreground/75 hover:text-foreground"
                   }`}
                 >
@@ -207,21 +207,6 @@ export default function Hero() {
 
       {/* Волна по нижнему краю */}
       <Wave className="absolute bottom-0 left-0 z-10 h-16 w-full md:h-24" />
-
-      {/* Переключатель вариантов фото — маленький и неприметный (временный) */}
-      <div className="fixed bottom-3 left-3 z-50 flex items-center gap-1.5 rounded-full bg-black/25 px-2 py-1.5 opacity-35 backdrop-blur transition-opacity hover:opacity-100">
-        {VARIANTS.map((variant, i) => (
-          <button
-            key={variant.id}
-            onClick={() => setIndex(i)}
-            title={variant.label}
-            aria-label={variant.label}
-            className={`h-2.5 w-2.5 rounded-full transition-colors ${
-              i === index ? "bg-white" : "bg-white/40 hover:bg-white/80"
-            }`}
-          />
-        ))}
-      </div>
     </section>
   );
 }
