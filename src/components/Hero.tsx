@@ -131,7 +131,7 @@ export default function Hero() {
         <div className="px-6 pt-20 md:px-12 md:pt-24">
           <figure className="max-w-2xl lg:max-w-3xl">
             <blockquote
-              className={`font-display text-[1.5rem] leading-[1.15] sm:text-3xl md:text-4xl lg:text-[2.5rem] ${textColor}`}
+              className={`font-display text-[1.35rem] leading-[1.15] sm:text-[1.6rem] md:text-3xl lg:text-[2.15rem] ${textColor}`}
             >
               {c.hero.quote}
             </blockquote>
@@ -146,7 +146,7 @@ export default function Hero() {
             {/* три цифры из контента + постоянный бейдж «Конфиденциально» */}
             {c.hero.stats.slice(0, 3).map((s, i) => (
               <li key={s.label} className="flex items-center gap-2.5 sm:gap-3.5">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-[1.5px] border-terracotta text-terracotta sm:h-16 sm:w-16">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-[1.5px] border-[#c08e59] text-[#c08e59] sm:h-16 sm:w-16">
                   {STAT_ICONS[i]}
                 </span>
                 <span className="leading-tight">
@@ -164,7 +164,7 @@ export default function Hero() {
               </li>
             ))}
             <li className="flex items-center gap-2.5 sm:gap-3.5">
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-[1.5px] border-terracotta text-terracotta sm:h-16 sm:w-16">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-[1.5px] border-[#c08e59] text-[#c08e59] sm:h-16 sm:w-16">
                 {LockIcon}
               </span>
               <span className="leading-tight">
