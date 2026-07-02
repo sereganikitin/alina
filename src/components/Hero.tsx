@@ -196,8 +196,8 @@ export default function Hero() {
             </a>
             <a
               href="#principles"
-              className={`group inline-flex items-center gap-2.5 font-sans text-sm lowercase transition-colors hover:text-terracotta sm:text-base ${
-                v.dark ? "text-gold" : "text-foreground"
+              className={`group inline-flex items-center gap-2.5 font-sans text-sm lowercase transition-colors sm:text-base ${
+                v.dark ? "text-white/90 hover:text-white" : "text-foreground/75 hover:text-foreground"
               }`}
             >
               {c.hero.cta.secondary}
