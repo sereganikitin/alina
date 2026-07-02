@@ -110,11 +110,12 @@ export default function Hero() {
     >
       {/* Фон-фото на всю секцию, масштаб 1:1 (cover без доп. зума).
           Кадрирование задаётся в variant.position (см. VARIANTS).
-          На десктопе слегка сдвигаем вправо — Алина ближе к правому краю,
-          беж справа от неё уходит за край; слева открывается тот же беж
-          (bg совпадает с фоном), overflow-hidden секции срезает правый край. */}
+          На десктопе слегка увеличиваем с привязкой к ЛЕВОМУ-ВЕРХНЕМУ углу:
+          фото начинается от левого края (без щели/шва) и от верха (голова не
+          лезет под меню), а лишнее срезается справа и снизу (overflow-hidden).
+          За счёт роста вправо Алина смещается ближе к правому краю. */}
       <div
-        className="hero-photo absolute inset-0 bg-no-repeat lg:translate-x-[6%]"
+        className="hero-photo absolute inset-0 bg-no-repeat lg:origin-top-left lg:scale-110"
         style={{
           backgroundImage: `url(${heroImage})`,
           backgroundSize: v.size,
