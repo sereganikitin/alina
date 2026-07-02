@@ -89,7 +89,7 @@ export default function SiteHeader() {
         <a
           href="#"
           onClick={() => setOpen(false)}
-          className={`font-display text-[1.7rem] font-semibold leading-none tracking-wide transition-opacity hover:opacity-70 md:text-[2.1rem] ${brand}`}
+          className={`font-display text-[2rem] font-semibold leading-none tracking-wide transition-opacity hover:opacity-70 sm:text-[2.4rem] md:text-[3.2rem] lg:text-[3.4rem] ${brand}`}
         >
           Алина Дубовская
         </a>
