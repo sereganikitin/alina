@@ -35,12 +35,12 @@ const DEFAULTS = {
     lead:
       "Непрерывный профессиональный путь: в профессии с 17 лет, более 10 лет практики. Дипломы государственного образца — ниже.",
     diplomas: [
-      { title: "Высшее психологическое образование", scan: "" },
-      { title: "Преподаватель психологии", scan: "" },
-      { title: "EMDR-терапевт", scan: "" },
-      { title: "IFS-терапевт", scan: "" },
-      { title: "Танцевально-двигательный терапевт", scan: "" },
-      { title: "Действительный член Национальной ассоциации EMDR", scan: "" },
+      { title: "Высшее психологическое образование", placeholder: "", scan: "" },
+      { title: "Преподаватель психологии", placeholder: "", scan: "" },
+      { title: "EMDR-терапевт", placeholder: "", scan: "" },
+      { title: "IFS-терапевт", placeholder: "", scan: "" },
+      { title: "Танцевально-двигательный терапевт", placeholder: "", scan: "" },
+      { title: "Действительный член Национальной ассоциации EMDR", placeholder: "", scan: "" },
     ],
     extra: [
       "Регулярное ежегодное повышение квалификации",
@@ -289,7 +289,7 @@ function renderContent() {
       fMedia("Фото шапки", c.hero, "image", "image/*")),
     section("Обо мне", fArea("Заголовок", c.about, "title"), fArea("Подпись", c.about, "lead"), listText("Методы", c.about.methods), fMedia("Фото в арке", c.about, "image", "image/*")),
     section("Образование", fArea("Вступление", c.education, "lead"),
-      listObj("Дипломы", c.education.diplomas, [{ key: "title", label: "Название" }, { key: "scan", label: "Скан", type: "image" }], () => ({ title: "", scan: "" })),
+      listObj("Дипломы", c.education.diplomas, [{ key: "title", label: "Название" }, { key: "placeholder", label: "Заглушка (превью на карточке)", type: "image" }, { key: "scan", label: "Скан (открывается в попапе, можно скачать)", type: "image" }], () => ({ title: "", placeholder: "", scan: "" })),
       listText("Доп. строки", c.education.extra)),
     section("Принципы работы", listText("Запросы (с чем работаю)", c.principles.requests), fArea("С кем я работаю", c.principles, "withWhom"), fMedia("Фото (дуга сверху)", c.principles, "image", "image/*"), fArea("Блок у фото — заголовок", c.principles.side, "title"), fArea("Блок у фото — текст", c.principles.side, "text")),
     section("О подходе", listText("Абзацы", c.approach.paragraphs)),
