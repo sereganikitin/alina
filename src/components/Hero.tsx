@@ -146,7 +146,7 @@ export default function Hero() {
             {/* три цифры из контента + постоянный бейдж «Конфиденциально» */}
             {c.hero.stats.slice(0, 3).map((s, i) => (
               <li key={s.label} className="flex items-center gap-2.5 sm:gap-3.5">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-[1.5px] border-terracotta text-[#989782] sm:h-16 sm:w-16">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-[1.5px] border-terracotta text-terracotta sm:h-16 sm:w-16">
                   {STAT_ICONS[i]}
                 </span>
                 <span className="leading-tight">
@@ -164,7 +164,7 @@ export default function Hero() {
               </li>
             ))}
             <li className="flex items-center gap-2.5 sm:gap-3.5">
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-[1.5px] border-terracotta text-[#989782] sm:h-16 sm:w-16">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-[1.5px] border-terracotta text-terracotta sm:h-16 sm:w-16">
                 {LockIcon}
               </span>
               <span className="leading-tight">
