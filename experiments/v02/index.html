@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Алина Дубовская — психолог · дизайн v_02 (воздушный)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf7f1; --bg2:#f4eee4; --card:#ffffff; --ink:#413b32; --muted:#a09684;
+  --line:#efe9de; --terra:#c07a5f; --terra-d:#a9664e; --ochre:#d3b787; --sage:#a4aa8a;
+  --shadow:0 24px 60px -32px rgba(90,70,50,.35);
+  --serif:"Playfair Display",Georgia,serif; --sans:"Inter",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:400;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,.serif{font-family:var(--serif);font-weight:400;line-height:1.15;letter-spacing:.004em}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1100px;margin:0 auto;padding:0 30px;position:relative;z-index:1}
+.eyebrow{font-size:.76rem;letter-spacing:.24em;text-transform:uppercase;color:var(--terra);font-weight:500}
+.muted{color:var(--muted)}
+.section{padding:120px 0}
+.section-h{font-size:clamp(2rem,3.6vw,2.9rem)}
+.lead{font-size:1.12rem;color:#5c5347;max-width:48ch;font-weight:300}
+
+/* header */
+header{position:fixed;inset:0 0 auto;z-index:40;transition:.3s}
+header.scrolled{background:rgba(250,247,241,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:20px 30px;max-width:1100px;margin:0 auto}
+.brand{font-family:var(--serif);font-size:1.7rem;font-weight:500;color:var(--ink)}
+.nav ul{display:none;gap:30px;list-style:none;font-size:.9rem;color:#6a6153}
+.nav a:hover{color:var(--terra)}
+@media(min-width:920px){.nav ul{display:flex}}
+.badge-draft{position:fixed;left:14px;bottom:14px;z-index:60;background:var(--ink);color:#faf7f1;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:7px 12px;border-radius:999px;opacity:.85}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:.5em;border-radius:999px;padding:14px 28px;font-size:.95rem;font-weight:500;transition:.25s;cursor:pointer;border:1px solid transparent}
+.btn-primary{background:var(--terra);color:#fff}
+.btn-primary:hover{background:var(--terra-d)}
+.btn-ghost{border-color:var(--line);color:var(--ink);background:rgba(255,255,255,.5)}
+.btn-ghost:hover{border-color:var(--terra);color:var(--terra)}
+
+/* ===== HERO (как на главной — меняем только цвета) ===== */
+.hero{position:relative;min-height:100svh;overflow:hidden}
+.hero-photo{position:absolute;inset:0;background:url("/media/--4a17ef15.jpg") 72% 20%/cover no-repeat}
+.hero-inner{position:relative;z-index:2;min-height:100svh;max-width:1100px;margin:0 auto;padding:130px 30px 118px;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start}
+.hero-quote{font-family:var(--serif);font-size:clamp(1.35rem,2.6vw,2.15rem);line-height:1.16;color:var(--ink);max-width:16ch}
+.badges{display:grid;grid-template-columns:1fr 1fr;gap:26px 40px;max-width:520px}
+.badge{display:flex;align-items:center;gap:14px}
+.badge .ic{flex:none;width:56px;height:56px;border-radius:50%;border:1.5px solid var(--terra);color:var(--terra);display:flex;align-items:center;justify-content:center}
+.badge .ic svg{width:26px;height:26px}
+.badge .n{font-family:var(--serif);font-size:1.55rem;color:var(--terra);line-height:1;white-space:nowrap}
+.badge .l{font-size:.9rem;color:#6a6153;margin-top:3px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:18px;align-items:center}
+.hero-cta .lnk{color:#5c5347;font-weight:500}
+.hero-cta .lnk:hover{color:var(--ink)}
+@media(max-width:720px){
+  .hero-inner{padding:110px 26px 96px}
+  .hero-quote{font-size:1.25rem}
+  .badges{grid-template-columns:1fr;gap:16px;max-width:230px}
+  .badge .ic{width:44px;height:44px}.badge .ic svg{width:20px;height:20px}
+  .badge .n{font-size:1.15rem}.badge .l{font-size:.8rem}
+}
+.wave{display:block;width:100%;height:64px;color:var(--bg);margin-top:-1px}
+.wave svg{width:100%;height:100%}
+
+/* ===== airy sections ===== */
+.about{background:var(--card)}
+.about-grid{display:grid;gap:56px;align-items:end}
+@media(min-width:820px){.about-grid{grid-template-columns:auto 1fr}}
+.arch{width:min(300px,72vw);border-radius:999px 999px 22px 22px;overflow:hidden;aspect-ratio:3/4;box-shadow:var(--shadow);justify-self:center}
+.arch img{width:100%;height:100%;object-fit:cover;object-position:center 15%}
+.role{font-family:var(--serif);font-size:1.5rem;margin-top:8px;line-height:1.3}
+.assoc{display:flex;gap:30px;align-items:center;margin-top:28px;color:var(--terra)}
+.assoc .lk{display:flex;align-items:center;gap:9px;font-size:.72rem;letter-spacing:.1em;line-height:1.15}
+.assoc svg{width:38px;height:26px}
+
+.edu-grid{display:grid;gap:22px;grid-template-columns:1fr;margin-top:44px}
+@media(min-width:640px){.edu-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:980px){.edu-grid{grid-template-columns:1fr 1fr 1fr}}
+.dip{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:.25s;cursor:pointer;box-shadow:0 10px 30px -26px rgba(90,70,50,.4)}
+.dip:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.dip .ph{aspect-ratio:4/3;background:linear-gradient(160deg,#fbf7f0,#f1e9db);display:flex;align-items:center;justify-content:center;position:relative}
+.dip .ph svg{width:44px;height:44px;color:var(--ochre)}
+.dip .ph .tag{position:absolute;bottom:10px;right:10px;font-size:.7rem;color:var(--muted);background:rgba(255,255,255,.8);padding:3px 9px;border-radius:999px}
+.dip p{padding:18px 20px;font-size:.98rem;font-weight:300}
+.extra{margin-top:40px;display:flex;flex-direction:column;gap:14px}
+.extra li{display:flex;gap:14px;align-items:flex-start;list-style:none;color:#5c5347;font-weight:300}
+.extra li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ochre);margin-top:12px;flex:none}
+
+.principles{background:var(--card)}
+.chips{display:flex;flex-wrap:wrap;gap:11px;margin-top:34px}
+.chip{background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:10px 18px;font-size:.9rem;color:#5c5347;font-weight:300}
+.chip:hover{border-color:var(--terra);color:var(--terra)}
+.with{margin-top:38px;max-width:60ch;font-size:1.08rem;color:#5c5347;font-weight:300}
+
+.appr{display:grid;gap:30px;margin-top:46px}
+@media(min-width:820px){.appr{grid-template-columns:1fr 1fr 1fr}}
+.appr .card{background:var(--card);border-radius:24px;padding:36px 32px;border:1px solid var(--line)}
+.appr .num{font-family:var(--serif);font-style:italic;font-size:1.6rem;color:var(--terra);opacity:.7}
+.appr .card p{margin-top:16px;color:#5c5347;font-size:1.02rem;font-weight:300}
+
+.consult{background:var(--card)}
+.facts{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:24px;overflow:hidden;margin-top:42px}
+@media(min-width:640px){.facts{grid-template-columns:1fr 1fr}}
+.fact{background:var(--card);padding:30px 32px}
+.fact .k{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.fact .v{font-family:var(--serif);font-size:1.35rem;margin-top:10px}
+.note{margin-top:30px;color:#5c5347;max-width:56ch;font-weight:300}
+.faq{margin-top:40px;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;padding:24px 4px;font-family:var(--serif);font-size:1.2rem;display:flex;justify-content:space-between;gap:20px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--terra);font-size:1.6rem;transition:.2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq .ans{padding:0 4px 26px;color:#5c5347;max-width:64ch;font-weight:300}
+
+.contacts{text-align:center}
+.contacts h2{font-size:clamp(2rem,4vw,3rem)}
+.msgs{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:32px}
+footer{padding:56px 0 90px;text-align:center;color:var(--muted);font-size:.86rem;font-weight:300}
+footer .assoc{justify-content:center}
+</style>
+</head>
+<body>
+
+<div class="badge-draft">v_02 · воздушный · черновик</div>
+
+<header id="hdr">
+  <div class="nav">
+    <div class="brand">Алина Дубовская</div>
+    <ul>
+      <li><a href="#about">Обо мне</a></li>
+      <li><a href="#education">Образование</a></li>
+      <li><a href="#principles">Принципы</a></li>
+      <li><a href="#approach">Подход</a></li>
+      <li><a href="#consult">Консультация</a></li>
+      <li><a href="#contacts">Контакты</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- HERO — структура и тексты как на главной, меняем только цвета -->
+<section class="hero">
+  <div class="hero-photo"></div>
+  <div class="hero-inner">
+    <div class="hero-quote">Психолог, EMDR-терапевт, IFS-&nbsp;терапевт, танцевально-двигательный терапевт.</div>
+    <ul class="badges">
+      <li class="badge"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m20.6 4h1.4l0.6 10h-2"/><path d="M3 4 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></svg></span><span><span class="n">10 лет</span><span class="l">опыта</span></span></li>
+      <li class="badge"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 12L12 5.5 M12 12L15.4 14"/><circle cx="12" cy="12" r="1.15" fill="currentColor" stroke="none"/></svg></span><span><span class="n">более 15 000</span><span class="l">часов сессий</span></span></li>
+      <li class="badge"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.3" r="2.9"/><path d="M6.6 18.6c0-3 2.4-5 5.4-5s5.4 2 5.4 5"/><circle cx="4.6" cy="9.8" r="1.7"/><path d="M2 17.6c0-1.9 1.1-3.2 2.9-3.3"/><circle cx="19.4" cy="9.8" r="1.7"/><path d="M22 17.6c0-1.9-1.1-3.2-2.9-3.3"/></svg></span><span><span class="n">более 200</span><span class="l">клиентов</span></span></li>
+      <li class="badge"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="9.5" rx="2.2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/><circle cx="12" cy="15" r="1.1"/></svg></span><span><span class="n">этика</span><span class="l">конфиденциальность и проф. развитие</span></span></li>
+    </ul>
+    <div class="hero-cta">
+      <a href="#consult" class="btn btn-primary">Записаться на первую сессию</a>
+      <a href="#approach" class="lnk">Как проходит работа →</a>
+    </div>
+  </div>
+  <div class="wave"><svg viewBox="0 0 1440 64" preserveAspectRatio="none"><path fill="currentColor" d="M0,42 C240,12 480,12 720,34 C960,56 1200,60 1440,32 L1440,64 L0,64 Z"/></svg></div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about" id="about">
+  <div class="wrap about-grid">
+    <div class="arch"><img src="/media/-3-4c4621de.jpg" alt="Алина Дубовская"></div>
+    <div>
+      <div class="eyebrow">Обо мне</div>
+      <div class="role">Психолог, EMDR-терапевт, IFS-терапевт,<br>танцевально-двигательный терапевт</div>
+      <p class="muted" style="margin-top:16px;font-weight:300">Действительный член Национальной ассоциации EMDR.</p>
+      <div class="assoc">
+        <span class="lk"><svg viewBox="0 0 48 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16C13 5.5 35 5.5 45 16"/><path d="M4.5 16.8C14.5 26 33.5 26 43.5 16"/><path d="M24 9.2a6.8 6.8 0 1 1-6.6 8.6 4.5 4.5 0 1 0 4.4-5.7 2.4 2.4 0 1 1-2.3 3.1"/></svg>EMDR<br>RUSSIA</span>
+        <span class="lk"><svg viewBox="0 0 56 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><g transform="translate(28 26) scale(1.05)"><path d="M0-12c-2.5 0-4 1.8-4 3.8 0 1.1.5 2 1.2 2.7-1.5 1-2.4 3.1-2.4 5.7 0 3.6 2.3 6.3 5.2 6.3s5.2-2.7 5.2-6.3c0-2.6-.9-4.7-2.4-5.7.7-.7 1.2-1.6 1.2-2.7 0-2-1.5-3.8-4-3.8z"/></g></svg>IFS Russia</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section" id="education">
+  <div class="wrap">
+    <div class="eyebrow">Образование</div>
+    <h2 class="section-h" style="margin-top:12px">Дипломы и квалификация</h2>
+    <p class="lead" style="margin-top:18px">Непрерывный профессиональный путь: в профессии с 17 лет, более 10 лет практики. Дипломы государственного образца.</p>
+    <div class="edu-grid" id="edu"></div>
+    <ul class="extra">
+      <li>Регулярное ежегодное повышение квалификации</li>
+      <li>Публикация в «Psychologies»</li>
+      <li>Опыт преподавания психологии — 4 года</li>
+    </ul>
+  </div>
+</section>
+
+<div class="wave"><svg viewBox="0 0 1440 64" preserveAspectRatio="none"><path fill="currentColor" d="M0,42 C240,12 480,12 720,34 C960,56 1200,60 1440,32 L1440,64 L0,64 Z" style="color:var(--card)" fill="var(--card)"/></svg></div>
+
+<!-- PRINCIPLES -->
+<section class="section principles" id="principles">
+  <div class="wrap">
+    <div class="eyebrow">Принципы работы</div>
+    <h2 class="section-h" style="margin-top:12px">С чем я работаю</h2>
+    <div class="chips" id="chips"></div>
+    <p class="with"><b style="font-weight:500">С кем я работаю.</b> Со взрослыми людьми в долгосрочной онлайн-терапии. Подробности об условиях и форматах — в разделе «Консультация».</p>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section class="section" id="approach">
+  <div class="wrap">
+    <div class="eyebrow">О подходе</div>
+    <h2 class="section-h" style="margin-top:12px">Как проходит работа</h2>
+    <div class="appr">
+      <div class="card"><div class="num">01</div><p>В работе я опираюсь на запрос: мы вместе держим в фокусе то, ради чего вы пришли, и сверяемся с этим на каждой сессии. Если мы от запроса отходим — я говорю об этом и объясняю, зачем.</p></div>
+      <div class="card"><div class="num">02</div><p>Мне важно, чтобы терапия была не только бережной, но и эффективной — поэтому я слежу за исследованиями и опираюсь на доказательные методы. Контакт и теплота для меня — высокая ценность.</p></div>
+      <div class="card"><div class="num">03</div><p>Терапия — это не про то, чтобы переделать себя. Это про то, чтобы узнать и понять себя, научиться быть с собой в контакте и жить так, как комфортно именно вам.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONSULTATION -->
+<section class="section consult" id="consult">
+  <div class="wrap">
+    <div class="eyebrow">Консультация</div>
+    <h2 class="section-h" style="margin-top:12px">Формат и условия</h2>
+    <div class="facts">
+      <div class="fact"><div class="k">Формат</div><div class="v">Онлайн, из любой точки мира</div></div>
+      <div class="fact"><div class="k">Язык</div><div class="v">Русскоязычная терапия</div></div>
+      <div class="fact"><div class="k">Регулярность</div><div class="v">Раз в неделю, долгосрочно</div></div>
+      <div class="fact"><div class="k">Стоимость</div><div class="v">8 000 ₽ за сессию</div></div>
+    </div>
+    <p class="note">Записаться можно в Telegram или WhatsApp — отвечаю лично. Или оставьте заявку через форму на сайте.</p>
+    <div style="margin-top:28px"><a href="#contacts" class="btn btn-primary">Записаться на первую сессию</a></div>
+    <div class="faq">
+      <details><summary>Как проходит первая сессия?</summary><div class="ans">Знакомимся, я расспрашиваю о запросе, отвечаю на вопросы о формате и подходе. Решение продолжать — всегда за вами.</div></details>
+      <details><summary>В каком формате мы работаем?</summary><div class="ans">Только онлайн, раз в неделю, в долгосрочной работе.</div></details>
+      <details><summary>Сколько стоит сессия?</summary><div class="ans">8 000 ₽ за сессию. Оплата в рублях.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTS -->
+<section class="section contacts" id="contacts">
+  <div class="wrap">
+    <div class="eyebrow">Контакты</div>
+    <h2>Давайте познакомимся</h2>
+    <p class="muted" style="margin-top:14px;font-weight:300">Написать можно в любой удобный мессенджер — отвечаю лично.</p>
+    <div class="msgs">
+      <a href="#" class="btn btn-primary">Telegram</a>
+      <a href="#" class="btn btn-ghost">WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Алина Дубовская · психолог, EMDR- и IFS-терапевт<br>
+  <span style="opacity:.7">Черновик дизайна v_02 (воздушный) — экспериментальная версия</span>
+</footer>
+
+<script>
+// шапка: подложка при скролле
+addEventListener('scroll',()=>document.getElementById('hdr').classList.toggle('scrolled',scrollY>10));
+// образование
+var edu=["Высшее психологическое образование","Преподаватель психологии","EMDR-терапевт","IFS-терапевт","Танцевально-двигательный терапевт","Действительный член Национальной ассоциации EMDR"];
+var docSvg='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>';
+document.getElementById('edu').innerHTML=edu.map(t=>'<div class="dip"><div class="ph">'+docSvg+'<span class="tag">скан по клику</span></div><p>'+t+'</p></div>').join('');
+// принципы
+var req=["Травма любого характера","Травма привязанности","Потеря и горе","Абьюз","ПТСР","РПП","Тема границ","Чувство стыда и вины","Созависимые отношения","Сепарация от родителей","Поиск ресурса","Психосоматика","Принятие тела"];
+document.getElementById('chips').innerHTML=req.map(t=>'<span class="chip">'+t+'</span>').join('');
+</script>
+</body>
+</html>
