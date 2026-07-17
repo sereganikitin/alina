@@ -33,9 +33,10 @@ a{color:inherit;text-decoration:none}
 .lead{font-size:1.15rem;color:#4b4034;max-width:46ch}
 
 /* ——— header ——— */
-header{position:sticky;top:0;z-index:40;backdrop-filter:blur(10px);background:rgba(244,237,226,.72);border-bottom:1px solid rgba(228,216,198,.7)}
+header{position:fixed;inset:0 0 auto;z-index:40;transition:.3s}
+header.scrolled{background:rgba(244,237,226,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 28px;max-width:1120px;margin:0 auto}
-.brand{font-family:var(--serif);font-size:1.5rem;font-weight:600}
+.brand{font-family:var(--serif);font-size:clamp(1.8rem,3.6vw,3.2rem);font-weight:600;color:var(--ink);line-height:1;white-space:nowrap}
 .nav ul{display:none;gap:30px;list-style:none;font-size:.92rem;color:#5b5140}
 .nav a:hover{color:var(--terra)}
 .badge-draft{position:fixed;left:14px;bottom:14px;z-index:60;background:var(--ink);color:#f4ede2;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:7px 12px;border-radius:999px;opacity:.85}
@@ -50,25 +51,27 @@ header{position:sticky;top:0;z-index:40;backdrop-filter:blur(10px);background:rg
 .link-arrow{color:var(--muted);font-weight:500}
 .link-arrow:hover{color:var(--ink)}
 
-/* ——— hero ——— */
-.hero{position:relative;padding:70px 0 40px}
-.hero-grid{display:grid;gap:48px;align-items:center}
-@media(min-width:900px){.hero-grid{grid-template-columns:1.05fr .95fr}}
-.hero h1{font-size:clamp(2.9rem,7vw,5rem);margin:18px 0 0}
-.hero h1 em{font-style:italic;color:var(--terra)}
-.hero .spec{font-family:var(--serif);font-style:italic;font-size:1.35rem;color:#5a4e40;margin-top:14px}
-.hero p.sub{margin-top:22px;max-width:42ch}
-.hero-cta{display:flex;flex-wrap:wrap;gap:16px;margin-top:32px}
-.stats{display:flex;flex-wrap:wrap;gap:26px 40px;margin-top:44px;padding-top:30px;border-top:1px solid var(--line)}
-.stat .n{font-family:var(--serif);font-size:1.9rem;color:var(--terra)}
-.stat .l{font-size:.82rem;color:var(--muted);text-transform:lowercase}
-/* arched portrait */
-.portrait{position:relative;justify-self:center;width:min(400px,82vw)}
-.portrait .frame{border-radius:999px 999px 26px 26px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:3/4;background:var(--bg2)}
-.portrait .frame img{width:100%;height:100%;object-fit:cover;object-position:center 18%}
-.portrait::before{content:"";position:absolute;inset:-16px -16px 22px -16px;border:1px solid var(--ochre);border-radius:999px 999px 34px 34px;opacity:.55;z-index:-1}
-.ethic{margin-top:20px;display:flex;align-items:center;gap:12px;justify-content:center;font-size:.86rem;color:var(--muted)}
-.ethic svg{width:26px;height:26px;color:var(--terra)}
+/* ——— hero (структура и тексты как на главной — меняем только цвета) ——— */
+.hero{position:relative;min-height:100svh;overflow:hidden}
+.hero-photo{position:absolute;inset:0;background:url("/media/--4a17ef15.jpg") 72% 20%/cover no-repeat}
+.hero-inner{position:relative;z-index:2;min-height:100svh;max-width:1120px;margin:0 auto;padding:122px 28px 108px;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;gap:22px}
+.hero-quote{font-family:var(--serif);font-weight:500;font-size:clamp(1.15rem,2.3vw,2.15rem);line-height:1.16;color:var(--ink);max-width:min(20ch,48%)}
+.badges{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,26px) clamp(20px,3vw,40px);max-width:min(520px,50%)}
+.badge{display:flex;align-items:center;gap:clamp(10px,1.2vw,14px)}
+.badge .ic{flex:none;width:clamp(42px,4.6vw,56px);height:clamp(42px,4.6vw,56px);border-radius:50%;border:1.5px solid var(--terra);color:var(--terra);display:flex;align-items:center;justify-content:center}
+.badge .ic svg{width:47%;height:47%}
+.badge .n{display:block;font-family:var(--serif);font-weight:500;font-size:clamp(1.05rem,1.9vw,1.55rem);color:var(--terra);line-height:1.05;white-space:nowrap}
+.badge .l{display:block;font-size:clamp(.8rem,1vw,.92rem);color:var(--muted);margin-top:3px;line-height:1.2}
+.hero-cta{display:flex;flex-wrap:wrap;gap:18px;align-items:center}
+.hero-cta .lnk{color:#5c5347;font-weight:500}
+.hero-cta .lnk:hover{color:var(--ink)}
+@media(max-width:720px){
+  .hero-inner{padding:84px 26px 90px}
+  .hero-quote{font-size:1.25rem}
+  .badges{grid-template-columns:1fr;gap:16px;max-width:230px}
+  .badge .ic{width:44px;height:44px}.badge .ic svg{width:20px;height:20px}
+  .badge .n{font-size:1.15rem}.badge .l{font-size:.8rem}
+}
 
 /* wavy divider */
 .wave{display:block;width:100%;height:60px;color:var(--card)}
@@ -144,7 +147,7 @@ footer .assoc{justify-content:center}
 
 <div class="badge-draft">v_01 · черновик дизайна</div>
 
-<header>
+<header id="hdr">
   <div class="nav">
     <div class="brand">Алина Дубовская</div>
     <ul>
@@ -158,37 +161,24 @@ footer .assoc{justify-content:center}
   </div>
 </header>
 
-<!-- HERO -->
+<!-- HERO — структура и тексты как на главной, меняем только цвета -->
 <section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <div class="eyebrow">Психолог · EMDR · IFS · ТДТ</div>
-      <h1>Тебе нужно<br>больше <em>помощи</em>,<br>чем ты думаешь</h1>
-      <div class="spec">Психолог, EMDR- и IFS-терапевт,<br>танцевально-двигательный терапевт</div>
-      <p class="sub muted">Бережная долгосрочная онлайн-терапия для взрослых. В профессии с 17 лет, более 10 лет практики.</p>
-      <div class="hero-cta">
-        <a href="#consult" class="btn btn-primary">Записаться на первую сессию</a>
-        <a href="#approach" class="btn btn-ghost">Как проходит работа →</a>
-      </div>
-      <div class="stats">
-        <div class="stat"><div class="n">10 лет</div><div class="l">опыта</div></div>
-        <div class="stat"><div class="n">более 15 000</div><div class="l">часов сессий</div></div>
-        <div class="stat"><div class="n">более 200</div><div class="l">клиентов</div></div>
-      </div>
-    </div>
-    <div>
-      <div class="portrait">
-        <div class="frame"><img src="/media/--4a17ef15.jpg" alt="Алина Дубовская"></div>
-      </div>
-      <div class="ethic">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="5" y="10.5" width="14" height="9.5" rx="2.2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/><circle cx="12" cy="15" r="1.1"/></svg>
-        <span><b style="color:var(--ink)">Этика.</b> Конфиденциальность и постоянное профессиональное развитие</span>
-      </div>
+  <div class="hero-photo"></div>
+  <div class="hero-inner">
+    <div class="hero-quote">Психолог, EMDR-терапевт, IFS-&nbsp;терапевт, танцевально-двигательный терапевт.</div>
+    <ul class="badges">
+      <li class="badge"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m20.6 4h1.4l0.6 10h-2"/><path d="M3 4 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></svg></span><span><span class="n">10 лет</span><span class="l">опыта</span></span></li>
+      <li class="badge"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 12L12 5.5 M12 12L15.4 14"/><circle cx="12" cy="12" r="1.15" fill="currentColor" stroke="none"/></svg></span><span><span class="n">более 15 000</span><span class="l">часов сессий</span></span></li>
+      <li class="badge"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.3" r="2.9"/><path d="M6.6 18.6c0-3 2.4-5 5.4-5s5.4 2 5.4 5"/><circle cx="4.6" cy="9.8" r="1.7"/><path d="M2 17.6c0-1.9 1.1-3.2 2.9-3.3"/><circle cx="19.4" cy="9.8" r="1.7"/><path d="M22 17.6c0-1.9-1.1-3.2-2.9-3.3"/></svg></span><span><span class="n">более 200</span><span class="l">клиентов</span></span></li>
+      <li class="badge"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="9.5" rx="2.2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/><circle cx="12" cy="15" r="1.1"/></svg></span><span><span class="n">этика</span><span class="l">конфиденциальность и проф. развитие</span></span></li>
+    </ul>
+    <div class="hero-cta">
+      <a href="#consult" class="btn btn-primary" style="text-transform:lowercase">записаться на первую сессию</a>
+      <a href="#approach" class="lnk">как проходит работа →</a>
     </div>
   </div>
+  <div class="wave"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path fill="currentColor" d="M0,40 C240,10 480,10 720,32 C960,54 1200,58 1440,30 L1440,60 L0,60 Z"/></svg></div>
 </section>
-
-<div class="wave"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path fill="currentColor" d="M0,40 C240,10 480,10 720,32 C960,54 1200,58 1440,30 L1440,60 L0,60 Z"/></svg></div>
 
 <!-- ABOUT -->
 <section class="section about" id="about">
@@ -326,5 +316,8 @@ footer .assoc{justify-content:center}
   <span style="opacity:.7">Черновик дизайна v_01 — экспериментальная версия</span>
 </footer>
 
+<script>
+addEventListener('scroll',()=>document.getElementById('hdr').classList.toggle('scrolled',scrollY>10));
+</script>
 </body>
 </html>
