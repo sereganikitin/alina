@@ -32,7 +32,7 @@ a{color:inherit;text-decoration:none}
 header{position:fixed;inset:0 0 auto;z-index:40;transition:.3s}
 header.scrolled{background:rgba(250,247,241,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:20px 30px;max-width:1100px;margin:0 auto}
-.brand{font-family:var(--serif);font-size:1.7rem;font-weight:500;color:var(--ink)}
+.brand{font-family:var(--serif);font-size:clamp(2rem,4.5vw,3.4rem);font-weight:600;color:var(--ink);line-height:1}
 .nav ul{display:none;gap:30px;list-style:none;font-size:.9rem;color:#6a6153}
 .nav a:hover{color:var(--terra)}
 @media(min-width:920px){.nav ul{display:flex}}
@@ -48,8 +48,8 @@ header.scrolled{background:rgba(250,247,241,.82);backdrop-filter:blur(12px);bord
 /* ===== HERO (как на главной — меняем только цвета) ===== */
 .hero{position:relative;min-height:100svh;overflow:hidden}
 .hero-photo{position:absolute;inset:0;background:url("/media/--4a17ef15.jpg") 72% 20%/cover no-repeat}
-.hero-inner{position:relative;z-index:2;min-height:100svh;max-width:1100px;margin:0 auto;padding:130px 30px 118px;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start}
-.hero-quote{font-family:var(--serif);font-size:clamp(1.35rem,2.6vw,2.15rem);line-height:1.16;color:var(--ink);max-width:16ch}
+.hero-inner{position:relative;z-index:2;min-height:100svh;max-width:1100px;margin:0 auto;padding:100px 30px 112px;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start}
+.hero-quote{font-family:var(--serif);font-weight:500;font-size:clamp(1.2rem,2.2vw,2.15rem);line-height:1.16;color:var(--ink);max-width:18ch}
 .badges{display:grid;grid-template-columns:1fr 1fr;gap:26px 40px;max-width:520px}
 .badge{display:flex;align-items:center;gap:14px}
 .badge .ic{flex:none;width:56px;height:56px;border-radius:50%;border:1.5px solid var(--terra);color:var(--terra);display:flex;align-items:center;justify-content:center}
@@ -60,7 +60,7 @@ header.scrolled{background:rgba(250,247,241,.82);backdrop-filter:blur(12px);bord
 .hero-cta .lnk{color:#5c5347;font-weight:500}
 .hero-cta .lnk:hover{color:var(--ink)}
 @media(max-width:720px){
-  .hero-inner{padding:110px 26px 96px}
+  .hero-inner{padding:84px 26px 90px}
   .hero-quote{font-size:1.25rem}
   .badges{grid-template-columns:1fr;gap:16px;max-width:230px}
   .badge .ic{width:44px;height:44px}.badge .ic svg{width:20px;height:20px}
@@ -157,8 +157,8 @@ footer .assoc{justify-content:center}
       <li class="badge"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="9.5" rx="2.2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/><circle cx="12" cy="15" r="1.1"/></svg></span><span><span class="n">этика</span><span class="l">конфиденциальность и проф. развитие</span></span></li>
     </ul>
     <div class="hero-cta">
-      <a href="#consult" class="btn btn-primary">Записаться на первую сессию</a>
-      <a href="#approach" class="lnk">Как проходит работа →</a>
+      <a href="#consult" class="btn btn-primary" style="text-transform:lowercase">записаться на первую сессию</a>
+      <a href="#approach" class="lnk">как проходит работа →</a>
     </div>
   </div>
   <div class="wave"><svg viewBox="0 0 1440 64" preserveAspectRatio="none"><path fill="currentColor" d="M0,42 C240,12 480,12 720,34 C960,56 1200,60 1440,32 L1440,64 L0,64 Z"/></svg></div>
