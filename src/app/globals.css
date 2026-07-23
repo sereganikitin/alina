@@ -310,12 +310,15 @@ header.scrolled {
     font-size: 0.8rem;
   }
 }
-.wave {
+
+ .wave {
   display: block;
   width: 100%;
   height: 60px;
   color: var(--card);
   margin-top: -1px;
+  position: relative;
+  z-index: 2;
 }
 .wave svg {
   width: 100%;
