@@ -474,6 +474,12 @@ header.scrolled {
   display: flex;
   flex-direction: column;
 }
+@media (min-width: 820px) {
+  .ph-photo {
+    width: 66%;
+    justify-self: center;
+  }
+}
 .ph-arch {
   overflow: hidden;
   border-radius: 999px 999px 0 0;
@@ -508,7 +514,7 @@ header.scrolled {
   color: var(--ink);
 }
 .ph-circle + .ph-circle {
-  margin-left: -12%;
+  margin-left: -6%;
 }
 .ph-circle:nth-child(2) {
   z-index: 2;
