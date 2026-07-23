@@ -340,7 +340,6 @@ header.scrolled {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url('/photos/about-texture.png');
   background-size: cover;
   background-position: center;
   pointer-events: none;
