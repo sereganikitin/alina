@@ -523,6 +523,9 @@ header.scrolled {
 .approach-section {
   background: var(--bg);
 }
+.approach-wrap {
+  max-width: 1320px;
+}
 .approach-cards {
   margin-top: 44px;
   display: grid;
@@ -535,10 +538,16 @@ header.scrolled {
   }
 }
 .approach-card {
+  aspect-ratio: 1 / 1;
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 22px;
   padding: 40px 32px;
+}
+@media (max-width: 760px) {
+  .approach-card {
+    aspect-ratio: auto;
+  }
 }
 .approach-card-num {
   font-family: var(--serif);
