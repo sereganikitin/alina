@@ -343,6 +343,9 @@ header.scrolled {
 }
 
 .about-grid {
+  display: grid;
+  gap: 56px;
+  align-items: center;
   position: relative;
   z-index: 1;
 }
