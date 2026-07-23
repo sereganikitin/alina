@@ -460,7 +460,7 @@ header.scrolled {
 .ph-arch {
   overflow: hidden;
   border-radius: 999px 999px 20px 20px;
-  aspect-ratio: 6/9;  /* было 4/3 — теперь арка выше, чем шире */
+  aspect-ratio: 6/8;  /* было 4/3 — теперь арка выше, чем шире */
   filter: grayscale(0.12);
 }
 .ph-arch img {
