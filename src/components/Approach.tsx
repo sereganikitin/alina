@@ -5,7 +5,7 @@ import { useContent } from "@/lib/useContent";
 export default function Approach() {
   const c = useContent();
   return (
-    <section id="approach" className="about" style={{ borderBottom: "none" }}>
+    <section id="approach" className="approach-section">
       <div className="wrap">
         <div className="kicker">О подходе</div>
         <h2 className="section-h">Как проходит работа</h2>

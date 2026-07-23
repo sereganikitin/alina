@@ -520,6 +520,9 @@ header.scrolled {
 }
 
 /* ===== APPROACH ===== */
+.approach-section {
+  background: var(--bg);
+}
 .approach-cards {
   margin-top: 44px;
   display: grid;
