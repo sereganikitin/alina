@@ -673,3 +673,10 @@ footer {
 .msgs .btn {
   text-transform: none;
 }
+
+.ph-side-item {
+  margin-top: 16px;
+}
+.ph-side-item-title {
+  margin-bottom: 4px;
+}

@@ -2,6 +2,21 @@
 
 import { useContent } from "@/lib/useContent";
 
+const PRINCIPLES_ITEMS = [
+  {
+    title: "Безопасность и бережность",
+    text: "Клиент определяет границы пространства, то есть имеет право на «нет», «стоп», на любые чувства и проявления себя, возникающие в процессе. Кроме насилия над собой и терапевтом.",
+  },
+  {
+    title: "Конфиденциальность",
+    text: "Кроме случаев намерения или причинения вреда себе, другим людям или ситуаций нарушения закона.",
+  },
+  {
+    title: "Живость контакта",
+    text: "Я не дистантный и не «холодный» терапевт. Проявляю эмоции и эмпатично присутствую на сессии.",
+  },
+];
+
 export default function Principles() {
   const c = useContent();
   return (
@@ -16,7 +31,12 @@ export default function Principles() {
           </div>
           <div className="ph-side">
             <h3>{c.principles.side.title}</h3>
-            <p>{c.principles.side.text}</p>
+            {PRINCIPLES_ITEMS.map((item) => (
+              <div key={item.title} className="ph-side-item">
+                <p className="ph-side-item-title"><b>{item.title}</b></p>
+                <p className="ph-side-item-text">{item.text}</p>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -31,30 +51,6 @@ export default function Principles() {
         <h3 className="section-h">С кем я работаю</h3>
         <p className="with">
           {c.principles.withWhom}
-        </p>
-
-        <h3 className="section-h">Основные принципы работы</h3>
-
-        <p className="with">
-          <b>Безопасность и бережность</b>
-        </p>
-        <p className="with">
-        Клиент определяет границы пространства, то есть имеет право на «нет», «стоп», на любые чувства и проявления себя, возникающие в процессе. 
-        Кроме насилия над собой и терапевтом.
-        </p>
-
-        <p className="with">
-          <b>Конфиденциальность</b>
-        </p>
-        <p className="with">
-        Кроме случаев намерения или причинения вреда себе, другим людям или ситуаций нарушения закона.
-        </p>
-
-        <p className="with">
-          <b>Живость контакта</b>
-        </p>
-        <p className="with">
-        Я не дистантный и не «холодный» терапевт. Проявляю эмоции и эмпатично присутствую на сессии.
         </p>
       </div>
     </section>
