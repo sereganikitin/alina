@@ -462,7 +462,7 @@ header.scrolled {
 .prin-photo {
   display: grid;
   gap: 40px;
-  align-items: center;
+  align-items: start;
   margin: 40px 0 12px;
 }
 @media (min-width: 820px) {
@@ -476,8 +476,8 @@ header.scrolled {
 }
 @media (min-width: 820px) {
   .ph-photo {
-    width: 66%;
-    justify-self: center;
+    width: 77%;
+    justify-self: start;
   }
 }
 .ph-arch {
