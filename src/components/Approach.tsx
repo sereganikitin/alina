@@ -10,9 +10,12 @@ export default function Approach() {
         <div className="kicker">О подходе</div>
         <h2 className="section-h">Как проходит работа</h2>
 
-        <div className="article">
+        <div className="approach-cards">
           {c.approach.paragraphs.map((p, i) => (
-            <p key={i}>{p}</p>
+            <div key={i} className="approach-card">
+              <div className="approach-card-num">{String(i + 1).padStart(2, "0")}</div>
+              <p>{p}</p>
+            </div>
           ))}
         </div>
       </div>

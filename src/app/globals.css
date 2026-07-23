@@ -520,31 +520,34 @@ header.scrolled {
 }
 
 /* ===== APPROACH ===== */
-.article {
+.approach-cards {
   margin-top: 44px;
-  columns: 2;
-  column-gap: 48px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 @media (max-width: 760px) {
-  .article {
-    columns: 1;
+  .approach-cards {
+    grid-template-columns: 1fr;
   }
 }
-.article p {
-  break-inside: avoid;
-  margin-bottom: 20px;
+.approach-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 40px 32px;
+}
+.approach-card-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--terra);
+}
+.approach-card p {
+  margin-top: 18px;
   color: #3f362a;
   font-size: 1.05rem;
   line-height: 1.75;
-}
-.article p:first-of-type::first-letter {
-  font-family: var(--serif);
-  font-weight: 700;
-  float: left;
-  font-size: 4.6rem;
-  line-height: 0.8;
-  padding: 6px 12px 0 0;
-  color: var(--terra);
 }
 
 /* ===== CONSULTATION ===== */
