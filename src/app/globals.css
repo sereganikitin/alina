@@ -191,7 +191,7 @@ header.scrolled {
 /* ===== HERO ===== */
 .hero {
   position: relative;
-  min-height: 100svh;
+  min-height: 100dvh;
   overflow: hidden;
 }
 .hero-photo {
@@ -209,7 +209,7 @@ header.scrolled {
 .hero-inner {
   position: relative;
   z-index: 2;
-  min-height: 100svh;
+  min-height: 100dvh;
   width: 100%;
   padding: 122px clamp(28px, 4vw, 60px) 108px;
   display: flex;
@@ -328,7 +328,6 @@ header.scrolled {
 /* ===== ABOUT ===== */
 .about {
   background: var(--card);
-  border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
 .about-grid {
