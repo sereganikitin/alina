@@ -18,7 +18,7 @@ export default function Contacts() {
   const c = useContent();
   return (
     <>
-      <section id="contacts" className="contacts section">
+      <section id="contacts" className="contacts">
         <div className="wrap">
           <div className="contacts-card">
             <div className="kicker" style={{ justifyContent: "center" }}>Контакты</div>

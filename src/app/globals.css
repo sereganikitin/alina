@@ -68,18 +68,13 @@ a {
 .wrap {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 0 30px;
+  padding: 100px 30px;
   position: relative;
   z-index: 1;
-  padding: 100px 0;
 }
 
 .muted {
   color: var(--muted);
-}
-
-.section {
-  padding: 110px 0 !important;
 }
 
 /* редакционная рубрика */

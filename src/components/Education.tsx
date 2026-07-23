@@ -8,7 +8,7 @@ export default function Education() {
   const [open, setOpen] = useState<{ scan: string; placeholder: string; title: string } | null>(null);
 
   return (
-    <section id="education" className="section">
+    <section id="education">
       <div className="wrap">
         <div className="kicker">Образование</div>
         <h2 className="section-h">Дипломы и квалификация</h2>
