@@ -330,6 +330,7 @@ header.scrolled {
 /* ===== ABOUT ===== */
 .about {
   position: relative;
+  background: var(--card);
 }
 
 .about::before {
