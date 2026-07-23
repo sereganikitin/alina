@@ -15,9 +15,11 @@ export default function About() {
         <div>
           <div className="kicker">Обо мне</div>
           <div className="role">{c.about.title}</div>
-          <p className="muted" style={{ marginTop: "18px", fontSize: "1.1rem" }}>
-            {c.about.lead}
-          </p>
+          <div className="muted" style={{ marginTop: "18px", fontSize: "1.1rem" }}>
+              {c.about.lead.split('\n\n').map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+              ))}
+          </div>
           <div className="assoc">
             <EmdrLogo />
             <IfsLogo />
