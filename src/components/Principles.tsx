@@ -28,8 +28,9 @@ export default function Principles() {
           ))}
         </div>
 
+        <h2 className="section-h">С кем я работаю</h2>
         <p className="with">
-          <b>С кем я работаю.</b> {c.principles.withWhom}
+          {c.principles.withWhom}
         </p>
 
         <h2 className="section-h">Основные принципы работы</h2>
