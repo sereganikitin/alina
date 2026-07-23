@@ -647,3 +647,11 @@ footer {
 .muted p:last-child {
   margin-bottom: 0;
 }
+
+.ans p {
+  margin: 0 0 12px 0;
+}
+
+.ans p:last-child {
+  margin-bottom: 0;
+}
