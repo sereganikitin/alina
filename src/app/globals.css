@@ -640,3 +640,10 @@ footer {
 .fab-attn {
   animation: fab-attn 2s ease-in-out infinite;
 }
+.muted p {
+  margin: 0 0 16px 0;
+}
+
+.muted p:last-child {
+  margin-bottom: 0;
+}
