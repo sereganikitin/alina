@@ -31,6 +31,17 @@ export default function Principles() {
         <p className="with">
           <b>С кем я работаю.</b> {c.principles.withWhom}
         </p>
+
+        <h2 className="section-h">Основные принципы работы</h2>
+
+        <p className="with">
+          <b>Безопасность и бережность</b>
+        </p>
+        <p className="with">
+         Клиент определяет границы пространства, то есть имеет право на «нет», «стоп», на любые чувства и проявления себя, возникающие в процессе. 
+         Кроме насилия над собой и терапевтом.
+        </p>
+
       </div>
     </section>
   );
