@@ -5,7 +5,7 @@ import { useContent } from "@/lib/useContent";
 
 export default function Education() {
   const c = useContent();
-  const [open, setOpen] = useState<{ scan: string; title: string } | null>(null);
+  const [open, setOpen] = useState<{ scan: string; placeholder: string; title: string } | null>(null);
 
   return (
     <section id="education" className="section">
@@ -19,7 +19,7 @@ export default function Education() {
             <div
               key={d.title}
               className="edu-row"
-              onClick={() => d.scan && setOpen({ scan: d.scan, title: d.title })}
+              onClick={() => d.scan && setOpen({ scan: d.scan, placeholder: d.placeholder, title: d.title })}
             >
               <span className="idx">{String(i + 1).padStart(2, "0")}</span>
               <span className="t">{d.title}</span>
@@ -58,12 +58,12 @@ export default function Education() {
             </button>
             <div className="overflow-auto">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={open.scan} alt={open.title} className="mx-auto max-h-[72vh] w-auto max-w-full rounded-lg object-contain" />
+              <img src={open.placeholder} alt={open.title} className="mx-auto max-h-[72vh] w-auto max-w-full rounded-lg object-contain" />
             </div>
             <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
               <p className="text-sm text-[var(--muted)]">{open.title}</p>
-              <a
-                href={open.scan}
+              
+              <a href={open.scan}
                 download
                 className="inline-flex items-center gap-2 rounded-full bg-[var(--terra)] px-5 py-2.5 font-sans text-sm text-[var(--card)] shadow transition-opacity hover:opacity-90"
               >
