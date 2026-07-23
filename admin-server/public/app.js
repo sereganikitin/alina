@@ -260,6 +260,7 @@ function listObj(label, arr, fields, factory) {
         if (f.type === "image") card.append(fMedia(f.label, item, f.key, "image/*"));
         else if (f.type === "pdf") card.append(fMedia(f.label, item, f.key, "application/pdf"));
         else if (f.type === "area") card.append(fArea(f.label, item, f.key));
+        else if (f.type === "scan") card.append(fMedia(f.label, item, f.key, "image/*,application/pdf")); // ← добавить эту строку
         else card.append(fText(f.label, item, f.key));
       }
       card.append(h("button", { class: "btn-ghost btn-sm", type: "button", style: "margin-top:8px", onclick: () => { arr.splice(i, 1); render(); } }, "Удалить"));
@@ -289,7 +290,7 @@ function renderContent() {
       fMedia("Фото шапки", c.hero, "image", "image/*")),
     section("Обо мне", fArea("Заголовок", c.about, "title"), fArea("Подпись", c.about, "lead"), listText("Методы", c.about.methods), fMedia("Фото в арке", c.about, "image", "image/*")),
     section("Образование", fArea("Вступление", c.education, "lead"),
-      listObj("Дипломы", c.education.diplomas, [{ key: "title", label: "Название" }, { key: "placeholder", label: "Заглушка (превью на карточке)", type: "image" }, { key: "scan", label: "Скан (открывается в попапе, можно скачать)", type: "image" }], () => ({ title: "", placeholder: "", scan: "" })),
+      listObj("Дипломы", c.education.diplomas, [{ key: "title", label: "Название" }, { key: "placeholder", label: "Заглушка (превью на карточке)", type: "image" }, { key: "scan", label: "Скан (открывается в попапе, можно скачать)", type: "scan" }], () => ({ title: "", placeholder: "", scan: "" })),
       listText("Доп. строки", c.education.extra)),
     section("Принципы работы", listText("Запросы (с чем работаю)", c.principles.requests), fArea("С кем я работаю", c.principles, "withWhom"), fMedia("Фото (дуга сверху)", c.principles, "image", "image/*"), fArea("Блок у фото — заголовок", c.principles.side, "title"), fArea("Блок у фото — текст", c.principles.side, "text")),
     section("О подходе", listText("Абзацы", c.approach.paragraphs)),
