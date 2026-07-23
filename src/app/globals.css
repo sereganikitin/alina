@@ -363,7 +363,7 @@ header.scrolled {
   width: min(340px, 78vw);
   overflow: hidden;
   border-radius: 999px 999px 22px 22px;
-  aspect-ratio: 3/4;
+  aspect-ratio: 3/4.7;
   justify-self: center;
   filter: grayscale(0.15);
 }
