@@ -79,7 +79,7 @@ a {
 }
 
 .section {
-  padding: 110px 0;
+  padding: 110px 0 !important;
 }
 
 /* редакционная рубрика */
@@ -639,7 +639,4 @@ footer {
 }
 .fab-attn {
   animation: fab-attn 2s ease-in-out infinite;
-}
-.section {
-  padding: 110px 0;
 }
