@@ -523,9 +523,6 @@ header.scrolled {
 .approach-section {
   background: var(--bg);
 }
-.approach-wrap {
-  max-width: 1320px;
-}
 .approach-cards {
   margin-top: 44px;
   display: grid;
