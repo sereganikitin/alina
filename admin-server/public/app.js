@@ -67,6 +67,7 @@ const DEFAULTS = {
     withWhom:
       "Со взрослыми людьми в долгосрочной онлайн-терапии. Подробности об условиях и форматах — в разделе «Консультация».",
     image: "/photos/principles.jpg",
+    circles: ["Круг 1", "Круг 2", "Круг 3"],
     side: {
       title: "Бережно и по делу",
       items: [
@@ -309,7 +310,9 @@ function renderContent() {
     section("Образование", fArea("Вступление", c.education, "lead"),
       listObj("Дипломы", c.education.diplomas, [{ key: "title", label: "Название" }, { key: "placeholder", label: "Заглушка (превью на карточке)", type: "image" }, { key: "scan", label: "Скан (открывается в попапе, можно скачать)", type: "scan" }], () => ({ title: "", placeholder: "", scan: "" })),
       listText("Доп. строки", c.education.extra)),
-    section("Принципы работы", listText("Запросы (с чем работаю)", c.principles.requests), fArea("С кем я работаю", c.principles, "withWhom"), fMedia("Фото (дуга сверху)", c.principles, "image", "image/*"), fArea("Блок у фото — заголовок", c.principles.side, "title"),
+    section("Принципы работы", listText("Запросы (с чем работаю)", c.principles.requests), fArea("С кем я работаю", c.principles, "withWhom"), fMedia("Фото (дуга сверху)", c.principles, "image", "image/*"),
+      listText("Подписи в кругах под фото (используются первые 3)", c.principles.circles),
+      fArea("Блок у фото — заголовок", c.principles.side, "title"),
       listObj("Блок у фото — пункты", c.principles.side.items, [{ key: "title", label: "Заголовок пункта" }, { key: "text", label: "Текст пункта", type: "area" }], () => ({ title: "", text: "" }))),
     section("О подходе", listText("Абзацы", c.approach.paragraphs)),
     section("Консультация",

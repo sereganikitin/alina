@@ -10,9 +10,18 @@ export default function Principles() {
         <div className="kicker">Принципы работы</div>
 
         <div className="prin-photo">
-          <div className="ph-arch">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={c.principles.image} alt="Алина" />
+          <div className="ph-photo">
+            <div className="ph-arch">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={c.principles.image} alt="Алина" />
+            </div>
+            <div className="ph-circles">
+              {c.principles.circles.slice(0, 3).map((label, i) => (
+                <div key={i} className="ph-circle">
+                  {label}
+                </div>
+              ))}
+            </div>
           </div>
           <div className="ph-side">
             <h3>{c.principles.side.title}</h3>
