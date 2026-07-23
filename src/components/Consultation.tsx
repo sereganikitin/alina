@@ -1,47 +1,47 @@
 "use client";
 
-import Wave from "./Wave";
-import BookingForm from "./BookingForm";
 import { useContent } from "@/lib/useContent";
+import BookingForm from "./BookingForm";
 
-/** Раздел «Консультация» — формат, стоимость, форма записи. Тексты — из админки. */
 export default function Consultation() {
   const c = useContent();
   return (
-    <section
-      id="booking"
-      data-nav-theme="light"
-      className="relative bg-cream px-6 pb-24 pt-32 md:px-12 md:pb-32 md:pt-40"
-    >
-      <Wave
-        className="absolute left-0 top-0 h-16 w-full rotate-180 md:h-24"
-        fill="var(--background)"
-      />
+    <section id="consult" className="consult">
+      <div className="wrap">
+        <div className="kicker">Консультация</div>
+        <h2 className="section-h">Формат и условия</h2>
 
-      <div className="mx-auto max-w-3xl">
-        <h2 className="font-display text-4xl md:text-5xl">Консультация</h2>
-
-        <dl className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2">
+        <div className="facts">
           {c.consultation.facts.map((f) => (
-            <div key={f.label} className="bg-cream p-6">
-              <dt className="font-sans text-sm tracking-normal text-muted">
-                {f.label}
-              </dt>
-              <dd className="mt-2 text-lg text-foreground/85">{f.value}</dd>
+            <div key={f.label} className="fact">
+              <div className="k">{f.label}</div>
+              <div className="v">{f.value}</div>
             </div>
           ))}
-        </dl>
+        </div>
 
-        <div className="mt-12">
-          <h3 className="font-display text-2xl text-terracotta">
-            Записаться на консультацию
-          </h3>
-          <p className="mt-3 text-base leading-relaxed text-muted">
-            {c.consultation.note}
-          </p>
-          <div className="mt-6 max-w-xl">
-            <BookingForm />
-          </div>
+        <p className="note">{c.consultation.note}</p>
+
+        <div style={{ marginTop: "28px" }}>
+          <a href="#contacts" className="btn btn-primary">
+            Записаться на первую сессию
+          </a>
+        </div>
+
+        {/* Форма записи */}
+        <div style={{ marginTop: "60px", maxWidth: "32rem" }}>
+          <h3 className="serif" style={{ fontSize: "1.5rem", marginBottom: "1.5rem" }}>Записаться</h3>
+          <BookingForm />
+        </div>
+
+        {/* FAQ аккордеон — summary::after в CSS рисует "+" */}
+        <div className="faq">
+          {c.faq.map((item) => (
+            <details key={item.q}>
+              <summary>{item.q}</summary>
+              <div className="ans">{item.a}</div>
+            </details>
+          ))}
         </div>
       </div>
     </section>

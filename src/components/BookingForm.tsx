@@ -123,7 +123,7 @@ export default function BookingForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="inline-flex items-center justify-center rounded-full bg-terracotta px-8 py-3.5 font-sans text-lg text-cream transition-opacity hover:opacity-90 disabled:opacity-60"
+        className="btn btn-primary"
       >
         {status === "sending" ? "Отправляем…" : "Записаться"}
       </button>

@@ -35,7 +35,7 @@ export default function FloatingContact() {
           <div
             role="dialog"
             aria-modal="true"
-            className="fixed bottom-24 left-4 right-4 z-[60] max-h-[80vh] overflow-auto rounded-2xl bg-cream p-6 shadow-2xl sm:left-auto sm:right-6 sm:w-[380px]"
+            className="fixed bottom-24 left-4 right-4 z-[60] max-h-[80vh] overflow-auto rounded-2xl bg-[var(--card)] p-6 shadow-2xl sm:left-auto sm:right-6 sm:w-[380px]"
           >
             <div className="mb-4 flex items-start justify-between gap-4">
               <div>
