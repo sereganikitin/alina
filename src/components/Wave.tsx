@@ -1,7 +1,7 @@
 /** Волна по нижнему краю секции — заливка цветом следующей секции (беж). */
 export default function Wave({
   className = "",
-  fill = "var(--background)",
+  fill = "currentColor",
 }: {
   className?: string;
   fill?: string;
