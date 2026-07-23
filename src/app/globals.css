@@ -328,14 +328,25 @@ header.scrolled {
 
 /* ===== ABOUT ===== */
 .about {
-  background: var(--card);
-  border-bottom: 1px solid var(--line);
+  position: relative;
 }
+
+.about::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('/photos/about-texture.png');
+  background-size: cover;
+  background-position: center;
+  pointer-events: none;
+  z-index: 0;
+}
+
 .about-grid {
-  display: grid;
-  gap: 56px;
-  align-items: center;
+  position: relative;
+  z-index: 1;
 }
+
 @media (min-width: 820px) {
   .about-grid {
     grid-template-columns: 0.9fr 1.1fr;
