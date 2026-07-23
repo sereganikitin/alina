@@ -15,12 +15,12 @@ export default function Principles() {
             <img src={c.principles.image} alt="Алина" />
           </div>
           <div className="ph-side">
-            <h2>{c.principles.side.title}</h2>
+            <h3>{c.principles.side.title}</h3>
             <p>{c.principles.side.text}</p>
           </div>
         </div>
 
-        <h3 className="section-h">С чем я работаю</h3>
+        <h4 className="section-h">С чем я работаю</h4>
 
         <div className="chips">
           {c.principles.requests.map((r) => (
@@ -28,12 +28,12 @@ export default function Principles() {
           ))}
         </div>
 
-        <h3 className="section-h">С кем я работаю</h3>
+        <h4 className="section-h">С кем я работаю</h4>
         <p className="with">
           {c.principles.withWhom}
         </p>
 
-        <h3 className="section-h">Основные принципы работы</h3>
+        <h4 className="section-h">Основные принципы работы</h4>
 
         <p className="with">
           <b>Безопасность и бережность</b>
