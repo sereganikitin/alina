@@ -193,6 +193,7 @@ header.scrolled {
   position: relative;
   min-height: 100svh;
   overflow: hidden;
+  z-index: 2;
 }
 .hero-photo {
   position: absolute;
@@ -334,7 +335,10 @@ header.scrolled {
 .about::before {
   content: "";
   position: absolute;
-  inset: 0;
+  top: -80px;  /* ← было 0 (через inset), теперь заходит вверх */
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-image: url('/photos/about-texture.png');
   background-size: cover;
   background-position: center;
