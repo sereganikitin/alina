@@ -20,7 +20,7 @@ export default function Principles() {
           </div>
         </div>
 
-        <h4 className="section-h">С чем я работаю</h4>
+        <h3 className="section-h">С чем я работаю</h3>
 
         <div className="chips">
           {c.principles.requests.map((r) => (
@@ -28,12 +28,12 @@ export default function Principles() {
           ))}
         </div>
 
-        <h4 className="section-h">С кем я работаю</h4>
+        <h3 className="section-h">С кем я работаю</h3>
         <p className="with">
           {c.principles.withWhom}
         </p>
 
-        <h4 className="section-h">Основные принципы работы</h4>
+        <h3 className="section-h">Основные принципы работы</h3>
 
         <p className="with">
           <b>Безопасность и бережность</b>
