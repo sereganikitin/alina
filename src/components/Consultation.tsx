@@ -37,10 +37,14 @@ export default function Consultation() {
         {/* FAQ аккордеон — summary::after в CSS рисует "+" */}
         <div className="faq">
           {c.faq.map((item) => (
-            <details key={item.q}>
-              <summary>{item.q}</summary>
-              <div className="ans">{item.a}</div>
-            </details>
+          <details key={item.q}>
+            <summary>{item.q}</summary>
+            <div className="ans">
+              {item.a.split('\n\n').map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
+            </div>
+          </details>
           ))}
         </div>
       </div>
