@@ -449,7 +449,7 @@ header.scrolled {
 .prin-photo {
   display: grid;
   gap: 40px;
-  align-items: stretch;
+  align-items: center;
   margin: 40px 0 12px;
 }
 @media (min-width: 820px) {
@@ -460,8 +460,7 @@ header.scrolled {
 .ph-arch {
   overflow: hidden;
   border-radius: 999px 999px 20px 20px;
-  height: 100%;
-  min-height: 0;
+  aspect-ratio: 3/4;  /* было 4/3 — теперь арка выше, чем шире */
   filter: grayscale(0.12);
 }
 .ph-arch img {
