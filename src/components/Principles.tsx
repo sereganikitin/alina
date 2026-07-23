@@ -2,25 +2,6 @@
 
 import { useContent } from "@/lib/useContent";
 
-const PRINCIPLES_ITEMS = [
-   {
-    title: "Индивидуальный подход и работа в интегративном ключе",
-    text: "Я совмещаю разные методики (инструментарий) в зависимости от запроса клиента.",
-  },
-  {
-    title: "Безопасность и бережность",
-    text: "Клиент определяет границы пространства, то есть имеет право на «нет», «стоп», на любые чувства и проявления себя, возникающие в процессе. Кроме насилия над собой и терапевтом.",
-  },
-  {
-    title: "Конфиденциальность",
-    text: "Кроме случаев намерения или причинения вреда себе, другим людям или ситуаций нарушения закона.",
-  },
-  {
-    title: "Живость контакта",
-    text: "Я не дистантный и не «холодный» терапевт. Проявляю эмоции и эмпатично присутствую на сессии.",
-  },
-];
-
 export default function Principles() {
   const c = useContent();
   return (
@@ -35,7 +16,7 @@ export default function Principles() {
           </div>
           <div className="ph-side">
             <h3>{c.principles.side.title}</h3>
-            {PRINCIPLES_ITEMS.map((item) => (
+            {c.principles.side.items.map((item) => (
               <div key={item.title} className="ph-side-item">
                 <p className="ph-side-item-title"><b>{item.title}</b></p>
                 <p className="ph-side-item-text">{item.text}</p>

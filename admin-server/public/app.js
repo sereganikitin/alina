@@ -69,7 +69,24 @@ const DEFAULTS = {
     image: "/photos/principles.jpg",
     side: {
       title: "Бережно и по делу",
-      text: "Здесь будет текст блока рядом с фото — пара предложений о подходе и о том, как проходит работа. Пока это заглушка, чтобы оценить вёрстку и расположение.",
+      items: [
+        {
+          title: "Индивидуальный подход и работа в интегративном ключе",
+          text: "Я совмещаю разные методики (инструментарий) в зависимости от запроса клиента.",
+        },
+        {
+          title: "Безопасность и бережность",
+          text: "Клиент определяет границы пространства, то есть имеет право на «нет», «стоп», на любые чувства и проявления себя, возникающие в процессе. Кроме насилия над собой и терапевтом.",
+        },
+        {
+          title: "Конфиденциальность",
+          text: "Кроме случаев намерения или причинения вреда себе, другим людям или ситуаций нарушения закона.",
+        },
+        {
+          title: "Живость контакта",
+          text: "Я не дистантный и не «холодный» терапевт. Проявляю эмоции и эмпатично присутствую на сессии.",
+        },
+      ],
     },
   },
   approach: {
@@ -292,7 +309,8 @@ function renderContent() {
     section("Образование", fArea("Вступление", c.education, "lead"),
       listObj("Дипломы", c.education.diplomas, [{ key: "title", label: "Название" }, { key: "placeholder", label: "Заглушка (превью на карточке)", type: "image" }, { key: "scan", label: "Скан (открывается в попапе, можно скачать)", type: "scan" }], () => ({ title: "", placeholder: "", scan: "" })),
       listText("Доп. строки", c.education.extra)),
-    section("Принципы работы", listText("Запросы (с чем работаю)", c.principles.requests), fArea("С кем я работаю", c.principles, "withWhom"), fMedia("Фото (дуга сверху)", c.principles, "image", "image/*"), fArea("Блок у фото — заголовок", c.principles.side, "title"), fArea("Блок у фото — текст", c.principles.side, "text")),
+    section("Принципы работы", listText("Запросы (с чем работаю)", c.principles.requests), fArea("С кем я работаю", c.principles, "withWhom"), fMedia("Фото (дуга сверху)", c.principles, "image", "image/*"), fArea("Блок у фото — заголовок", c.principles.side, "title"),
+      listObj("Блок у фото — пункты", c.principles.side.items, [{ key: "title", label: "Заголовок пункта" }, { key: "text", label: "Текст пункта", type: "area" }], () => ({ title: "", text: "" }))),
     section("О подходе", listText("Абзацы", c.approach.paragraphs)),
     section("Консультация",
       listObj("Факты", c.consultation.facts, [{ key: "label", label: "Заголовок" }, { key: "value", label: "Значение" }], () => ({ label: "", value: "" })),
