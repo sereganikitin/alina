@@ -91,6 +91,7 @@ const DEFAULTS = {
     },
   },
   approach: {
+    intro: "",
     paragraphs: [
       "В работе я опираюсь на запрос: мы вместе держим в фокусе то, ради чего вы пришли, и сверяемся с этим на каждой сессии. Если мы от запроса отходим — я говорю об этом и объясняю, зачем.",
       "Мне важно, чтобы терапия была не только бережной, но и эффективной — поэтому я слежу за исследованиями и опираюсь на доказательные методы. При этом контакт и теплота для меня — высокая ценность: рядом можно быть разным.",
@@ -396,7 +397,7 @@ function renderContent() {
       listText("Подписи в кругах под фото (используются первые 3)", c.principles.circles),
       fArea("Блок у фото — заголовок", c.principles.side, "title"),
       listObj("Блок у фото — пункты", c.principles.side.items, [{ key: "title", label: "Заголовок пункта" }, { key: "text", label: "Текст пункта", type: "rich" }], () => ({ title: "", text: "" }))),
-    section("О подходе", listRich("Абзацы", c.approach.paragraphs)),
+    section("О подходе", fRich("Вводный текст (у первой буквы — крупная буквица)", c.approach, "intro"), listRich("Абзацы", c.approach.paragraphs)),
     section("Консультация",
       listObj("Факты", c.consultation.facts, [{ key: "label", label: "Заголовок" }, { key: "value", label: "Значение" }], () => ({ label: "", value: "" })),
       fRich("Примечание", c.consultation, "note")),

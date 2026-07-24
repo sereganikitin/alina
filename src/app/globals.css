@@ -560,6 +560,22 @@ header.scrolled {
 .approach-section {
   background: var(--bg);
 }
+.approach-intro {
+  margin-top: 24px;
+  max-width: 66ch;
+  font-size: 1.05rem;
+  color: #3f362a;
+  line-height: 1.75;
+}
+.approach-intro p:first-of-type::first-letter {
+  font-family: var(--serif);
+  font-weight: 700;
+  float: left;
+  font-size: 4.6rem;
+  line-height: 0.8;
+  padding: 6px 12px 0 0;
+  color: var(--terra);
+}
 .approach-cards {
   margin-top: 44px;
   display: grid;
@@ -723,13 +739,15 @@ footer {
 
 .lead p,
 .with p,
-.note p {
+.note p,
+.approach-intro p {
   margin: 0 0 12px 0;
 }
 
 .lead p:last-child,
 .with p:last-child,
-.note p:last-child {
+.note p:last-child,
+.approach-intro p:last-child {
   margin-bottom: 0;
 }
 

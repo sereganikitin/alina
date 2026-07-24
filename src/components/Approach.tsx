@@ -11,6 +11,10 @@ export default function Approach() {
         <div className="kicker">О подходе</div>
         <h2 className="section-h">Как проходит работа</h2>
 
+        {c.approach.intro && (
+          <RichText html={c.approach.intro} className="approach-intro" />
+        )}
+
         <div className="approach-cards">
           {c.approach.paragraphs.map((p, i) => (
             <div key={i} className="approach-card">
