@@ -48,28 +48,32 @@ export default function Consultation() {
           <BookingForm />
         </div>
 
-        {/* FAQ — полупрозрачная плашка (опционально на фоне фото), вопрос/ответ капсулами Q/A */}
-        <div
-          className="faq-wrap"
-          style={c.faqImage ? { backgroundImage: `url(${c.faqImage})` } : undefined}
-        >
-          <div className="faq-panel">
+        {/* FAQ — слева аккордеон капсул Q/A (ответ скрыт, раскрывается по клику), справа фото */}
+        <div className="faq-row">
+          <div className="faq-block">
             <h3 className="faq-title">FAQ</h3>
             <div className="faq-list">
               {c.faq.map((item, i) => (
-                <div key={i} className="faq-item">
-                  <div className="faq-pill">
+                <details key={i} className="faq-item">
+                  <summary className="faq-pill faq-q">
                     <span className="faq-letter">Q</span>
                     <span className="faq-text">{item.q}</span>
-                  </div>
+                    <span className="faq-plus" aria-hidden="true">+</span>
+                  </summary>
                   <div className="faq-pill faq-pill-a">
                     <span className="faq-letter">A</span>
                     <RichText html={item.a} className="faq-text ans" />
                   </div>
-                </div>
+                </details>
               ))}
             </div>
           </div>
+          {c.faqImage && (
+            <div className="faq-photo">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={c.faqImage} alt="" />
+            </div>
+          )}
         </div>
       </div>
     </section>

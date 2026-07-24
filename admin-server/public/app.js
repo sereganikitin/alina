@@ -402,7 +402,7 @@ function renderContent() {
     section("Консультация",
       listObj("Факты", c.consultation.facts, [{ key: "label", label: "Заголовок" }, { key: "value", label: "Значение" }], () => ({ label: "", value: "" })),
       fRich("Примечание", c.consultation, "note")),
-    section("FAQ", fMedia("Фоновое фото под блоком FAQ (необязательно)", c, "faqImage", "image/*"),
+    section("FAQ", fMedia("Фото справа от блока FAQ (необязательно)", c, "faqImage", "image/*"),
       listObj("Вопросы", c.faq, [{ key: "q", label: "Вопрос" }, { key: "a", label: "Ответ", type: "rich" }], () => ({ q: "", a: "" }))),
     section("Контакты", fRich("Текст", c.contacts, "note"),
       fText("Ссылка EMDR Russia (значок в шапке)", c.contacts, "emdrUrl"),
