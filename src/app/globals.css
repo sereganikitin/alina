@@ -13,6 +13,9 @@
   --shadow: 0 22px 55px -30px rgba(42, 33, 24, 0.5);
   --serif: "Playfair Display", Georgia, serif;
   --sans: "Inter", system-ui, sans-serif;
+  /* Бумажная зернистая текстура (SVG fractalNoise, тайл 180×180, tinted под --ink) —
+     накладывается через background-blend-mode: multiply поверх цвета секции. */
+  --paper: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='n' x='0' y='0' width='400' height='400' filterUnits='userSpaceOnUse'><feTurbulence type='fractalNoise' baseFrequency='0.12' numOctaves='3' seed='11' stitchTiles='stitch' result='t'/><feColorMatrix in='t' type='matrix' values='0 0 0 0 0.55  0 0 0 0 0.49  0 0 0 0 0.4  0 0 0 0.22 0'/></filter><rect width='400' height='400' filter='url(%23n)'/></svg>");
 }
 
 @theme inline {
@@ -39,7 +42,9 @@ html {
 }
 
 body {
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image: var(--paper);
+  background-blend-mode: multiply;
   color: var(--ink);
   font-family: var(--sans);
   line-height: 1.65;
@@ -325,7 +330,9 @@ header.scrolled {
 /* ===== ABOUT ===== */
 .about {
   position: relative;
-  background: var(--card);
+  background-color: var(--card);
+  background-image: var(--paper);
+  background-blend-mode: multiply;
 }
 
 .about::before {
@@ -467,7 +474,9 @@ a.assoc-icon:hover {
 
 /* ===== PRINCIPLES ===== */
 .principles {
-  background: var(--card);
+  background-color: var(--card);
+  background-image: var(--paper);
+  background-blend-mode: multiply;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
@@ -582,7 +591,9 @@ a.assoc-icon:hover {
 
 /* ===== APPROACH ===== */
 .approach-section {
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image: var(--paper);
+  background-blend-mode: multiply;
 }
 .approach-intro {
   margin-top: 36px;
@@ -641,7 +652,9 @@ a.assoc-icon:hover {
 
 /* ===== CONSULTATION ===== */
 .consult {
-  background: var(--card);
+  background-color: var(--card);
+  background-image: var(--paper);
+  background-blend-mode: multiply;
   border-top: 1px solid var(--line);
 }
 .facts {
