@@ -1,8 +1,20 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useContent } from "@/lib/useContent";
 import { RichText } from "@/lib/richText";
-import { EmdrLogo, IfsLogo } from "./AssocIcons";
+import { EmdrLogo, IfsLogo, EmdrEuropeLogo } from "./AssocIcons";
+
+// Оборачивает значок в ссылку, только если URL задан — иначе значок
+// остаётся некликабельным (просто <span>).
+function AssocLink({ url, children }: { url: string; children: ReactNode }) {
+  if (!url) return <span className="assoc-icon">{children}</span>;
+  return (
+    <a href={url} target="_blank" rel="noreferrer" className="assoc-icon">
+      {children}
+    </a>
+  );
+}
 
 export default function About() {
   const c = useContent();
@@ -22,8 +34,15 @@ export default function About() {
             style={{ marginTop: "18px", fontSize: "1.1rem" }}
           />
           <div className="assoc">
-            <EmdrLogo />
-            <IfsLogo />
+            <AssocLink url={c.contacts.emdrUrl}>
+              <EmdrLogo />
+            </AssocLink>
+            <AssocLink url={c.contacts.ifsUrl}>
+              <IfsLogo />
+            </AssocLink>
+            <AssocLink url={c.contacts.emdrEuropeUrl}>
+              <EmdrEuropeLogo />
+            </AssocLink>
           </div>
         </div>
       </div>

@@ -144,6 +144,7 @@ export const DEFAULT_CONTENT = {
     note: "Написать можно в любой удобный мессенджер — отвечаю лично.",
     emdrUrl: "",
     ifsUrl: "",
+    emdrEuropeUrl: "",
     docs: [
       { label: "Политика конфиденциальности", url: "" },
       { label: "Согласие на обработку персональных данных", url: "" },

@@ -395,6 +395,18 @@ header.scrolled {
   width: 40px;
   height: 28px;
 }
+.assoc svg.emdr-europe-badge {
+  width: auto;
+  height: 52px;
+}
+.assoc-icon {
+  display: inline-flex;
+  transition: opacity 0.2s, transform 0.2s;
+}
+a.assoc-icon:hover {
+  opacity: 0.7;
+  transform: translateY(-2px);
+}
 
 /* ===== EDUCATION ===== */
 .edu-list {

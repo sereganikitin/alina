@@ -118,6 +118,7 @@ const DEFAULTS = {
     note: "Написать можно в любой удобный мессенджер — отвечаю лично.",
     emdrUrl: "",
     ifsUrl: "",
+    emdrEuropeUrl: "",
     docs: [
       { label: "Политика конфиденциальности", url: "" },
       { label: "Согласие на обработку персональных данных", url: "" },
@@ -405,8 +406,9 @@ function renderContent() {
     section("FAQ", fMedia("Фото справа от блока FAQ (необязательно)", c, "faqImage", "image/*"),
       listObj("Вопросы", c.faq, [{ key: "q", label: "Вопрос" }, { key: "a", label: "Ответ", type: "rich" }], () => ({ q: "", a: "" }))),
     section("Контакты", fRich("Текст", c.contacts, "note"),
-      fText("Ссылка EMDR Russia (значок в шапке)", c.contacts, "emdrUrl"),
-      fText("Ссылка IFS Russia (значок в шапке)", c.contacts, "ifsUrl"),
+      fText("Ссылка EMDR Russia (значок в «Обо мне»)", c.contacts, "emdrUrl"),
+      fText("Ссылка IFS Russia (значок в «Обо мне»)", c.contacts, "ifsUrl"),
+      fText("Ссылка EMDR Europe (значок в «Обо мне»)", c.contacts, "emdrEuropeUrl"),
       listObj("Документы (PDF)", c.contacts.docs, [{ key: "label", label: "Название" }, { key: "url", label: "Файл PDF", type: "pdf" }], () => ({ label: "", url: "" }))),
     h("div", { class: "save-bar" }, h("button", { class: "btn", onclick: saveContent }, "Сохранить изменения"), h("span", { class: "muted" }, "правки появятся на сайте сразу"))
   );
