@@ -4,6 +4,7 @@ import Education from "@/components/Education";
 import Principles from "@/components/Principles";
 import Approach from "@/components/Approach";
 import Consultation from "@/components/Consultation";
+import BlogPreview from "@/components/BlogPreview";
 import Contacts from "@/components/Contacts";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <Principles />
       <Approach />
       <Consultation />
+      <BlogPreview />
       <Contacts />
     </main>
   );

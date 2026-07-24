@@ -108,6 +108,9 @@ const DEFAULTS = {
     note:
       "Записаться можно в Telegram или WhatsApp — отвечаю лично. Или оставьте заявку через форму на сайте.",
   },
+  blog: {
+    posts: [],
+  },
   faqImage: "",
   faq: [
     { q: "Как проходит первая сессия?", a: "Знакомимся, я расспрашиваю о запросе…" },
@@ -403,6 +406,18 @@ function renderContent() {
     section("Консультация",
       listObj("Факты", c.consultation.facts, [{ key: "label", label: "Заголовок" }, { key: "value", label: "Значение" }], () => ({ label: "", value: "" })),
       fRich("Примечание", c.consultation, "note")),
+    section("Блог",
+      listObj("Статьи", c.blog.posts,
+        [
+          { key: "title", label: "Заголовок" },
+          { key: "slug", label: "URL статьи (латиницей, без пробелов, напр. trevoga)" },
+          { key: "date", label: "Дата публикации" },
+          { key: "cover", label: "Обложка", type: "image" },
+          { key: "excerpt", label: "Краткое описание (для превью)", type: "area" },
+          { key: "body", label: "Текст статьи", type: "rich" },
+        ],
+        () => ({ title: "", slug: "", date: "", cover: "", excerpt: "", body: "" })
+      )),
     section("FAQ", fMedia("Фото справа от блока FAQ (необязательно)", c, "faqImage", "image/*"),
       listObj("Вопросы", c.faq, [{ key: "q", label: "Вопрос" }, { key: "a", label: "Ответ", type: "rich" }], () => ({ q: "", a: "" }))),
     section("Контакты", fRich("Текст", c.contacts, "note"),

@@ -116,6 +116,16 @@ export const DEFAULT_CONTENT = {
     note:
       "Записаться можно в Telegram или WhatsApp — отвечаю лично. Или оставьте заявку через форму.",
   },
+  blog: {
+    posts: [] as {
+      slug: string;
+      title: string;
+      date: string;
+      cover: string;
+      excerpt: string;
+      body: string;
+    }[],
+  },
   // Фоновое фото под полупрозрачной плашкой FAQ. Пусто — плашка на обычном фоне секции.
   faqImage: "",
   faq: [

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const NAV = [
   { label: "Обо мне", href: "#about" },
@@ -8,12 +9,17 @@ const NAV = [
   { label: "Принципы", href: "#principles" },
   { label: "Подход", href: "#approach" },
   { label: "Консультация", href: "#consult" },
+  { label: "Блог", href: "/blog" },
   { label: "Контакты", href: "#contacts" },
 ];
 
 export default function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const home = pathname === "/";
+  // Якоря рассчитаны на главную; вне её ведём сперва на "/", браузер сам прыгнет к якорю.
+  const navHref = (href: string) => (href.startsWith("#") && !home ? "/" + href : href);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -29,13 +35,13 @@ export default function SiteHeader() {
   return (
     <header id="hdr" className={scrolled && !open ? "scrolled" : ""}>
       <div className="nav">
-        <a href="#" onClick={() => setOpen(false)} className="brand">
+        <a href="/" onClick={() => setOpen(false)} className="brand">
           Алина Дубовская
         </a>
         <ul>
           {NAV.map((item) => (
             <li key={item.href}>
-              <a href={item.href}>{item.label}</a>
+              <a href={navHref(item.href)}>{item.label}</a>
             </li>
           ))}
         </ul>
@@ -57,7 +63,7 @@ export default function SiteHeader() {
           {NAV.map((item) => (
             <a
               key={item.href}
-              href={item.href}
+              href={navHref(item.href)}
               onClick={() => setOpen(false)}
               className="font-display text-2xl text-[var(--ink)] hover:text-[var(--terra)]"
             >
