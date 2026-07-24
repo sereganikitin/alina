@@ -899,7 +899,6 @@ a.assoc-icon:hover {
   line-height: 1.6;
 }
 .blog-more {
-  display: inline-block;
   margin-top: 20px;
 }
 @media (max-width: 760px) {

@@ -61,13 +61,10 @@ export default function Education() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={open.placeholder} alt={open.title} className="mx-auto max-h-[72vh] w-auto max-w-full rounded-lg object-contain" />
             </div>
-            <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+            <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
               <p className="text-sm text-[var(--muted)]">{open.title}</p>
-              
-              <a href={open.scan}
-                download
-                className="inline-flex items-center gap-2 rounded-full bg-[var(--terra)] px-5 py-2.5 font-sans text-sm text-[var(--card)] shadow transition-opacity hover:opacity-90"
-              >
+
+              <a href={open.scan} download className="btn btn-primary">
                 Скачать скан
               </a>
             </div>

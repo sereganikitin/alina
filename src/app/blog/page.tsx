@@ -34,7 +34,7 @@ export default function BlogPage() {
                     <h3>{p.title}</h3>
                     <div className="muted blog-entry-date">{p.date}</div>
                     <p className="blog-excerpt">{p.excerpt}</p>
-                    <span className="blog-more lnk">Читать далее →</span>
+                    <span className="blog-more btn btn-primary">Читать далее</span>
                   </div>
                 </a>
               ))}
