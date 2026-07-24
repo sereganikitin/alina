@@ -42,12 +42,6 @@ export default function Consultation() {
           </a>
         </div>
 
-        {/* Форма записи */}
-        <div style={{ marginTop: "60px", maxWidth: "32rem" }}>
-          <h3 className="serif" style={{ fontSize: "1.5rem", marginBottom: "1.5rem" }}>Записаться</h3>
-          <BookingForm />
-        </div>
-
         {/* FAQ — слева аккордеон капсул Q/A (ответ скрыт, раскрывается по клику), справа фото */}
         <div className="faq-row">
           <div className="faq-block">
@@ -74,6 +68,12 @@ export default function Consultation() {
               <img src={c.faqImage} alt="" />
             </div>
           )}
+        </div>
+
+        {/* Форма записи */}
+        <div style={{ marginTop: "60px", maxWidth: "32rem" }}>
+          <h3 className="serif" style={{ fontSize: "1.5rem", marginBottom: "1.5rem" }}>Записаться</h3>
+          <BookingForm />
         </div>
       </div>
     </section>
