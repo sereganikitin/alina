@@ -534,22 +534,20 @@ a.assoc-icon:hover {
 .ph-circle:nth-child(2) {
   z-index: 2;
 }
-.ph-side h3 {
+/* Общий заголовок для трёх блоков в "Принципах" (Бережно и по делу /
+   С чем я работаю / С кем я работаю) — единый размер, независимо от того,
+   в узкой колонке у фото они стоят или на всю ширину. */
+.prin-h {
   font-family: var(--serif);
   font-weight: 600;
   font-size: clamp(1.7rem, 2.8vw, 2.4rem);
   line-height: 1.12;
 }
-.ph-side p {
-  margin-top: 18px;
-  line-height: 1.7;
-  color: #4a4032;
-}
 .chips {
   display: flex;
   flex-wrap: wrap;
   gap: 0;
-  margin-top: 36px;
+  margin-top: 20px;
   border-top: 1px solid var(--line);
 }
 .chip {
@@ -565,10 +563,24 @@ a.assoc-icon:hover {
   color: var(--terra);
 }
 .with {
-  margin-top: 40px;
+  margin-top: 18px;
   max-width: 62ch;
-  font-size: 1.12rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
   color: #4a4032;
+}
+.prin-full {
+  margin-top: 28px;
+}
+.prin-items-grid {
+  margin-top: 20px;
+  display: grid;
+  gap: 8px 48px;
+}
+@media (min-width: 700px) {
+  .prin-items-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 /* ===== APPROACH ===== */
@@ -1015,6 +1027,12 @@ footer {
   margin-bottom: 0;
 }
 
+.ph-side-item-text {
+  margin-top: 6px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #4a4032;
+}
 .ph-side-item-text p {
   margin: 0;
 }

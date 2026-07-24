@@ -25,7 +25,21 @@ export default function Principles() {
             </div>
           </div>
           <div className="ph-side">
-            <h3>{c.principles.side.title}</h3>
+            <h3 className="prin-h">С чем я работаю</h3>
+            <div className="chips">
+              {c.principles.requests.map((r) => (
+                <span key={r} className="chip">{r}</span>
+              ))}
+            </div>
+
+            <h3 className="prin-h" style={{ marginTop: "36px" }}>С кем я работаю</h3>
+            <RichText html={c.principles.withWhom} className="with" />
+          </div>
+        </div>
+
+        <div className="prin-full">
+          <h3 className="prin-h">{c.principles.side.title}</h3>
+          <div className="prin-items-grid">
             {c.principles.side.items.map((item) => (
               <div key={item.title} className="ph-side-item">
                 <p className="ph-side-item-title"><b>{item.title}</b></p>
@@ -34,17 +48,6 @@ export default function Principles() {
             ))}
           </div>
         </div>
-
-        <h3 className="section-h">С чем я работаю</h3>
-
-        <div className="chips">
-          {c.principles.requests.map((r) => (
-            <span key={r} className="chip">{r}</span>
-          ))}
-        </div>
-
-        <h3 className="section-h">С кем я работаю</h3>
-        <RichText html={c.principles.withWhom} className="with" />
       </div>
     </section>
   );
