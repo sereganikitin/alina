@@ -622,25 +622,48 @@ header.scrolled {
 }
 .facts {
   margin-top: 42px;
-  border-top: 2px solid var(--ink);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
 }
 .fact {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 20px;
-  padding: 22px 4px;
+  padding: 26px 30px;
+}
+.fact-border-r {
+  border-right: 1px solid var(--line);
+}
+.fact-border-b {
   border-bottom: 1px solid var(--line);
-  align-items: baseline;
+}
+.fact-full {
+  grid-column: 1 / -1;
 }
 .fact .k {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
 }
 .fact .v {
   font-family: var(--serif);
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  margin-top: 8px;
+}
+@media (max-width: 600px) {
+  .facts {
+    grid-template-columns: 1fr;
+  }
+  .fact-border-r {
+    border-right: none;
+  }
+  .fact:not(.fact-full) {
+    border-bottom: 1px solid var(--line);
+  }
+  .fact:last-child {
+    border-bottom: none;
+  }
 }
 .note {
   margin-top: 30px;

@@ -13,12 +13,25 @@ export default function Consultation() {
         <h2 className="section-h">Формат и условия</h2>
 
         <div className="facts">
-          {c.consultation.facts.map((f) => (
-            <div key={f.label} className="fact">
-              <div className="k">{f.label}</div>
-              <div className="v">{f.value}</div>
-            </div>
-          ))}
+          {c.consultation.facts.map((f, i) => {
+            const count = c.consultation.facts.length;
+            const hasOddTail = count % 2 === 1;
+            const totalRows = Math.floor(count / 2) + (hasOddTail ? 1 : 0);
+            const isTail = hasOddTail && i === count - 1;
+            const row = isTail ? totalRows - 1 : Math.floor(i / 2);
+            const isLeftCol = !isTail && i % 2 === 0;
+            const isLastRow = row === totalRows - 1;
+            const classes = ["fact"];
+            if (isTail) classes.push("fact-full");
+            if (isLeftCol) classes.push("fact-border-r");
+            if (!isLastRow) classes.push("fact-border-b");
+            return (
+              <div key={f.label} className={classes.join(" ")}>
+                <div className="k">{f.label}</div>
+                <div className="v">{f.value}</div>
+              </div>
+            );
+          })}
         </div>
 
         <RichText html={c.consultation.note} className="note" />
