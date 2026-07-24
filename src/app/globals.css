@@ -745,6 +745,8 @@ header.scrolled {
   border-radius: 24px;
   padding: 20px 26px;
   background: var(--bg);
+  border: 1px solid var(--line);
+  box-shadow: 0 4px 14px rgba(58, 50, 38, 0.12);
 }
 .faq-letter {
   flex: none;
