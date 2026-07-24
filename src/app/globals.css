@@ -573,7 +573,7 @@ header.scrolled {
   float: left;
   font-size: 4.6rem;
   line-height: 0.8;
-  padding: 24px 12px 0 0;
+  padding: 8px 12px 0 0;
   color: var(--terra);
 }
 .approach-cards {
