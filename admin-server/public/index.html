@@ -47,6 +47,16 @@
       table { width: 100%; border-collapse: collapse; font-size: 14px; }
       th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
       .field-img-prev { height:56px; border-radius:8px; border:1px solid var(--line); margin-top:6px; }
+      .rich-toolbar { display: flex; gap: 4px; margin-bottom: 4px; }
+      .rich-toolbar button { width: 30px; height: 30px; padding: 0; background: #fff; border: 1px solid var(--line); border-radius: 8px; font-size: 14px; line-height: 1; }
+      .rich-toolbar button.b { font-weight: 700; }
+      .rich-toolbar button.i { font-style: italic; }
+      .rich-toolbar button.u { text-decoration: underline; }
+      .rich-toolbar button:hover { background: var(--bg); }
+      .rich-editor { width: 100%; min-height: 70px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--fg); font: inherit; }
+      .rich-editor p { margin: 0 0 10px; }
+      .rich-editor p:last-child { margin-bottom: 0; }
+      .rich-editor:focus { outline: 2px solid var(--terra); outline-offset: -1px; }
     </style>
   </head>
   <body>

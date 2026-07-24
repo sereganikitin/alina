@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useContent } from "@/lib/useContent";
+import { RichText } from "@/lib/richText";
 
 export default function Education() {
   const c = useContent();
@@ -12,7 +13,7 @@ export default function Education() {
       <div className="wrap">
         <div className="kicker">Образование</div>
         <h2 className="section-h">Дипломы и квалификация</h2>
-        <p className="lead">{c.education.lead}</p>
+        <RichText html={c.education.lead} className="lead" />
 
         <div className="edu-list">
           {c.education.diplomas.map((d, i) => (

@@ -721,6 +721,22 @@ footer {
   margin-bottom: 0;
 }
 
+.lead p,
+.with p,
+.note p {
+  margin: 0 0 12px 0;
+}
+
+.lead p:last-child,
+.with p:last-child,
+.note p:last-child {
+  margin-bottom: 0;
+}
+
+.ph-side-item-text p {
+  margin: 0;
+}
+
 .contacts-card {
   background: var(--card);
   background-image: url('/photos/contacts-bg.png');

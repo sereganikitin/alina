@@ -1,6 +1,7 @@
 "use client";
 
 import { useContent } from "@/lib/useContent";
+import { RichText } from "@/lib/richText";
 import { EmdrLogo, IfsLogo } from "./AssocIcons";
 
 export default function About() {
@@ -15,11 +16,11 @@ export default function About() {
         <div>
           <div className="kicker">Обо мне</div>
           <div className="role">{c.about.title}</div>
-          <div className="muted" style={{ marginTop: "18px", fontSize: "1.1rem" }}>
-              {c.about.lead.split('\n\n').map((paragraph, index) => (
-              <p key={index}>{paragraph}</p>
-              ))}
-          </div>
+          <RichText
+            html={c.about.lead}
+            className="muted"
+            style={{ marginTop: "18px", fontSize: "1.1rem" }}
+          />
           <div className="assoc">
             <EmdrLogo />
             <IfsLogo />

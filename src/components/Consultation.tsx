@@ -1,6 +1,7 @@
 "use client";
 
 import { useContent } from "@/lib/useContent";
+import { RichText } from "@/lib/richText";
 import BookingForm from "./BookingForm";
 
 export default function Consultation() {
@@ -20,7 +21,7 @@ export default function Consultation() {
           ))}
         </div>
 
-        <p className="note">{c.consultation.note}</p>
+        <RichText html={c.consultation.note} className="note" />
 
         <div style={{ marginTop: "28px" }}>
           <a href="#contacts" className="btn btn-primary">
@@ -39,11 +40,7 @@ export default function Consultation() {
           {c.faq.map((item) => (
           <details key={item.q}>
             <summary>{item.q}</summary>
-            <div className="ans">
-              {item.a.split('\n\n').map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
-              ))}
-            </div>
+            <RichText html={item.a} className="ans" />
           </details>
           ))}
         </div>

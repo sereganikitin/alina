@@ -1,6 +1,7 @@
 "use client";
 
 import { useContent } from "@/lib/useContent";
+import { RichText } from "@/lib/richText";
 
 export default function Principles() {
   const c = useContent();
@@ -28,7 +29,7 @@ export default function Principles() {
             {c.principles.side.items.map((item) => (
               <div key={item.title} className="ph-side-item">
                 <p className="ph-side-item-title"><b>{item.title}</b></p>
-                <p className="ph-side-item-text">{item.text}</p>
+                <RichText html={item.text} className="ph-side-item-text" />
               </div>
             ))}
           </div>
@@ -43,9 +44,7 @@ export default function Principles() {
         </div>
 
         <h3 className="section-h">С кем я работаю</h3>
-        <p className="with">
-          {c.principles.withWhom}
-        </p>
+        <RichText html={c.principles.withWhom} className="with" />
       </div>
     </section>
   );

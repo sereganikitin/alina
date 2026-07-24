@@ -1,6 +1,7 @@
 "use client";
 
 import { useContent } from "@/lib/useContent";
+import { RichText } from "@/lib/richText";
 
 export default function Approach() {
   const c = useContent();
@@ -14,7 +15,7 @@ export default function Approach() {
           {c.approach.paragraphs.map((p, i) => (
             <div key={i} className="approach-card">
               <div className="approach-card-num">{String(i + 1).padStart(2, "0")}</div>
-              <p>{p}</p>
+              <RichText html={p} />
             </div>
           ))}
         </div>

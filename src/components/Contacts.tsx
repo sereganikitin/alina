@@ -1,6 +1,7 @@
 "use client";
 
 import { useContent } from "@/lib/useContent";
+import { RichText } from "@/lib/richText";
 
 const TelegramIcon = (
   <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
@@ -23,9 +24,11 @@ export default function Contacts() {
           <div className="contacts-card">
             <div className="kicker" style={{ justifyContent: "center" }}>Контакты</div>
             <h2 style={{ marginTop: "16px" }}>Давайте познакомимся</h2>
-            <p className="muted" style={{ marginTop: "16px", fontSize: "1.1rem" }}>
-              {c.contacts.note}
-            </p>
+            <RichText
+              html={c.contacts.note}
+              className="muted"
+              style={{ marginTop: "16px", fontSize: "1.1rem" }}
+            />
             <div className="msgs">
               <a href="#" className="btn btn-primary">
                 {TelegramIcon}

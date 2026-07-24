@@ -224,6 +224,87 @@ function fArea(label, obj, key) {
   inp.addEventListener("input", () => (obj[key] = inp.value));
   return h("div", {}, h("label", {}, label), inp);
 }
+
+// ---- rich text (жирный/курсив/подчёркнутый + абзацы) ----
+// Тот же формат, что понимает richTextToHtml на сайте: если в строке уже
+// есть теги — это HTML из этого редактора; если нет — старый простой текст
+// с абзацами через пустую строку.
+const RICH_ALLOWED_TAGS = new Set(["p", "b", "strong", "i", "em", "u", "br", "div"]);
+function escapeHtmlText(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+function sanitizeRichHtml(htmlStr) {
+  let out = htmlStr.replace(/<(script|style)[^>]*>[\s\S]*?<\/\1>/gi, "");
+  out = out.replace(/<!--[\s\S]*?-->/g, "");
+  out = out.replace(/<\/?([a-zA-Z0-9]+)[^>]*>/g, (match, tag) => {
+    const t = String(tag).toLowerCase();
+    if (!RICH_ALLOWED_TAGS.has(t)) return "";
+    return match.startsWith("</") ? `</${t}>` : `<${t}>`;
+  });
+  return out;
+}
+function legacyToRichHtml(raw) {
+  if (!raw) return "";
+  if (/<[a-z][\s\S]*>/i.test(raw)) return sanitizeRichHtml(raw);
+  return raw
+    .split(/\n{2,}/)
+    .map((p) => p.trim())
+    .filter(Boolean)
+    .map((p) => `<p>${escapeHtmlText(p).replace(/\n/g, "<br>")}</p>`)
+    .join("");
+}
+function fRich(label, obj, key) {
+  const toolbar = h("div", { class: "rich-toolbar" });
+  const editor = h("div", { class: "rich-editor", contenteditable: "true" });
+  editor.innerHTML = legacyToRichHtml(obj[key] || "");
+  obj[key] = editor.innerHTML;
+  function cmdBtn(cmd, cls, label2) {
+    return h("button", {
+      type: "button",
+      class: cls,
+      onmousedown: (e) => e.preventDefault(),
+      onclick: () => {
+        document.execCommand(cmd, false, null);
+        editor.focus();
+        obj[key] = sanitizeRichHtml(editor.innerHTML);
+      },
+    }, label2);
+  }
+  toolbar.append(
+    cmdBtn("bold", "b", "Ж"),
+    cmdBtn("italic", "i", "К"),
+    cmdBtn("underline", "u", "Ч")
+  );
+  editor.addEventListener("focus", () => document.execCommand("defaultParagraphSeparator", false, "p"));
+  editor.addEventListener("input", () => { obj[key] = sanitizeRichHtml(editor.innerHTML); });
+  editor.addEventListener("paste", (e) => {
+    e.preventDefault();
+    const text = (e.clipboardData || window.clipboardData).getData("text/plain");
+    document.execCommand("insertText", false, text);
+  });
+  return h("div", {}, h("label", {}, label), toolbar, editor);
+}
+function listRich(label, arr) {
+  const box = h("div", {}, h("label", {}, label));
+  const list = h("div");
+  function render() {
+    list.innerHTML = "";
+    arr.forEach((val, i) => {
+      const item = { text: val };
+      const field = fRich("", item, "text");
+      const del = h("button", { class: "btn-ghost btn-sm", type: "button", style: "margin-top:6px", onclick: () => { arr.splice(i, 1); render(); } }, "Удалить");
+      const sync = () => { arr[i] = item.text; };
+      const ed = field.querySelector(".rich-editor");
+      ed.addEventListener("input", sync);
+      ed.addEventListener("blur", sync);
+      list.append(h("div", { class: "item" }, field, del));
+    });
+  }
+  render();
+  const add = h("button", { class: "btn-ghost btn-sm", type: "button", onclick: () => { arr.push(""); render(); } }, "+ добавить");
+  box.append(list, add);
+  return box;
+}
 function fMedia(label, obj, key, accept) {
   const wrap = h("div", {}, h("label", {}, label));
   const prev = h("div");
@@ -278,6 +359,7 @@ function listObj(label, arr, fields, factory) {
         if (f.type === "image") card.append(fMedia(f.label, item, f.key, "image/*"));
         else if (f.type === "pdf") card.append(fMedia(f.label, item, f.key, "application/pdf"));
         else if (f.type === "area") card.append(fArea(f.label, item, f.key));
+        else if (f.type === "rich") card.append(fRich(f.label, item, f.key));
         else if (f.type === "scan") card.append(fMedia(f.label, item, f.key, "image/*,application/pdf")); // ← добавить эту строку
         else card.append(fText(f.label, item, f.key));
       }
@@ -306,20 +388,20 @@ function renderContent() {
       fArea("Кнопка (текст)", c.hero.cta, "primary"),
       fArea("Ссылка рядом (текст)", c.hero.cta, "secondary"),
       fMedia("Фото шапки", c.hero, "image", "image/*")),
-    section("Обо мне", fArea("Заголовок", c.about, "title"), fArea("Подпись", c.about, "lead"), listText("Методы", c.about.methods), fMedia("Фото в арке", c.about, "image", "image/*")),
-    section("Образование", fArea("Вступление", c.education, "lead"),
+    section("Обо мне", fArea("Заголовок", c.about, "title"), fRich("Подпись", c.about, "lead"), listText("Методы", c.about.methods), fMedia("Фото в арке", c.about, "image", "image/*")),
+    section("Образование", fRich("Вступление", c.education, "lead"),
       listObj("Дипломы", c.education.diplomas, [{ key: "title", label: "Название" }, { key: "placeholder", label: "Заглушка (превью на карточке)", type: "image" }, { key: "scan", label: "Скан (открывается в попапе, можно скачать)", type: "scan" }], () => ({ title: "", placeholder: "", scan: "" })),
       listText("Доп. строки", c.education.extra)),
-    section("Принципы работы", listText("Запросы (с чем работаю)", c.principles.requests), fArea("С кем я работаю", c.principles, "withWhom"), fMedia("Фото (дуга сверху)", c.principles, "image", "image/*"),
+    section("Принципы работы", listText("Запросы (с чем работаю)", c.principles.requests), fRich("С кем я работаю", c.principles, "withWhom"), fMedia("Фото (дуга сверху)", c.principles, "image", "image/*"),
       listText("Подписи в кругах под фото (используются первые 3)", c.principles.circles),
       fArea("Блок у фото — заголовок", c.principles.side, "title"),
-      listObj("Блок у фото — пункты", c.principles.side.items, [{ key: "title", label: "Заголовок пункта" }, { key: "text", label: "Текст пункта", type: "area" }], () => ({ title: "", text: "" }))),
-    section("О подходе", listText("Абзацы", c.approach.paragraphs)),
+      listObj("Блок у фото — пункты", c.principles.side.items, [{ key: "title", label: "Заголовок пункта" }, { key: "text", label: "Текст пункта", type: "rich" }], () => ({ title: "", text: "" }))),
+    section("О подходе", listRich("Абзацы", c.approach.paragraphs)),
     section("Консультация",
       listObj("Факты", c.consultation.facts, [{ key: "label", label: "Заголовок" }, { key: "value", label: "Значение" }], () => ({ label: "", value: "" })),
-      fArea("Примечание", c.consultation, "note")),
-    section("FAQ", listObj("Вопросы", c.faq, [{ key: "q", label: "Вопрос" }, { key: "a", label: "Ответ", type: "area" }], () => ({ q: "", a: "" }))),
-    section("Контакты", fArea("Текст", c.contacts, "note"),
+      fRich("Примечание", c.consultation, "note")),
+    section("FAQ", listObj("Вопросы", c.faq, [{ key: "q", label: "Вопрос" }, { key: "a", label: "Ответ", type: "rich" }], () => ({ q: "", a: "" }))),
+    section("Контакты", fRich("Текст", c.contacts, "note"),
       fText("Ссылка EMDR Russia (значок в шапке)", c.contacts, "emdrUrl"),
       fText("Ссылка IFS Russia (значок в шапке)", c.contacts, "ifsUrl"),
       listObj("Документы (PDF)", c.contacts.docs, [{ key: "label", label: "Название" }, { key: "url", label: "Файл PDF", type: "pdf" }], () => ({ label: "", url: "" }))),
