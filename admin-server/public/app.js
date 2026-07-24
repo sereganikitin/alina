@@ -108,6 +108,7 @@ const DEFAULTS = {
     note:
       "Записаться можно в Telegram или WhatsApp — отвечаю лично. Или оставьте заявку через форму на сайте.",
   },
+  faqImage: "",
   faq: [
     { q: "Как проходит первая сессия?", a: "Знакомимся, я расспрашиваю о запросе…" },
     { q: "В каком формате мы работаем?", a: "Только онлайн, раз в неделю, долгосрочно." },
@@ -401,7 +402,8 @@ function renderContent() {
     section("Консультация",
       listObj("Факты", c.consultation.facts, [{ key: "label", label: "Заголовок" }, { key: "value", label: "Значение" }], () => ({ label: "", value: "" })),
       fRich("Примечание", c.consultation, "note")),
-    section("FAQ", listObj("Вопросы", c.faq, [{ key: "q", label: "Вопрос" }, { key: "a", label: "Ответ", type: "rich" }], () => ({ q: "", a: "" }))),
+    section("FAQ", fMedia("Фоновое фото под блоком FAQ (необязательно)", c, "faqImage", "image/*"),
+      listObj("Вопросы", c.faq, [{ key: "q", label: "Вопрос" }, { key: "a", label: "Ответ", type: "rich" }], () => ({ q: "", a: "" }))),
     section("Контакты", fRich("Текст", c.contacts, "note"),
       fText("Ссылка EMDR Russia (значок в шапке)", c.contacts, "emdrUrl"),
       fText("Ссылка IFS Russia (значок в шапке)", c.contacts, "ifsUrl"),

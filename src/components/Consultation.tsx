@@ -48,14 +48,28 @@ export default function Consultation() {
           <BookingForm />
         </div>
 
-        {/* FAQ аккордеон — summary::after в CSS рисует "+" */}
-        <div className="faq">
-          {c.faq.map((item) => (
-          <details key={item.q}>
-            <summary>{item.q}</summary>
-            <RichText html={item.a} className="ans" />
-          </details>
-          ))}
+        {/* FAQ — полупрозрачная плашка (опционально на фоне фото), вопрос/ответ капсулами Q/A */}
+        <div
+          className="faq-wrap"
+          style={c.faqImage ? { backgroundImage: `url(${c.faqImage})` } : undefined}
+        >
+          <div className="faq-panel">
+            <h3 className="faq-title">FAQ</h3>
+            <div className="faq-list">
+              {c.faq.map((item, i) => (
+                <div key={i} className="faq-item">
+                  <div className="faq-pill">
+                    <span className="faq-letter">Q</span>
+                    <span className="faq-text">{item.q}</span>
+                  </div>
+                  <div className="faq-pill faq-pill-a">
+                    <span className="faq-letter">A</span>
+                    <RichText html={item.a} className="faq-text ans" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -670,40 +670,65 @@ header.scrolled {
   color: #4a4032;
   max-width: 58ch;
 }
-.faq {
+.faq-wrap {
   margin-top: 44px;
-  border-top: 2px solid var(--ink);
+  border-radius: 28px;
+  overflow: hidden;
+  background-color: var(--card);
+  background-size: cover;
+  background-position: center;
 }
-.faq details {
-  border-bottom: 1px solid var(--line);
+.faq-panel {
+  background: rgba(216, 201, 179, 0.45);
+  backdrop-filter: blur(6px);
+  padding: clamp(24px, 5vw, 48px);
 }
-.faq summary {
-  cursor: pointer;
-  list-style: none;
-  padding: 24px 4px;
+.faq-title {
   font-family: var(--serif);
-  font-size: 1.3rem;
+  font-weight: 600;
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+}
+.faq-list {
+  margin-top: 20px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
   display: flex;
-  justify-content: space-between;
-  gap: 20px;
+  flex-direction: column;
+  gap: 24px;
+}
+.faq-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.faq-pill {
+  display: flex;
   align-items: center;
+  gap: 16px;
+  background: var(--card);
+  border-radius: 999px;
+  padding: 16px 28px;
+  box-shadow: 0 6px 18px rgba(58, 50, 38, 0.1);
 }
-.faq summary::-webkit-details-marker {
-  display: none;
+.faq-pill-a {
+  align-items: flex-start;
+  border-radius: 28px;
+  padding: 20px 28px;
 }
-.faq summary::after {
-  content: "+";
-  color: var(--terra);
-  font-size: 1.7rem;
-  transition: 0.2s;
+.faq-letter {
+  flex: none;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: var(--ink);
+  line-height: 1.2;
+  padding-right: 16px;
+  border-right: 1px solid var(--line);
 }
-.faq details[open] summary::after {
-  transform: rotate(45deg);
-}
-.faq .ans {
-  padding: 0 4px 26px;
-  color: #4a4032;
-  max-width: 66ch;
+.faq-text {
+  font-size: 1rem;
+  color: #3f362a;
+  line-height: 1.55;
 }
 
 /* ===== CONTACTS ===== */
