@@ -40,9 +40,12 @@ export default function Principles() {
         <div className="prin-full">
           <h3 className="prin-h">{c.principles.side.title}</h3>
           <div className="prin-items-grid">
-            {c.principles.side.items.map((item) => (
+            {c.principles.side.items.map((item, i) => (
               <div key={item.title} className="ph-side-item">
-                <p className="ph-side-item-title"><b>{item.title}</b></p>
+                <p className="ph-side-item-title">
+                  <span className="ph-side-item-num">{String(i + 1).padStart(2, "0")}/</span>
+                  {item.title}
+                </p>
                 <RichText html={item.text} className="ph-side-item-text" />
               </div>
             ))}
