@@ -61,7 +61,7 @@ export default function Education() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={open.placeholder} alt={open.title} className="mx-auto max-h-[72vh] w-auto max-w-full rounded-lg object-contain" />
             </div>
-            <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
+            <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-[var(--line)] pt-6">
               <p className="text-sm text-[var(--muted)]">{open.title}</p>
 
               <a href={open.scan} download className="btn btn-primary">
