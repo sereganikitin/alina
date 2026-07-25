@@ -43,7 +43,7 @@ export default function Principles() {
             {c.principles.side.items.map((item, i) => (
               <div key={item.title} className="ph-side-item">
                 <p className="ph-side-item-title">
-                  <span className="ph-side-item-num">{String(i + 1).padStart(2, "0")}/</span>
+                  <span className="ph-side-item-num">{String(i + 1).padStart(2, "0")}</span>
                   {item.title}
                 </p>
                 <RichText html={item.text} className="ph-side-item-text" />

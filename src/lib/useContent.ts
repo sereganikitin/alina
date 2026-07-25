@@ -21,6 +21,22 @@ function deepMerge<T>(def: T, over: unknown): T {
 let cache: SiteContent | null = null;
 let promise: Promise<SiteContent> | null = null;
 
+function loadContent(): Promise<SiteContent> {
+  if (!promise) {
+    promise = fetch("/content.json", { cache: "no-cache" })
+      .then((r) => (r.ok ? r.json() : {}))
+      .then((data) => {
+        cache = deepMerge(DEFAULT_CONTENT, data);
+        return cache;
+      })
+      .catch(() => {
+        cache = DEFAULT_CONTENT;
+        return cache;
+      });
+  }
+  return promise;
+}
+
 /** Возвращает контент: сначала дефолты, после загрузки /content.json — слитый. */
 export function useContent(): SiteContent {
   const [content, setContent] = useState<SiteContent>(cache ?? DEFAULT_CONTENT);
@@ -30,20 +46,30 @@ export function useContent(): SiteContent {
       setContent(cache);
       return;
     }
-    if (!promise) {
-      promise = fetch("/content.json", { cache: "no-cache" })
-        .then((r) => (r.ok ? r.json() : {}))
-        .then((data) => {
-          cache = deepMerge(DEFAULT_CONTENT, data);
-          return cache;
-        })
-        .catch(() => {
-          cache = DEFAULT_CONTENT;
-          return cache;
-        });
-    }
-    promise.then(setContent);
+    loadContent().then(setContent);
   }, []);
 
   return content;
+}
+
+/**
+ * true, когда реальный /content.json уже загружен (или загрузка не удалась
+ * и подтверждённо взяты дефолты). Пока сайт статический и контент грузится
+ * на клиенте, между первым рендером и ответом сервера компоненты видят
+ * DEFAULT_CONTENT — вшитые в сборку значения (старые фото/тексты), а не то,
+ * что реально настроено через админку. Используем это, чтобы не показывать
+ * секции, пока не пришли настоящие данные, вместо мигания старым контентом.
+ */
+export function useContentReady(): boolean {
+  const [ready, setReady] = useState(cache !== null);
+
+  useEffect(() => {
+    if (cache) {
+      setReady(true);
+      return;
+    }
+    loadContent().then(() => setReady(true));
+  }, []);
+
+  return ready;
 }

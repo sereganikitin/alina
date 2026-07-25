@@ -2,13 +2,18 @@
 
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { useContent } from "@/lib/useContent";
+import { useContent, useContentReady } from "@/lib/useContent";
 import { RichText } from "@/lib/richText";
 
 function BlogPostContent() {
   const c = useContent();
+  const ready = useContentReady();
   const slug = useSearchParams().get("slug") || "";
   const post = c.blog.posts.find((p) => p.slug === slug);
+
+  // Пока не пришёл настоящий content.json, посты ещё пустые (дефолт) —
+  // не показываем «Статья не найдена» по ошибке для реально существующей статьи.
+  if (!ready) return null;
 
   if (!post) {
     return (

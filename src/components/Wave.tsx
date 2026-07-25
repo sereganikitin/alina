@@ -21,7 +21,7 @@ export default function Wave({
       <defs>
         <filter id="wave-noise" x="0" y="0" width="120" height="120" filterUnits="userSpaceOnUse">
           <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="11" stitchTiles="stitch" result="t" />
-          <feColorMatrix in="t" type="matrix" values="0 0 0 0 0.55  0 0 0 0 0.49  0 0 0 0 0.4  0 0 0 0.35 0" />
+          <feColorMatrix in="t" type="matrix" values="0 0 0 0 0.55  0 0 0 0 0.49  0 0 0 0 0.4  0 0 0 0.55 0" />
         </filter>
         <pattern id="wave-paper" patternUnits="userSpaceOnUse" width="120" height="120">
           <rect width="120" height="120" fill={fill} />
