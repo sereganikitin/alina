@@ -203,7 +203,7 @@ async function changePass() {
 function showTab(name) {
   for (const t of document.querySelectorAll(".tab"))
     t.classList.toggle("active", t.dataset.tab === name);
-  for (const id of ["content", "media", "bookings", "settings"])
+  for (const id of ["content", "blog", "media", "bookings", "settings"])
     document.getElementById("tab-" + id).classList.toggle("hidden", id !== name);
   if (name === "media") loadMedia();
   if (name === "bookings") loadBookings();
@@ -407,18 +407,6 @@ function renderContent() {
     section("Консультация",
       listObj("Факты", c.consultation.facts, [{ key: "label", label: "Заголовок" }, { key: "value", label: "Значение" }], () => ({ label: "", value: "" })),
       fRich("Примечание", c.consultation, "note")),
-    section("Блог",
-      listObj("Статьи", c.blog.posts,
-        [
-          { key: "title", label: "Заголовок" },
-          { key: "slug", label: "URL статьи (латиницей, без пробелов, напр. trevoga)" },
-          { key: "date", label: "Дата публикации" },
-          { key: "cover", label: "Обложка", type: "image" },
-          { key: "excerpt", label: "Краткое описание (для превью)", type: "area" },
-          { key: "body", label: "Текст статьи", type: "rich" },
-        ],
-        () => ({ title: "", slug: "", date: "", cover: "", excerpt: "", body: "" })
-      )),
     section("FAQ", fMedia("Фото справа от блока FAQ (необязательно)", c, "faqImage", "image/*"),
       listObj("Вопросы", c.faq, [{ key: "q", label: "Вопрос" }, { key: "a", label: "Ответ", type: "rich" }], () => ({ q: "", a: "" }))),
     section("Контакты", fRich("Текст", c.contacts, "note"),
@@ -432,6 +420,30 @@ function renderContent() {
 async function saveContent() {
   const r = await api("/api/content", { method: "PUT", body: JSON.stringify(content) });
   toast(r.ok ? "Сохранено" : "Ошибка сохранения");
+}
+
+// Блог — на отдельной вкладке (не в общем списке текстов), т.к. статей
+// со временем станет много и общая вкладка «Тексты» стала бы слишком
+// длинной. Сохраняет тот же общий объект content, той же saveContent().
+function renderBlog() {
+  const root = document.getElementById("tab-blog");
+  root.innerHTML = "";
+  const c = content;
+  root.append(
+    section("Статьи блога",
+      listObj("Статьи", c.blog.posts,
+        [
+          { key: "title", label: "Заголовок" },
+          { key: "slug", label: "URL статьи (латиницей, без пробелов, напр. trevoga)" },
+          { key: "date", label: "Дата публикации" },
+          { key: "cover", label: "Обложка", type: "image" },
+          { key: "excerpt", label: "Краткое описание (для превью)", type: "area" },
+          { key: "body", label: "Текст статьи", type: "rich" },
+        ],
+        () => ({ title: "", slug: "", date: "", cover: "", excerpt: "", body: "" })
+      )),
+    h("div", { class: "save-bar" }, h("button", { class: "btn", onclick: saveContent }, "Сохранить изменения"), h("span", { class: "muted" }, "правки появятся на сайте сразу"))
+  );
 }
 
 // ---- media ----
@@ -485,6 +497,7 @@ async function loadAll() {
   const r = await api("/api/content");
   content = deepMerge(DEFAULTS, await r.json());
   renderContent();
+  renderBlog();
 }
 (async function init() {
   try {
