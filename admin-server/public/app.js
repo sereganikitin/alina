@@ -235,7 +235,7 @@ function fArea(label, obj, key) {
 // Тот же формат, что понимает richTextToHtml на сайте: если в строке уже
 // есть теги — это HTML из этого редактора; если нет — старый простой текст
 // с абзацами через пустую строку.
-const RICH_ALLOWED_TAGS = new Set(["p", "b", "strong", "i", "em", "u", "br", "div"]);
+const RICH_ALLOWED_TAGS = new Set(["p", "b", "strong", "i", "em", "u", "br", "div", "ul", "ol", "li"]);
 function escapeHtmlText(s) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
@@ -279,7 +279,8 @@ function fRich(label, obj, key) {
   toolbar.append(
     cmdBtn("bold", "b", "Ж"),
     cmdBtn("italic", "i", "К"),
-    cmdBtn("underline", "u", "Ч")
+    cmdBtn("underline", "u", "Ч"),
+    cmdBtn("insertUnorderedList", "list", "☰")
   );
   editor.addEventListener("focus", () => document.execCommand("defaultParagraphSeparator", false, "p"));
   editor.addEventListener("input", () => { obj[key] = sanitizeRichHtml(editor.innerHTML); });

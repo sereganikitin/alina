@@ -1037,6 +1037,29 @@ footer {
   margin-bottom: 0;
 }
 
+/* Маркированный список из rich-редактора (везде, где рендерится RichText) */
+.rich-text ul,
+.rich-text ol {
+  margin: 0 0 12px 0;
+  padding-left: 1.2em;
+}
+.rich-text ul {
+  list-style: disc;
+}
+.rich-text ol {
+  list-style: decimal;
+}
+.rich-text ul:last-child,
+.rich-text ol:last-child {
+  margin-bottom: 0;
+}
+.rich-text li {
+  margin-bottom: 6px;
+}
+.rich-text li:last-child {
+  margin-bottom: 0;
+}
+
 .ph-side-item-text {
   margin-top: 6px;
   font-size: 1.05rem;
@@ -1080,6 +1103,6 @@ footer {
 }
 .ph-side-item-num {
   margin-right: 6px;
-  font-style: italic;
+  font-style: normal;
   color: var(--terra);
 }

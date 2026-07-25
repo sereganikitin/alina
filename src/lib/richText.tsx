@@ -2,8 +2,8 @@
 
 import type { CSSProperties } from "react";
 
-// Базовое форматирование из админки: жирный/курсив/подчёркивание + абзацы.
-const ALLOWED_TAGS = new Set(["p", "b", "strong", "i", "em", "u", "br", "div"]);
+// Базовое форматирование из админки: жирный/курсив/подчёркивание + абзацы + маркированный список.
+const ALLOWED_TAGS = new Set(["p", "b", "strong", "i", "em", "u", "br", "div", "ul", "ol", "li"]);
 
 function escapeHtml(s: string): string {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -50,7 +50,7 @@ export function RichText({
 }) {
   return (
     <div
-      className={className}
+      className={["rich-text", className].filter(Boolean).join(" ")}
       style={style}
       dangerouslySetInnerHTML={{ __html: richTextToHtml(html) }}
     />
