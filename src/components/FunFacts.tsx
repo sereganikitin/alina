@@ -11,17 +11,19 @@ export default function FunFacts() {
     <section id="fun-facts" className="fun-facts-section">
       <div className="wrap">
         <div className="fun-facts-panel">
+          <div className="fun-facts-circle-text">
+            <div className="fun-facts-content">
+              <div className="kicker">Факты</div>
+              <h2 className="fun-facts-title">{c.funFacts.title}</h2>
+              <RichText html={c.funFacts.text} className="fun-facts-text" />
+            </div>
+          </div>
           {c.funFacts.image && (
-            <div className="fun-facts-photo">
+            <div className="fun-facts-circle-photo">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={c.funFacts.image} alt="" />
             </div>
           )}
-          <div className="fun-facts-content">
-            <div className="kicker">Факты</div>
-            <h2 className="fun-facts-title">{c.funFacts.title}</h2>
-            <RichText html={c.funFacts.text} className="fun-facts-text" />
-          </div>
         </div>
       </div>
     </section>

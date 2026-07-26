@@ -657,48 +657,82 @@ a.assoc-icon:hover {
 }
 
 /* ===== ИНТЕРЕСНЫЕ ФАКТЫ (перед FAQ) ===== */
+/* Два перекрывающихся круга: фото-круг (сверху, по z-index) слева наезжает
+   на текстовый круг-контур справа — как на референсе. */
 .fun-facts-panel {
-  display: grid;
-  grid-template-columns: 1fr 1.15fr;
-  align-items: stretch;
-  border: 1px solid var(--line);
-  border-radius: clamp(28px, 4vw, 48px);
+  position: relative;
+  aspect-ratio: 2.1 / 1;
+  min-height: 340px;
+}
+.fun-facts-circle-photo,
+.fun-facts-circle-text {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+.fun-facts-circle-photo {
+  left: 0;
+  z-index: 2;
   overflow: hidden;
-  background: var(--card);
 }
-.fun-facts-photo {
-  min-height: 320px;
-}
-.fun-facts-photo img {
+.fun-facts-circle-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.fun-facts-content {
-  padding: clamp(32px, 5vw, 56px);
+.fun-facts-circle-text {
+  right: 0;
+  z-index: 1;
+  border: 1px solid var(--line);
+  background: var(--card);
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
+}
+.fun-facts-content {
+  max-width: 54%;
+  margin-left: auto;
+  padding-right: 10%;
 }
 .fun-facts-title {
   font-family: var(--serif);
   font-weight: 600;
-  font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+  font-size: clamp(1.5rem, 2.4vw, 2.1rem);
   line-height: 1.15;
   margin-top: 14px;
 }
 .fun-facts-text {
-  margin-top: 20px;
-  font-size: 1.05rem;
-  line-height: 1.7;
+  margin-top: 18px;
+  font-size: 1rem;
+  line-height: 1.65;
   color: #4a4032;
 }
 @media (max-width: 760px) {
   .fun-facts-panel {
-    grid-template-columns: 1fr;
+    aspect-ratio: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
   }
-  .fun-facts-photo {
-    min-height: 240px;
+  .fun-facts-circle-photo,
+  .fun-facts-circle-text {
+    position: static;
+    width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+    border-radius: 24px;
+  }
+  .fun-facts-circle-photo {
+    aspect-ratio: 4 / 3;
+  }
+  .fun-facts-circle-text {
+    padding: 28px 22px;
+  }
+  .fun-facts-content {
+    max-width: 100%;
+    margin-left: 0;
+    padding-right: 0;
   }
 }
 
