@@ -39,6 +39,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -290,6 +291,18 @@ header.scrolled {
   }
   .hero-quote {
     font-size: 1.3rem;
+  }
+  /* На узких экранах фото занимает всю ширину, текст/значки сидят прямо
+     на нём без "пустой" зоны, как на десктопе — добавляем тёплую бежевую
+     подложку (цвет фона сайта), чтобы надписи не сливались с фото. */
+  .hero-scrim {
+    background: linear-gradient(
+      180deg,
+      rgba(240, 231, 216, 0.88) 0%,
+      rgba(240, 231, 216, 0.8) 38%,
+      rgba(240, 231, 216, 0.45) 60%,
+      rgba(240, 231, 216, 0) 78%
+    );
   }
   .badges {
     grid-template-columns: 1fr;
@@ -567,7 +580,10 @@ a.assoc-icon:hover {
   font-size: 1.15rem;
   color: #3a3226;
   border-bottom: 1px solid var(--line);
-  flex: 0 0 auto;
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 100%;
+  white-space: normal;
 }
 .chip:hover {
   color: var(--terra);
