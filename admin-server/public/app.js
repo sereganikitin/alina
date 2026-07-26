@@ -108,6 +108,11 @@ const DEFAULTS = {
     note:
       "Записаться можно в Telegram или WhatsApp — отвечаю лично. Или оставьте заявку через форму на сайте.",
   },
+  funFacts: {
+    image: "",
+    title: "Интересные факты обо мне",
+    text: "<ul><li>У меня СДВГ и РАС</li><li>Я гедонист</li><li>Люблю путешествовать, много живу в разных странах</li><li>Говорю на нескольких языках</li><li>У меня дипломная работа по буддизму и этнопсихологии</li><li>Люблю людей, и мне кажется, что мир интересный.</li></ul>",
+  },
   blog: {
     posts: [],
   },
@@ -407,6 +412,10 @@ function renderContent() {
     section("Консультация",
       listObj("Факты", c.consultation.facts, [{ key: "label", label: "Заголовок" }, { key: "value", label: "Значение" }], () => ({ label: "", value: "" })),
       fRich("Примечание", c.consultation, "note")),
+    section("Интересные факты обо мне (перед FAQ)",
+      fMedia("Фото", c.funFacts, "image", "image/*"),
+      fText("Заголовок", c.funFacts, "title"),
+      fRich("Текст", c.funFacts, "text")),
     section("FAQ", fMedia("Фото справа от блока FAQ (необязательно)", c, "faqImage", "image/*"),
       listObj("Вопросы", c.faq, [{ key: "q", label: "Вопрос" }, { key: "a", label: "Ответ", type: "rich" }], () => ({ q: "", a: "" }))),
     section("Контакты", fRich("Текст", c.contacts, "note"),

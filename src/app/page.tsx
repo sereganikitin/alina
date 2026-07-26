@@ -3,6 +3,7 @@ import About from "@/components/About";
 import Education from "@/components/Education";
 import Principles from "@/components/Principles";
 import Approach from "@/components/Approach";
+import FunFacts from "@/components/FunFacts";
 import Consultation from "@/components/Consultation";
 import BlogPreview from "@/components/BlogPreview";
 import Contacts from "@/components/Contacts";
@@ -17,6 +18,7 @@ export default function Home() {
         <Education />
         <Principles />
         <Approach />
+        <FunFacts />
         <Consultation />
         <BlogPreview />
         <Contacts />

@@ -31,7 +31,7 @@ export default function Principles() {
             <h3 className="prin-h" style={{ marginTop: "36px" }}>С чем я работаю</h3>
             <div className="chips">
               {c.principles.requests.map((r) => (
-                <span key={r} className="btn btn-primary chip-btn">{r}</span>
+                <span key={r} className="btn chip-btn">{r}</span>
               ))}
             </div>
           </div>
