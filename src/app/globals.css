@@ -15,7 +15,7 @@
   --sans: "Inter", system-ui, sans-serif;
   /* Бумажная зернистая текстура (SVG fractalNoise, тайл 180×180, tinted под --ink) —
      накладывается через background-blend-mode: multiply поверх цвета секции. */
-  --paper: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='n' x='0' y='0' width='400' height='400' filterUnits='userSpaceOnUse'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='11' stitchTiles='stitch' result='t'/><feColorMatrix in='t' type='matrix' values='0 0 0 0 0.55  0 0 0 0 0.49  0 0 0 0 0.4  0 0 0 0.55 0'/></filter><rect width='400' height='400' filter='url(%23n)'/></svg>");
+  --paper: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='n' x='0' y='0' width='400' height='400' filterUnits='userSpaceOnUse'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='11' stitchTiles='stitch' result='t'/><feColorMatrix in='t' type='matrix' values='0 0 0 0 0.55  0 0 0 0 0.49  0 0 0 0 0.4  0 0 0 0.7 0'/></filter><rect width='400' height='400' filter='url(%23n)'/></svg>");
 }
 
 @theme inline {
@@ -339,12 +339,13 @@ header.scrolled {
 .about::before {
   content: "";
   position: absolute;
-  top: -80px;  /* ← было 0 (через inset), теперь заходит вверх */
+  top: -80px;  /* заходит вверх, чтобы спрятаться под волной — без зазора с Hero */
   left: 0;
   right: 0;
   bottom: 0;
+  background-image: url('/photos/about-texture.png');
   background-size: cover;
-  background-position: center;
+  background-position: center top;
   pointer-events: none;
   z-index: 0;
 }
