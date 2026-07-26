@@ -25,15 +25,15 @@ export default function Principles() {
             </div>
           </div>
           <div className="ph-side">
-            <h3 className="prin-h">С чем я работаю</h3>
+            <h3 className="prin-h">С кем я работаю</h3>
+            <RichText html={c.principles.withWhom} className="with" />
+
+            <h3 className="prin-h" style={{ marginTop: "36px" }}>С чем я работаю</h3>
             <div className="chips">
               {c.principles.requests.map((r) => (
-                <span key={r} className="chip">{r}</span>
+                <span key={r} className="btn btn-primary chip-btn">{r}</span>
               ))}
             </div>
-
-            <h3 className="prin-h" style={{ marginTop: "36px" }}>С кем я работаю</h3>
-            <RichText html={c.principles.withWhom} className="with" />
           </div>
         </div>
 

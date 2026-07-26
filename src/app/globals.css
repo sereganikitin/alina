@@ -558,24 +558,17 @@ a.assoc-icon:hover {
 .chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 0;
+  gap: 10px;
   margin-top: 20px;
-  border-top: 1px solid var(--line);
 }
-.chip {
-  padding: 14px 22px 14px 0;
-  margin-right: 26px;
-  font-family: var(--serif);
-  font-size: 1.15rem;
-  color: #3a3226;
-  border-bottom: 1px solid var(--line);
-  flex: 0 1 auto;
+/* Пункты "С чем я работаю" — как обычная кнопка сайта (.btn.btn-primary),
+   но примерно на треть ниже; пока не кликабельны, но с тем же ховером. */
+.chip-btn {
+  padding: 10px 22px;
   min-width: 0;
   max-width: 100%;
   white-space: normal;
-}
-.chip:hover {
-  color: var(--terra);
+  text-align: center;
 }
 .with {
   margin-top: 18px;
