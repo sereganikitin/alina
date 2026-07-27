@@ -351,11 +351,14 @@ header.scrolled {
                              светлый край оказался у шва с волной сверху */
   pointer-events: none;
   z-index: 0;
-  /* Плавно проявляется сверху вниз — у самой кромки волны (см. Wave.tsx,
+  /* Плавно проявляется у кромки волны — у самой кромки (см. Wave.tsx,
      она там гаснет в сплошную заливку+зерно) виден тот же плоский фон,
-     а не два разных среза картинки встык одной прямой линией. */
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 90px);
-  mask-image: linear-gradient(to bottom, transparent 0, #000 90px);
+     а не два разных среза картинки встык одной прямой линией.
+     Маска задана "to top", т.к. transform:scaleY(-1) выше переворачивает
+     ЭЛЕМЕНТ целиком (картинку и маску вместе) — с "to bottom" плавный
+     край после переворота уезжал вниз, а у шва оставалась резкая линия. */
+  -webkit-mask-image: linear-gradient(to top, transparent 0, #000 90px);
+  mask-image: linear-gradient(to top, transparent 0, #000 90px);
 }
 
 .about-grid {
