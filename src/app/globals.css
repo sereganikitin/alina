@@ -591,8 +591,15 @@ a.assoc-icon:hover {
 }
 .prin-items-grid {
   margin-top: 12px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 44px;
+  row-gap: 36px;
+}
+@media (max-width: 760px) {
+  .prin-items-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ===== APPROACH ===== */
@@ -1184,16 +1191,12 @@ footer {
 }
 
 .ph-side-item {
-  padding: 26px 0;
-}
-.ph-side-item:first-child {
-  padding-top: 0;
-}
-.ph-side-item + .ph-side-item {
-  border-top: 1px solid var(--line);
+  padding: 0;
 }
 .ph-side-item-title {
-  margin-bottom: 8px;
+  margin-bottom: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
   font-family: var(--serif);
   font-weight: 600;
   font-size: 1.3rem;
