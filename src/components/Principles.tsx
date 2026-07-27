@@ -29,7 +29,11 @@ export default function Principles() {
             <RichText html={c.principles.withWhom} className="with" />
 
             <h3 className="prin-h" style={{ marginTop: "36px" }}>С чем я работаю</h3>
-            <p className="with">{c.principles.requests.join(", ")}</p>
+            <div className="chips">
+              {c.principles.requests.map((r) => (
+                <span key={r} className="btn chip-btn">{r}</span>
+              ))}
+            </div>
           </div>
         </div>
 

@@ -555,6 +555,28 @@ a.assoc-icon:hover {
   font-size: clamp(1.7rem, 2.8vw, 2.4rem);
   line-height: 1.12;
 }
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+/* Пункты "С чем я работаю" — как обычная кнопка сайта (.btn.btn-primary),
+   но примерно на треть ниже; пока не кликабельны, но с тем же ховером. */
+.chip-btn {
+  padding: 10px 22px;
+  min-width: 0;
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+  background: transparent;
+  border: 1.5px solid var(--terra);
+  color: var(--terra);
+}
+.chip-btn:hover {
+  background: var(--terra);
+  color: #f7f0e3;
+}
 .with {
   margin-top: 18px;
   max-width: 62ch;
