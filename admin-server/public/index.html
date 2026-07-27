@@ -33,6 +33,13 @@
       .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
       .muted { color: var(--muted); font-size: 13px; }
       .item { border: 1px solid var(--line); border-radius: 12px; padding: 12px; margin-bottom: 10px; background: #fff; }
+      .drag-handle { cursor: grab; color: var(--muted); font-size: 17px; line-height: 1; padding: 4px 6px; user-select: none; touch-action: none; }
+      .drag-handle:active { cursor: grabbing; }
+      .reorder-btns { display: flex; gap: 4px; }
+      .reorder-btns button { width: 26px; height: 26px; padding: 0; font-size: 12px; line-height: 1; }
+      .reorder-btns button:disabled { opacity: .35; cursor: default; }
+      .drag-row.dragging { opacity: .4; }
+      .drag-row.drag-over { outline: 2px dashed var(--terra); outline-offset: 2px; }
       .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
       .thumb { height: 64px; border-radius: 8px; border: 1px solid var(--line); object-fit: cover; }
       .media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); gap: 12px; }

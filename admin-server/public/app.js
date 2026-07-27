@@ -309,7 +309,10 @@ function listRich(label, arr) {
       const ed = field.querySelector(".rich-editor");
       ed.addEventListener("input", sync);
       ed.addEventListener("blur", sync);
-      list.append(h("div", { class: "item" }, field, del));
+      const handle = dragHandle();
+      const row = h("div", { class: "item drag-row" }, h("div", { class: "row", style: "justify-content:space-between;align-items:center" }, handle, reorderControls(i, arr, render)), field, del);
+      attachDrag(row, handle, i, arr, render);
+      list.append(row);
     });
   }
   render();
@@ -343,6 +346,52 @@ function fMedia(label, obj, key, accept) {
   wrap.append(inp, h("div", { class: "row", style: "margin-top:6px" }, btn, file), prev);
   return wrap;
 }
+// ---- перестановка пунктов в списках (перетаскиванием за ручку "⠿" + запасные кнопки ↑/↓) ----
+// Ручка — единственный draggable-элемент внутри карточки/строки: если сделать draggable
+// всю карточку, это ломает выделение текста мышью в текстовых полях/rich-редакторе
+// (браузер начинает нативный drag вместо выделения). Ручка запускает drag, а картинкой
+// перетаскивания показываем всю карточку (setDragImage), чтобы визуально двигалась она целиком.
+function dragHandle() {
+  return h("span", { class: "drag-handle", title: "Перетащите, чтобы изменить порядок" }, "⠿");
+}
+function reorderControls(i, arr, render) {
+  const up = h("button", {
+    class: "btn-ghost btn-sm", type: "button", title: "Переместить вверх",
+    disabled: i === 0 ? "disabled" : undefined,
+    onclick: () => { if (i > 0) { [arr[i - 1], arr[i]] = [arr[i], arr[i - 1]]; render(); } },
+  }, "↑");
+  const down = h("button", {
+    class: "btn-ghost btn-sm", type: "button", title: "Переместить вниз",
+    disabled: i === arr.length - 1 ? "disabled" : undefined,
+    onclick: () => { if (i < arr.length - 1) { [arr[i + 1], arr[i]] = [arr[i], arr[i + 1]]; render(); } },
+  }, "↓");
+  return h("div", { class: "reorder-btns" }, up, down);
+}
+function attachDrag(row, handle, i, arr, render) {
+  handle.draggable = true;
+  handle.addEventListener("dragstart", (e) => {
+    e.dataTransfer.effectAllowed = "move";
+    e.dataTransfer.setData("text/plain", String(i));
+    try { e.dataTransfer.setDragImage(row, 16, 16); } catch {}
+    row.classList.add("dragging");
+  });
+  handle.addEventListener("dragend", () => row.classList.remove("dragging"));
+  row.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = "move";
+    row.classList.add("drag-over");
+  });
+  row.addEventListener("dragleave", () => row.classList.remove("drag-over"));
+  row.addEventListener("drop", (e) => {
+    e.preventDefault();
+    row.classList.remove("drag-over");
+    const from = Number(e.dataTransfer.getData("text/plain"));
+    if (Number.isNaN(from) || from === i) return;
+    const [moved] = arr.splice(from, 1);
+    arr.splice(i, 0, moved);
+    render();
+  });
+}
 function listText(label, arr) {
   const box = h("div", {}, h("label", {}, label));
   const list = h("div");
@@ -352,7 +401,10 @@ function listText(label, arr) {
       const inp = h("input", { type: "text", value: val });
       inp.addEventListener("input", () => (arr[i] = inp.value));
       const del = h("button", { class: "btn-ghost btn-sm", type: "button", onclick: () => { arr.splice(i, 1); render(); } }, "✕");
-      list.append(h("div", { class: "row", style: "margin-bottom:6px" }, h("div", { style: "flex:1" }, inp), del));
+      const handle = dragHandle();
+      const row = h("div", { class: "row drag-row", style: "margin-bottom:6px" }, handle, h("div", { style: "flex:1" }, inp), reorderControls(i, arr, render), del);
+      attachDrag(row, handle, i, arr, render);
+      list.append(row);
     });
   }
   render();
@@ -366,7 +418,9 @@ function listObj(label, arr, fields, factory) {
   function render() {
     list.innerHTML = "";
     arr.forEach((item, i) => {
-      const card = h("div", { class: "item" });
+      const card = h("div", { class: "item drag-row" });
+      const handle = dragHandle();
+      card.append(h("div", { class: "row", style: "justify-content:space-between;align-items:center" }, handle, reorderControls(i, arr, render)));
       for (const f of fields) {
         if (f.type === "image") card.append(fMedia(f.label, item, f.key, "image/*"));
         else if (f.type === "pdf") card.append(fMedia(f.label, item, f.key, "application/pdf"));
@@ -376,6 +430,7 @@ function listObj(label, arr, fields, factory) {
         else card.append(fText(f.label, item, f.key));
       }
       card.append(h("button", { class: "btn-ghost btn-sm", type: "button", style: "margin-top:8px", onclick: () => { arr.splice(i, 1); render(); } }, "Удалить"));
+      attachDrag(card, handle, i, arr, render);
       list.append(card);
     });
   }
