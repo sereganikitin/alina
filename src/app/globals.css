@@ -347,6 +347,8 @@ header.scrolled {
   background-image: url('/photos/about-texture.png');
   background-size: cover;
   background-position: center top;
+  transform: scaleY(-1); /* картинка внизу светлее — переворачиваем, чтобы
+                             светлый край оказался у шва с волной сверху */
   pointer-events: none;
   z-index: 0;
   /* Плавно проявляется сверху вниз — у самой кромки волны (см. Wave.tsx,
