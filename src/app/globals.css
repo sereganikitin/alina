@@ -349,6 +349,11 @@ header.scrolled {
   background-position: center top;
   pointer-events: none;
   z-index: 0;
+  /* Плавно проявляется сверху вниз — у самой кромки волны (см. Wave.tsx,
+     она там гаснет в сплошную заливку+зерно) виден тот же плоский фон,
+     а не два разных среза картинки встык одной прямой линией. */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 90px);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 90px);
 }
 
 .about-grid {

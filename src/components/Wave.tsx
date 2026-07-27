@@ -10,6 +10,12 @@ import { WAVE_CURVE_WIDTH, waveCurvePath } from "@/lib/waveCurve";
  */
 const VIEWBOX_HEIGHT = 90;
 const OFFSET_Y = 16;
+// Начиная с этой высоты (в % от VIEWBOX_HEIGHT) картинка-срез плавно
+// растворяется в сплошную заливку (fill+шум) — к нижнему краю полосы
+// остаётся ровно тот же плоский фон+зерно, что и в начале следующей
+// секции (см. .about::before/mask-image в globals.css), поэтому шов
+// сходится в одном и том же тоне, а не в двух разных срезах картинки.
+const FADE_START_FRACTION = 40 / VIEWBOX_HEIGHT;
 // Соотношение сторон src/../public/photos/about-texture.png — 1920×1266.
 const TEXTURE_ASPECT = 1920 / 1266;
 
@@ -37,6 +43,14 @@ export default function Wave({
           <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="11" stitchTiles="stitch" result="t" />
           <feColorMatrix in="t" type="matrix" values="0 0 0 0 0.55  0 0 0 0 0.49  0 0 0 0 0.4  0 0 0 0.7 0" />
         </filter>
+        <linearGradient id="wave-fade" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fff" />
+          <stop offset={FADE_START_FRACTION} stopColor="#fff" />
+          <stop offset="1" stopColor="#000" />
+        </linearGradient>
+        <mask id="wave-fade-mask">
+          <rect width={WAVE_CURVE_WIDTH} height={VIEWBOX_HEIGHT} fill="url(#wave-fade)" />
+        </mask>
         <pattern id="wave-fill" patternUnits="userSpaceOnUse" width={WAVE_CURVE_WIDTH} height={VIEWBOX_HEIGHT}>
           <rect width={WAVE_CURVE_WIDTH} height={VIEWBOX_HEIGHT} fill={fill} />
           <rect width={WAVE_CURVE_WIDTH} height={VIEWBOX_HEIGHT} filter="url(#wave-noise)" style={{ mixBlendMode: "multiply" }} />
@@ -48,6 +62,7 @@ export default function Wave({
               width={WAVE_CURVE_WIDTH}
               height={textureHeight}
               preserveAspectRatio="xMidYMin slice"
+              mask="url(#wave-fade-mask)"
             />
           )}
         </pattern>
