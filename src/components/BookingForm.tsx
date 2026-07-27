@@ -1,22 +1,38 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
+import { useContent } from "@/lib/useContent";
 
 // Заявки уходят в админку (сохраняются в базе заявок).
 const BOOKING_ENDPOINT = "/api/bookings";
 
 type Status = "idle" | "sending" | "sent" | "demo" | "error";
 
+// Пока страниц с текстами документов нет — ссылка появится, когда в админке пропишут url.
+function DocLink({ url, children }: { url: string; children: ReactNode }) {
+  if (!url) return <span className="underline underline-offset-2">{children}</span>;
+  return (
+    <a href={url} target="_blank" rel="noreferrer" className="underline underline-offset-2">
+      {children}
+    </a>
+  );
+}
+
 export default function BookingForm() {
+  const c = useContent();
+  const dataDoc = c.contacts.docs.find((d) => d.label === "Согласие на обработку персональных данных");
+  const privacyDoc = c.contacts.docs.find((d) => d.label === "Политика конфиденциальности");
+
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
   const [message, setMessage] = useState("");
-  const [consent, setConsent] = useState(false);
+  const [consentData, setConsentData] = useState(false);
+  const [consentPrivacy, setConsentPrivacy] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!consent || !name.trim() || !contact.trim()) return;
+    if (!consentData || !consentPrivacy || !name.trim() || !contact.trim()) return;
 
     if (!BOOKING_ENDPOINT) {
       setStatus("demo"); // отправка ещё не подключена
@@ -100,17 +116,28 @@ export default function BookingForm() {
       <label className="flex items-start gap-3 text-sm text-foreground/75">
         <input
           type="checkbox"
-          checked={consent}
-          onChange={(e) => setConsent(e.target.checked)}
+          checked={consentData}
+          onChange={(e) => setConsentData(e.target.checked)}
           required
           className="mt-1 h-4 w-4 shrink-0 accent-terracotta"
         />
         <span>
-          Я согласен(а) на обработку персональных данных в соответствии с{" "}
-          <a href="#contacts" className="underline underline-offset-2">
-            политикой конфиденциальности
-          </a>
-          .
+          Даю согласие на{" "}
+          <DocLink url={dataDoc?.url ?? ""}>обработку персональных данных</DocLink>
+        </span>
+      </label>
+
+      <label className="flex items-start gap-3 text-sm text-foreground/75">
+        <input
+          type="checkbox"
+          checked={consentPrivacy}
+          onChange={(e) => setConsentPrivacy(e.target.checked)}
+          required
+          className="mt-1 h-4 w-4 shrink-0 accent-terracotta"
+        />
+        <span>
+          Соглашаюсь с{" "}
+          <DocLink url={privacyDoc?.url ?? ""}>политикой конфиденциальности</DocLink>
         </span>
       </label>
 

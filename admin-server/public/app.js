@@ -30,6 +30,11 @@ const DEFAULTS = {
       "Интегральные методики из разных подходов",
     ],
     image: "/photos/about.jpg",
+    links: [
+      { label: "EMDR Russia", url: "" },
+      { label: "IFS Russia", url: "" },
+      { label: "EMDR Europe", url: "" },
+    ],
   },
   education: {
     lead:
@@ -455,7 +460,8 @@ function renderContent() {
       fArea("Кнопка (текст)", c.hero.cta, "primary"),
       fArea("Ссылка рядом (текст)", c.hero.cta, "secondary"),
       fMedia("Фото шапки", c.hero, "image", "image/*")),
-    section("Обо мне", fArea("Заголовок", c.about, "title"), fRich("Подпись", c.about, "lead"), listText("Методы", c.about.methods), fMedia("Фото в арке", c.about, "image", "image/*")),
+    section("Обо мне", fArea("Заголовок", c.about, "title"), fRich("Подпись", c.about, "lead"), listText("Методы", c.about.methods), fMedia("Фото в арке", c.about, "image", "image/*"),
+      listObj("Кнопки-ссылки (ассоциации)", c.about.links, [{ key: "label", label: "Текст на кнопке" }, { key: "url", label: "Ссылка" }], () => ({ label: "", url: "" }))),
     section("Образование", fRich("Вступление", c.education, "lead"),
       listObj("Дипломы", c.education.diplomas, [{ key: "title", label: "Название" }, { key: "placeholder", label: "Заглушка (превью на карточке)", type: "image" }, { key: "scan", label: "Скан (открывается в попапе, можно скачать)", type: "scan" }], () => ({ title: "", placeholder: "", scan: "" })),
       listText("Доп. строки", c.education.extra)),
@@ -474,9 +480,9 @@ function renderContent() {
     section("FAQ", fMedia("Фото справа от блока FAQ (необязательно)", c, "faqImage", "image/*"),
       listObj("Вопросы", c.faq, [{ key: "q", label: "Вопрос" }, { key: "a", label: "Ответ", type: "rich" }], () => ({ q: "", a: "" }))),
     section("Контакты", fRich("Текст", c.contacts, "note"),
-      fText("Ссылка EMDR Russia (значок в «Обо мне»)", c.contacts, "emdrUrl"),
-      fText("Ссылка IFS Russia (значок в «Обо мне»)", c.contacts, "ifsUrl"),
-      fText("Ссылка EMDR Europe (значок в «Обо мне»)", c.contacts, "emdrEuropeUrl"),
+      fText("Ссылка EMDR Russia (значок в футере)", c.contacts, "emdrUrl"),
+      fText("Ссылка IFS Russia (значок в футере)", c.contacts, "ifsUrl"),
+      fText("Ссылка EMDR Europe (значок в футере)", c.contacts, "emdrEuropeUrl"),
       listObj("Документы (PDF)", c.contacts.docs, [{ key: "label", label: "Название" }, { key: "url", label: "Файл PDF", type: "pdf" }], () => ({ label: "", url: "" }))),
     h("div", { class: "save-bar" }, h("button", { class: "btn", onclick: saveContent }, "Сохранить изменения"), h("span", { class: "muted" }, "правки появятся на сайте сразу"))
   );

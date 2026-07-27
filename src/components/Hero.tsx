@@ -90,7 +90,7 @@ export default function Hero() {
         </ul>
 
         <div className="hero-cta">
-          <a href="#consult" className="btn btn-primary">
+          <a href="#contacts" className="btn btn-primary">
             {c.hero.cta.primary}
           </a>
           <a href="#approach" className="lnk">

@@ -10,6 +10,7 @@ export default function FunFacts() {
   return (
     <section id="fun-facts" className="fun-facts-section">
       <div className="wrap">
+        <div className="kicker">Факты</div>
         <div className="fun-facts-panel">
           {c.funFacts.image && (
             <div className="fun-facts-circle-photo">
@@ -19,7 +20,6 @@ export default function FunFacts() {
           )}
           <div className="fun-facts-circle-text">
             <div className="fun-facts-content">
-              <div className="kicker">Факты</div>
               <h2 className="fun-facts-title">{c.funFacts.title}</h2>
               <RichText html={c.funFacts.text} className="fun-facts-text" />
             </div>

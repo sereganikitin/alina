@@ -5,6 +5,7 @@ import Principles from "@/components/Principles";
 import Approach from "@/components/Approach";
 import FunFacts from "@/components/FunFacts";
 import Consultation from "@/components/Consultation";
+import BookingSection from "@/components/BookingSection";
 import BlogPreview from "@/components/BlogPreview";
 import Contacts from "@/components/Contacts";
 import ContentGate from "@/components/ContentGate";
@@ -18,8 +19,9 @@ export default function Home() {
         <Education />
         <Principles />
         <Approach />
-        <FunFacts />
         <Consultation />
+        <FunFacts />
+        <BookingSection />
         <BlogPreview />
         <Contacts />
       </ContentGate>

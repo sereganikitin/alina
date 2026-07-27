@@ -1,7 +1,20 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useContent } from "@/lib/useContent";
 import { RichText } from "@/lib/richText";
+import { EmdrLogo, IfsLogo, EmdrEuropeLogo } from "./AssocIcons";
+
+// Оборачивает значок в ссылку, только если URL задан — иначе значок
+// остаётся некликабельным (просто <span>).
+function AssocLink({ url, children }: { url: string; children: ReactNode }) {
+  if (!url) return <span className="assoc-icon">{children}</span>;
+  return (
+    <a href={url} target="_blank" rel="noreferrer" className="assoc-icon">
+      {children}
+    </a>
+  );
+}
 
 const TelegramIcon = (
   <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
@@ -44,6 +57,17 @@ export default function Contacts() {
       </section>
 
       <footer>
+        <div className="assoc">
+          <AssocLink url={c.contacts.emdrUrl}>
+            <EmdrLogo />
+          </AssocLink>
+          <AssocLink url={c.contacts.ifsUrl}>
+            <IfsLogo />
+          </AssocLink>
+          <AssocLink url={c.contacts.emdrEuropeUrl}>
+            <EmdrEuropeLogo />
+          </AssocLink>
+        </div>
         © 2026 Алина Дубовская · психолог, EMDR- и IFS-терапевт
       </footer>
     </>

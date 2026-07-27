@@ -34,6 +34,11 @@ export const DEFAULT_CONTENT = {
       "Интегральные методики из разных подходов",
     ],
     image: "/photos/about.jpg",
+    links: [
+      { label: "EMDR Russia", url: "" },
+      { label: "IFS Russia", url: "" },
+      { label: "EMDR Europe", url: "" },
+    ],
   },
   education: {
     lead:

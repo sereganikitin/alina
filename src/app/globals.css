@@ -32,9 +32,11 @@
   --font-display: var(--font-display);
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+  }
 }
 
 html {
@@ -395,12 +397,14 @@ header.scrolled {
   margin-top: 16px;
   line-height: 1.15;
 }
+/* Используется в футере (значки-ассоциации переехали туда из "Обо мне") */
 .assoc {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 34px;
   align-items: center;
-  margin-top: 30px;
+  margin-bottom: 22px;
   color: var(--terra);
 }
 .assoc .lk {
@@ -488,11 +492,23 @@ a.assoc-icon:hover {
 
 /* ===== PRINCIPLES ===== */
 .principles {
+  position: relative;
   background-color: var(--card);
   background-image: var(--paper);
   background-blend-mode: multiply;
   border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+}
+/* Тот же теневой фон, что и в "Обо мне" (.about::before) — здесь без
+   маски и переворота, т.к. со швом волны сверху граничить не нужно. */
+.principles::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('/photos/about-texture.png');
+  background-size: cover;
+  background-position: center top;
+  pointer-events: none;
+  z-index: 0;
 }
 .prin-photo {
   display: grid;
@@ -572,6 +588,9 @@ a.assoc-icon:hover {
   gap: 10px;
   margin-top: 20px;
 }
+.about-links {
+  margin-top: 30px;
+}
 /* Пункты "С чем я работаю" — как обычная кнопка сайта (.btn.btn-primary),
    но примерно на треть ниже; пока не кликабельны, но с тем же ховером. */
 .chip-btn {
@@ -600,10 +619,11 @@ a.assoc-icon:hover {
   line-height: 1.7;
   color: #4a4032;
 }
-.prin-full {
-  margin-top: 56px;
-  padding-top: 44px;
+/* Вторая половина "Принципов" — отделена от верхней (тень+карточный фон)
+   собственной секцией на обычном фоне сайта, без теней. */
+.prin-side-section {
   border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
 .prin-items-grid {
   margin-top: 12px;
@@ -620,7 +640,7 @@ a.assoc-icon:hover {
 
 /* ===== APPROACH ===== */
 .approach-section {
-  background-color: var(--bg);
+  background-color: var(--card);
   background-image: var(--paper);
   background-blend-mode: multiply;
 }
@@ -679,7 +699,12 @@ a.assoc-icon:hover {
   line-height: 1.75;
 }
 
-/* ===== ИНТЕРЕСНЫЕ ФАКТЫ (перед FAQ) ===== */
+/* ===== ИНТЕРЕСНЫЕ ФАКТЫ (после FAQ, перед формой записи) ===== */
+.fun-facts-section {
+  background-color: var(--bg);
+  background-image: var(--paper);
+  background-blend-mode: multiply;
+}
 /* Не два полных круга, а два прямоугольника (50/50), у каждого скруглён
    только внутренний край (почти до полукруга) — стыкуются точно по центру
    изогнутым швом. Форма — по референсу-SVG от Алины (Форма.svg):
@@ -690,6 +715,7 @@ a.assoc-icon:hover {
   align-items: stretch;
   aspect-ratio: 1.8 / 1;
   min-height: 320px;
+  margin-top: 40px;
 }
 .fun-facts-circle-photo {
   width: 50%;
@@ -704,8 +730,7 @@ a.assoc-icon:hover {
 .fun-facts-circle-text {
   width: 50%;
   border-radius: 999px 0 0 999px;
-  border: 1px solid var(--line);
-  background: var(--card);
+  border: 1.5px solid var(--terra);
   display: flex;
   align-items: center;
   padding: 0 8% 0 15%;
@@ -756,6 +781,21 @@ a.assoc-icon:hover {
 
 /* ===== CONSULTATION ===== */
 .consult {
+  background-color: var(--bg);
+  background-image: var(--paper);
+  background-blend-mode: multiply;
+  border-top: 1px solid var(--line);
+}
+
+/* Идёт следующим блоком после .consult — фон чередуется на bg */
+.faq-section {
+  background-color: var(--card);
+  background-image: var(--paper);
+  background-blend-mode: multiply;
+}
+
+/* Форма записи — идёт после "Интересных фактов", фон чередуется на bg */
+.booking-section {
   background-color: var(--card);
   background-image: var(--paper);
   background-blend-mode: multiply;
@@ -824,24 +864,18 @@ a.assoc-icon:hover {
   }
 }
 .faq-photo {
-  border-radius: 24px;
+  width: min(224px, 100%);
+  justify-self: center;
+  border-radius: 999px 999px 22px 22px;
   overflow: hidden;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 3 / 7.39;
 }
 .faq-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.faq-title {
-  font-family: var(--serif);
-  font-weight: 600;
-  font-size: clamp(1.7rem, 3vw, 2.2rem);
-}
 .faq-list {
-  margin-top: 20px;
-  padding-top: 24px;
-  border-top: 1px solid var(--line);
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -903,6 +937,12 @@ a.assoc-icon:hover {
 }
 
 /* ===== БЛОГ: карусель на главной ===== */
+.blog-preview {
+  background-color: var(--bg);
+  background-image: var(--paper);
+  background-blend-mode: multiply;
+  border-top: 1px solid var(--line);
+}
 .bp-head {
   display: flex;
   align-items: flex-end;
@@ -1072,6 +1112,9 @@ a.assoc-icon:hover {
 
 /* ===== CONTACTS ===== */
 .contacts {
+  background-color: var(--card);
+  background-image: var(--paper);
+  background-blend-mode: multiply;
   text-align: center;
 }
 .contacts h2 {
