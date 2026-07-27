@@ -571,7 +571,7 @@ a.assoc-icon:hover {
   text-align: center;
   background: transparent;
   border: 1.5px solid var(--terra);
-  color: var(--terra);
+  color: #4a4032;
 }
 .chip-btn:hover {
   background: var(--terra);
