@@ -53,9 +53,9 @@ export default function BookingForm() {
     "w-full rounded-xl border border-line bg-background px-4 py-3 text-foreground outline-none transition-colors placeholder:text-muted/70 focus:border-gold";
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4">
+    <form onSubmit={onSubmit} className="space-y-6">
       <div>
-        <label htmlFor="bf-name" className="mb-1.5 block text-sm text-muted">
+        <label htmlFor="bf-name" className="mb-2 block text-sm text-muted">
           Имя
         </label>
         <input
@@ -69,7 +69,7 @@ export default function BookingForm() {
       </div>
 
       <div>
-        <label htmlFor="bf-contact" className="mb-1.5 block text-sm text-muted">
+        <label htmlFor="bf-contact" className="mb-2 block text-sm text-muted">
           Контакт для связи
         </label>
         <input
@@ -83,7 +83,7 @@ export default function BookingForm() {
       </div>
 
       <div>
-        <label htmlFor="bf-message" className="mb-1.5 block text-sm text-muted">
+        <label htmlFor="bf-message" className="mb-2 block text-sm text-muted">
           Коротко о запросе{" "}
           <span className="text-muted/60">(необязательно)</span>
         </label>
