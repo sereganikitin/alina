@@ -657,24 +657,20 @@ a.assoc-icon:hover {
 }
 
 /* ===== ИНТЕРЕСНЫЕ ФАКТЫ (перед FAQ) ===== */
-/* Два перекрывающихся круга: фото-круг (сверху, по z-index) слева наезжает
-   на текстовый круг-контур справа — как на референсе. */
+/* Не два полных круга, а два прямоугольника (50/50), у каждого скруглён
+   только внутренний край (почти до полукруга) — стыкуются точно по центру
+   изогнутым швом. Форма — по референсу-SVG от Алины (Форма.svg):
+   border-radius:999px сам упирается в половину высоты блока, что и
+   даёт нужную полуокружность на стыке. */
 .fun-facts-panel {
-  position: relative;
-  aspect-ratio: 2.1 / 1;
-  min-height: 340px;
-}
-.fun-facts-circle-photo,
-.fun-facts-circle-text {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  aspect-ratio: 1;
-  border-radius: 50%;
+  display: flex;
+  align-items: stretch;
+  aspect-ratio: 1.8 / 1;
+  min-height: 320px;
 }
 .fun-facts-circle-photo {
-  left: 0;
-  z-index: 2;
+  width: 50%;
+  border-radius: 0 999px 999px 0;
   overflow: hidden;
 }
 .fun-facts-circle-photo img {
@@ -683,17 +679,16 @@ a.assoc-icon:hover {
   object-fit: cover;
 }
 .fun-facts-circle-text {
-  right: 0;
-  z-index: 1;
+  width: 50%;
+  border-radius: 999px 0 0 999px;
   border: 1px solid var(--line);
   background: var(--card);
   display: flex;
   align-items: center;
+  padding: 0 8% 0 15%;
 }
 .fun-facts-content {
-  max-width: 54%;
-  margin-left: auto;
-  padding-right: 10%;
+  max-width: 100%;
 }
 .fun-facts-title {
   font-family: var(--serif);
