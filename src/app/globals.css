@@ -175,7 +175,9 @@ header.scrolled {
 }
 .nav ul {
   display: none;
-  gap: 28px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px 28px;
   list-style: none;
   font-size: 0.82rem;
   letter-spacing: 0.04em;
@@ -700,7 +702,7 @@ a.assoc-icon:hover {
 .prin-items-grid {
   margin-top: 12px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   column-gap: 44px;
   row-gap: 36px;
 }
@@ -735,7 +737,7 @@ a.assoc-icon:hover {
 .approach-cards {
   margin-top: 44px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
 }
 .approach-intro + .approach-cards {
