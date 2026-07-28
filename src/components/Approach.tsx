@@ -8,12 +8,22 @@ export default function Approach() {
   return (
     <section id="approach" className="approach-section">
       <div className="wrap">
-        <div className="kicker">О подходе</div>
-        <h2 className="section-h">Как проходит работа</h2>
+        <div className="approach-top">
+          <div className="approach-head">
+            <div className="kicker">О подходе</div>
+            <h2 className="section-h">Как проходит работа</h2>
 
-        {c.approach.intro && (
-          <RichText html={c.approach.intro} className="approach-intro" />
-        )}
+            {c.approach.intro && (
+              <RichText html={c.approach.intro} className="approach-intro" />
+            )}
+          </div>
+          {c.approach.image && (
+            <div className="approach-photo">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={c.approach.image} alt="" />
+            </div>
+          )}
+        </div>
 
         <div className="approach-cards">
           {c.approach.paragraphs.map((p, i) => (

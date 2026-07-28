@@ -1,28 +1,13 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
-import { useContent } from "@/lib/useContent";
+import { useState } from "react";
 
 // Заявки уходят в админку (сохраняются в базе заявок).
 const BOOKING_ENDPOINT = "/api/bookings";
 
 type Status = "idle" | "sending" | "sent" | "demo" | "error";
 
-// Пока страниц с текстами документов нет — ссылка появится, когда в админке пропишут url.
-function DocLink({ url, children }: { url: string; children: ReactNode }) {
-  if (!url) return <span className="underline underline-offset-2">{children}</span>;
-  return (
-    <a href={url} target="_blank" rel="noreferrer" className="underline underline-offset-2">
-      {children}
-    </a>
-  );
-}
-
 export default function BookingForm() {
-  const c = useContent();
-  const dataDoc = c.contacts.docs.find((d) => d.label === "Согласие на обработку персональных данных");
-  const privacyDoc = c.contacts.docs.find((d) => d.label === "Политика конфиденциальности");
-
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
   const [message, setMessage] = useState("");
@@ -123,7 +108,9 @@ export default function BookingForm() {
         />
         <span>
           Даю согласие на{" "}
-          <DocLink url={dataDoc?.url ?? ""}>обработку персональных данных</DocLink>
+          <a href="/personal-data" target="_blank" rel="noreferrer" className="underline underline-offset-2">
+            обработку персональных данных
+          </a>
         </span>
       </label>
 
@@ -137,7 +124,9 @@ export default function BookingForm() {
         />
         <span>
           Соглашаюсь с{" "}
-          <DocLink url={privacyDoc?.url ?? ""}>политикой конфиденциальности</DocLink>
+          <a href="/privacy" target="_blank" rel="noreferrer" className="underline underline-offset-2">
+            политикой конфиденциальности
+          </a>
         </span>
       </label>
 

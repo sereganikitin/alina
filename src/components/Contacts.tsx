@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { useContent } from "@/lib/useContent";
 import { RichText } from "@/lib/richText";
 import { EmdrLogo, IfsLogo, EmdrEuropeLogo } from "./AssocIcons";
+import BookingForm from "./BookingForm";
 
 // Оборачивает значок в ссылку, только если URL задан — иначе значок
 // остаётся некликабельным (просто <span>).
@@ -28,6 +29,14 @@ const WhatsappIcon = (
   </svg>
 );
 
+const InstagramIcon = (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="18" height="18">
+    <rect x="3" y="3" width="18" height="18" rx="5" />
+    <circle cx="12" cy="12" r="4" />
+    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+  </svg>
+);
+
 export default function Contacts() {
   const c = useContent();
   return (
@@ -35,22 +44,41 @@ export default function Contacts() {
       <section id="contacts" className="contacts">
         <div className="wrap">
           <div className="kicker" style={{ marginBottom: "24px" }}>Контакты</div>
-          <div className="contacts-card">
-            <h2>Давайте познакомимся</h2>
-            <RichText
-              html={c.contacts.note}
-              className="muted"
-              style={{ marginTop: "16px", fontSize: "1.1rem" }}
-            />
-            <div className="msgs">
-              <a href="#" className="btn btn-primary">
-                {TelegramIcon}
-                Telegram
-              </a>
-              <a href="#" className="btn btn-ghost">
-                {WhatsappIcon}
-                WhatsApp
-              </a>
+          <div className="contacts-grid">
+            <div className="contacts-form">
+              <h3 className="serif" style={{ fontSize: "1.5rem", marginBottom: "1.5rem" }}>Записаться на сессию</h3>
+              <BookingForm />
+            </div>
+
+            <div className="contacts-card">
+              <h2>Давайте познакомимся</h2>
+              <RichText
+                html={c.contacts.note}
+                className="muted"
+                style={{ marginTop: "16px", fontSize: "1.1rem" }}
+              />
+              <div className="msgs">
+                <a href={c.contacts.telegramUrl || "#"} className="btn btn-primary">
+                  {TelegramIcon}
+                  Telegram
+                </a>
+                <a href={c.contacts.whatsappUrl || "#"} className="btn btn-ghost">
+                  {WhatsappIcon}
+                  WhatsApp
+                </a>
+              </div>
+
+              <p className="muted" style={{ marginTop: "24px", fontSize: "1.1rem" }}>Мои блоги:</p>
+              <div className="msgs" style={{ marginTop: "16px" }}>
+                <a href={c.contacts.telegramChannelUrl || "#"} className="btn btn-ghost">
+                  {TelegramIcon}
+                  Telegram-канал
+                </a>
+                <a href={c.contacts.instagramUrl || "#"} className="btn btn-ghost">
+                  {InstagramIcon}
+                  Instagram
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -69,6 +97,11 @@ export default function Contacts() {
           </AssocLink>
         </div>
         © 2026 Алина Дубовская · психолог, EMDR- и IFS-терапевт
+        <div className="footer-links">
+          <a href="/privacy">Политика конфиденциальности</a>
+          <a href="/personal-data">Согласие на обработку персональных данных</a>
+          <a href="/offer">Договор оферты</a>
+        </div>
       </footer>
     </>
   );

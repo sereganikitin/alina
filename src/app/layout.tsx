@@ -3,6 +3,7 @@ import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import FloatingContact from "@/components/FloatingContact";
+import CookieBanner from "@/components/CookieBanner";
 
 // Заголовки — Playfair Display (засечный), основной текст — Inter.
 const playfair = Playfair_Display({
@@ -39,6 +40,7 @@ export default function RootLayout({
         <SiteHeader />
         {children}
         <FloatingContact />
+        <CookieBanner />
       </body>
     </html>
   );
