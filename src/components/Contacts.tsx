@@ -34,9 +34,9 @@ export default function Contacts() {
     <>
       <section id="contacts" className="contacts">
         <div className="wrap">
+          <div className="kicker" style={{ marginBottom: "24px" }}>Контакты</div>
           <div className="contacts-card">
-            <div className="kicker" style={{ justifyContent: "center" }}>Контакты</div>
-            <h2 style={{ marginTop: "16px" }}>Давайте познакомимся</h2>
+            <h2>Давайте познакомимся</h2>
             <RichText
               html={c.contacts.note}
               className="muted"
