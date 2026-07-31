@@ -114,9 +114,15 @@ const DEFAULTS = {
       "Записаться можно в Telegram или WhatsApp — отвечаю лично. Или оставьте заявку через форму на сайте.",
   },
   funFacts: {
-    image: "",
     title: "Интересные факты обо мне",
-    text: "<ul><li>У меня СДВГ и РАС</li><li>Я гедонист</li><li>Люблю путешествовать, много живу в разных странах</li><li>Говорю на нескольких языках</li><li>У меня дипломная работа по буддизму и этнопсихологии</li><li>Люблю людей, и мне кажется, что мир интересный.</li></ul>",
+    items: [
+      { text: "У меня СДВГ и РАС", image: "" },
+      { text: "Я гедонист", image: "" },
+      { text: "Люблю путешествовать, много живу в разных странах", image: "" },
+      { text: "Говорю на нескольких языках", image: "" },
+      { text: "У меня дипломная работа по буддизму и этнопсихологии", image: "" },
+      { text: "Люблю людей, и мне кажется, что мир интересный.", image: "" },
+    ],
   },
   blog: {
     posts: [],
@@ -519,9 +525,8 @@ function renderContent() {
       listObj("Факты", c.consultation.facts, [{ key: "label", label: "Заголовок" }, { key: "value", label: "Значение" }], () => ({ label: "", value: "" })),
       fRich("Примечание", c.consultation, "note")),
     section("Интересные факты обо мне (перед FAQ)",
-      fMedia("Фото", c.funFacts, "image", "image/*"),
       fText("Заголовок", c.funFacts, "title"),
-      fRich("Текст", c.funFacts, "text")),
+      listObj("Факты (карусель — у каждого своя фотография)", c.funFacts.items, [{ key: "text", label: "Факт" }, { key: "image", label: "Фото", type: "image" }], () => ({ text: "", image: "" }))),
     section("FAQ", fMedia("Фото справа от блока FAQ (необязательно)", c, "faqImage", "image/*"),
       listObj("Вопросы", c.faq, [{ key: "q", label: "Вопрос" }, { key: "a", label: "Ответ", type: "rich" }], () => ({ q: "", a: "" }))),
     section("Контакты", fRich("Текст", c.contacts, "note"),

@@ -1,11 +1,26 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useContent } from "@/lib/useContent";
-import { RichText } from "@/lib/richText";
+
+const AUTOPLAY_MS = 5000;
 
 export default function FunFacts() {
   const c = useContent();
-  if (!c.funFacts.text && !c.funFacts.image) return null;
+  const items = c.funFacts.items;
+  const [idx, setIdx] = useState(0);
+
+  // Автолистание, пока пользователь не листает сам — сбрасывается на любой ручной переход.
+  useEffect(() => {
+    if (items.length < 2) return;
+    const t = setInterval(() => setIdx((v) => (v + 1) % items.length), AUTOPLAY_MS);
+    return () => clearInterval(t);
+  }, [items.length, idx]);
+
+  if (!items.length) return null;
+
+  const current = items[idx];
+  const go = (next: number) => setIdx((next + items.length) % items.length);
 
   // Переносим последние два слова заголовка ("обо мне") на вторую строку.
   const titleWords = c.funFacts.title.split(" ");
@@ -17,12 +32,24 @@ export default function FunFacts() {
       <div className="wrap">
         <div className="kicker">Факты</div>
         <div className="fun-facts-panel">
-          {c.funFacts.image && (
-            <div className="fun-facts-circle-photo">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={c.funFacts.image} alt="" />
-            </div>
-          )}
+          <div className="fun-facts-circle-photo">
+            {current.image ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={current.image} alt="" />
+            ) : (
+              <div className="fun-facts-photo-empty" />
+            )}
+            {items.length > 1 && (
+              <>
+                <button type="button" onClick={() => go(idx - 1)} aria-label="Предыдущий факт" className="gallery-nav gallery-nav-prev">
+                  ‹
+                </button>
+                <button type="button" onClick={() => go(idx + 1)} aria-label="Следующий факт" className="gallery-nav gallery-nav-next">
+                  ›
+                </button>
+              </>
+            )}
+          </div>
           <div className="fun-facts-circle-text">
             <div className="fun-facts-content">
               <h2 className="fun-facts-title">
@@ -34,7 +61,20 @@ export default function FunFacts() {
                 )}
                 {titleLine2}
               </h2>
-              <RichText html={c.funFacts.text} className="fun-facts-text" />
+              <p className="fun-facts-text">{current.text}</p>
+              {items.length > 1 && (
+                <div className="gallery-dots" style={{ marginTop: "22px" }}>
+                  {items.map((_, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      aria-label={`Факт ${i + 1}`}
+                      onClick={() => go(i)}
+                      className={`gallery-dot${i === idx ? " active" : ""}`}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

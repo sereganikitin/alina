@@ -865,6 +865,7 @@ a.assoc-icon:hover {
   margin-top: 40px;
 }
 .fun-facts-circle-photo {
+  position: relative;
   width: 50%;
   border-radius: 0 999px 999px 0;
   overflow: hidden;
@@ -873,6 +874,11 @@ a.assoc-icon:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.fun-facts-photo-empty {
+  width: 100%;
+  height: 100%;
+  background: var(--line);
 }
 .fun-facts-circle-text {
   width: 50%;
@@ -906,7 +912,6 @@ a.assoc-icon:hover {
     flex-direction: column;
     gap: 24px;
   }
-  .fun-facts-circle-photo,
   .fun-facts-circle-text {
     position: static;
     width: 100%;
@@ -915,7 +920,11 @@ a.assoc-icon:hover {
     border-radius: 24px;
   }
   .fun-facts-circle-photo {
+    /* position: relative остаётся — нужен стрелкам-пролистывания поверх фото */
+    width: 100%;
+    height: auto;
     aspect-ratio: 4 / 3;
+    border-radius: 24px;
   }
   .fun-facts-circle-text {
     padding: 28px 22px;
