@@ -43,12 +43,12 @@ export const DEFAULT_CONTENT = {
     lead:
       "Непрерывный профессиональный путь: в профессии с 17 лет, более 10 лет практики. Дипломы государственного образца — ниже.",
     diplomas: [
-      { title: "Высшее психологическое образование", placeholder: "", scan: "" },
-      { title: "Преподаватель психологии", placeholder: "", scan: "" },
-      { title: "EMDR-терапевт", placeholder: "", scan: "" },
-      { title: "IFS-терапевт", placeholder: "", scan: "" },
-      { title: "Танцевально-двигательный терапевт", placeholder: "", scan: "" },
-      { title: "Действительный член Национальной ассоциации EMDR", placeholder: "", scan: "" },
+      { title: "Высшее психологическое образование", images: [] as string[] },
+      { title: "Преподаватель психологии", images: [] as string[] },
+      { title: "EMDR-терапевт", images: [] as string[] },
+      { title: "IFS-терапевт", images: [] as string[] },
+      { title: "Танцевально-двигательный терапевт", images: [] as string[] },
+      { title: "Действительный член Национальной ассоциации EMDR", images: [] as string[] },
     ],
     extra: [
       "Регулярное ежегодное повышение квалификации",

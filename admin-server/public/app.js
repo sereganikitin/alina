@@ -39,12 +39,12 @@ const DEFAULTS = {
     lead:
       "Непрерывный профессиональный путь: в профессии с 17 лет, более 10 лет практики. Дипломы государственного образца — ниже.",
     diplomas: [
-      { title: "Высшее психологическое образование", placeholder: "", scan: "" },
-      { title: "Преподаватель психологии", placeholder: "", scan: "" },
-      { title: "EMDR-терапевт", placeholder: "", scan: "" },
-      { title: "IFS-терапевт", placeholder: "", scan: "" },
-      { title: "Танцевально-двигательный терапевт", placeholder: "", scan: "" },
-      { title: "Действительный член Национальной ассоциации EMDR", placeholder: "", scan: "" },
+      { title: "Высшее психологическое образование", images: [] },
+      { title: "Преподаватель психологии", images: [] },
+      { title: "EMDR-терапевт", images: [] },
+      { title: "IFS-терапевт", images: [] },
+      { title: "Танцевально-двигательный терапевт", images: [] },
+      { title: "Действительный член Национальной ассоциации EMDR", images: [] },
     ],
     extra: [
       "Регулярное ежегодное повышение квалификации",
@@ -359,6 +359,42 @@ function fMedia(label, obj, key, accept) {
   wrap.append(inp, h("div", { class: "row", style: "margin-top:6px" }, btn, file), prev);
   return wrap;
 }
+// Несколько изображений на один пункт списка (галерея-пролистывание в попапе,
+// напр. страницы одного диплома) — массив URL вместо одной строки.
+function fGallery(label, obj, key, accept) {
+  if (!Array.isArray(obj[key])) obj[key] = [];
+  const arr = obj[key];
+  const wrap = h("div", {}, h("label", {}, label));
+  const list = h("div");
+  function render() {
+    list.innerHTML = "";
+    arr.forEach((url, i) => {
+      const handle = dragHandle();
+      const prev = url
+        ? url.toLowerCase().endsWith(".pdf")
+          ? h("a", { href: url, target: "_blank", class: "muted" }, "📄 " + url)
+          : h("img", { src: url, class: "field-img-prev" })
+        : h("span", { class: "muted" }, "(пусто)");
+      const del = h("button", { class: "btn-ghost btn-sm", type: "button", onclick: () => { arr.splice(i, 1); render(); } }, "✕");
+      const row = h("div", { class: "row drag-row", style: "margin-bottom:6px;align-items:center" }, handle, h("div", { style: "flex:1" }, prev), reorderControls(i, arr, render), del);
+      attachDrag(row, handle, i, arr, render);
+      list.append(row);
+    });
+  }
+  render();
+  const file = h("input", { type: "file", accept: accept, class: "hidden" });
+  file.addEventListener("change", async () => {
+    if (!file.files[0]) return;
+    const fd = new FormData(); fd.append("file", file.files[0]);
+    const r = await api("/api/upload", { method: "POST", body: fd });
+    if (r.ok) { const d = await r.json(); arr.push(d.url); render(); toast("Файл загружен"); }
+    else toast("Не удалось загрузить");
+    file.value = "";
+  });
+  const add = h("button", { class: "btn-ghost btn-sm", type: "button", onclick: () => file.click() }, "+ добавить страницу");
+  wrap.append(list, h("div", { class: "row", style: "margin-top:6px" }, add, file));
+  return wrap;
+}
 // ---- перестановка пунктов в списках (перетаскиванием за ручку "⠿" + запасные кнопки ↑/↓) ----
 // Ручка — единственный draggable-элемент внутри карточки/строки: если сделать draggable
 // всю карточку, это ломает выделение текста мышью в текстовых полях/rich-редакторе
@@ -439,7 +475,8 @@ function listObj(label, arr, fields, factory) {
         else if (f.type === "pdf") card.append(fMedia(f.label, item, f.key, "application/pdf"));
         else if (f.type === "area") card.append(fArea(f.label, item, f.key));
         else if (f.type === "rich") card.append(fRich(f.label, item, f.key));
-        else if (f.type === "scan") card.append(fMedia(f.label, item, f.key, "image/*,application/pdf")); // ← добавить эту строку
+        else if (f.type === "scan") card.append(fMedia(f.label, item, f.key, "image/*,application/pdf"));
+        else if (f.type === "gallery") card.append(fGallery(f.label, item, f.key, "image/*,application/pdf"));
         else card.append(fText(f.label, item, f.key));
       }
       card.append(h("button", { class: "btn-ghost btn-sm", type: "button", style: "margin-top:8px", onclick: () => { arr.splice(i, 1); render(); } }, "Удалить"));
@@ -471,7 +508,7 @@ function renderContent() {
     section("Обо мне", fArea("Заголовок", c.about, "title"), fRich("Подпись", c.about, "lead"), listText("Методы", c.about.methods), fMedia("Фото в арке", c.about, "image", "image/*"),
       listObj("Кнопки-ссылки (ассоциации)", c.about.links, [{ key: "label", label: "Текст на кнопке" }, { key: "url", label: "Ссылка" }], () => ({ label: "", url: "" }))),
     section("Образование", fRich("Вступление", c.education, "lead"),
-      listObj("Дипломы", c.education.diplomas, [{ key: "title", label: "Название" }, { key: "placeholder", label: "Заглушка (превью на карточке)", type: "image" }, { key: "scan", label: "Скан (открывается в попапе, можно скачать)", type: "scan" }], () => ({ title: "", placeholder: "", scan: "" })),
+      listObj("Дипломы", c.education.diplomas, [{ key: "title", label: "Название" }, { key: "images", label: "Страницы скана (можно несколько — пролистывание в попапе)", type: "gallery" }], () => ({ title: "", images: [] })),
       listText("Доп. строки", c.education.extra)),
     section("Принципы работы", listText("Запросы (с чем работаю)", c.principles.requests), fRich("С кем я работаю", c.principles, "withWhom"), fMedia("Фото (дуга сверху)", c.principles, "image", "image/*"),
       listText("Подписи в кругах под фото (используются первые 3)", c.principles.circles),

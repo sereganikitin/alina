@@ -482,6 +482,50 @@ a.assoc-icon:hover {
   color: var(--muted);
   white-space: nowrap;
 }
+/* Галерея сканов в попапе диплома (несколько страниц одного документа) */
+.gallery-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(240, 231, 216, 0.85);
+  color: var(--ink);
+  font-size: 1.6rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.gallery-nav:hover {
+  background: var(--bg);
+}
+.gallery-nav-prev {
+  left: 8px;
+}
+.gallery-nav-next {
+  right: 8px;
+}
+.gallery-dots {
+  display: flex;
+  gap: 8px;
+}
+.gallery-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid var(--terra);
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+.gallery-dot.active {
+  background: var(--terra);
+}
 .extra {
   margin-top: 40px;
   display: flex;
