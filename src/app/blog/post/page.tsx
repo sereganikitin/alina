@@ -47,6 +47,13 @@ function BlogPostContent() {
         )}
 
         <RichText html={post.body} className="article-body" />
+
+        <div className="article-cta">
+          <p className="article-cta-text">Остались вопросы после прочтения?</p>
+          <a href="/#contacts" className="btn btn-primary">
+            Написать мне
+          </a>
+        </div>
       </div>
     </section>
   );

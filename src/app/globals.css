@@ -411,7 +411,7 @@ header.scrolled {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 34px;
+  gap: 16px;
   align-items: center;
   margin-bottom: 22px;
   color: var(--terra);
@@ -433,12 +433,19 @@ header.scrolled {
   width: auto;
   height: 14px;
 }
+/* Значки-кнопки: единый стиль с .chip-btn (контурная пилюля вместо
+   разрозненных лого разных цветов/шрифтов). */
 .assoc-icon {
   display: inline-flex;
-  transition: opacity 0.2s, transform 0.2s;
+  align-items: center;
+  padding: 12px 22px;
+  border: 1.5px solid var(--terra);
+  border-radius: 999px;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
 }
 a.assoc-icon:hover {
-  opacity: 0.7;
+  background: var(--terra);
+  color: #f7f0e3;
   transform: translateY(-2px);
 }
 
@@ -609,6 +616,9 @@ a.assoc-icon:hover {
    (.ph-circles-mini) уже уже этой обёртки на 20% и центрируется внутри
    неё через margin:auto — то есть центрируется именно по подзаголовку. */
 .ph-circles-fit {
+  /* Скрыто по фидбэку со звонка (диаграмма-кружки не отражает реальность
+     практики) — оставлено в разметке на случай, если решат вернуть. */
+  display: none;
   width: fit-content;
   max-width: 100%;
   /* Отступ ~ высота одной строки текста пункта (font-size 1.05rem * line-height 1.7) */
@@ -648,6 +658,7 @@ a.assoc-icon:hover {
   font-weight: 600;
   font-size: clamp(1.7rem, 2.8vw, 2.4rem);
   line-height: 1.12;
+  text-transform: lowercase;
 }
 .chips {
   display: flex;
@@ -840,6 +851,7 @@ a.assoc-icon:hover {
   font-size: clamp(1.5rem, 2.4vw, 2.1rem);
   line-height: 1.15;
   margin-top: 14px;
+  text-transform: lowercase;
 }
 .fun-facts-text {
   margin-top: 18px;
@@ -1217,6 +1229,20 @@ a.assoc-icon:hover {
 }
 .article-body p:last-child {
   margin-bottom: 0;
+}
+.article-cta {
+  margin-top: 44px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+}
+.article-cta-text {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  color: var(--ink);
 }
 
 /* ===== CONTACTS ===== */
