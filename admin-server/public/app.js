@@ -33,7 +33,6 @@ const DEFAULTS = {
     links: [
       { label: "EMDR Russia", url: "" },
       { label: "IFS Russia", url: "" },
-      { label: "EMDR Europe", url: "" },
     ],
   },
   education: {
@@ -136,7 +135,6 @@ const DEFAULTS = {
     instagramUrl: "",
     emdrUrl: "",
     ifsUrl: "",
-    emdrEuropeUrl: "",
   },
   legal: {
     privacyBody:
@@ -495,8 +493,7 @@ function renderContent() {
       fText("Ссылка на Telegram-канал", c.contacts, "telegramChannelUrl"),
       fText("Ссылка на Instagram", c.contacts, "instagramUrl"),
       fText("Ссылка EMDR Russia (значок в футере)", c.contacts, "emdrUrl"),
-      fText("Ссылка IFS Russia (значок в футере)", c.contacts, "ifsUrl"),
-      fText("Ссылка EMDR Europe (значок в футере)", c.contacts, "emdrEuropeUrl")),
+      fText("Ссылка IFS Russia (значок в футере)", c.contacts, "ifsUrl")),
     section("Юридические страницы (/privacy, /personal-data, /offer + баннер cookie)",
       fRich("Политика конфиденциальности — текст страницы", c.legal, "privacyBody"),
       fRich("Согласие на обработку персональных данных — текст страницы", c.legal, "personalDataBody"),

@@ -37,7 +37,6 @@ export const DEFAULT_CONTENT = {
     links: [
       { label: "EMDR Russia", url: "" },
       { label: "IFS Russia", url: "" },
-      { label: "EMDR Europe", url: "" },
     ],
   },
   education: {
@@ -173,7 +172,6 @@ export const DEFAULT_CONTENT = {
     instagramUrl: "",
     emdrUrl: "",
     ifsUrl: "",
-    emdrEuropeUrl: "",
   },
   // Юридические страницы (/privacy, /personal-data, /offer) + баннер cookie.
   // Типовой шаблон — перед публикацией стоит проверить у юриста и заполнить

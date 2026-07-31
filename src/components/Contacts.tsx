@@ -3,7 +3,7 @@
 import type { ReactNode } from "react";
 import { useContent } from "@/lib/useContent";
 import { RichText } from "@/lib/richText";
-import { EmdrLogo, IfsLogo, EmdrEuropeLogo } from "./AssocIcons";
+import { EmdrLogo, IfsLogo } from "./AssocIcons";
 import BookingForm from "./BookingForm";
 
 // Оборачивает значок в ссылку, только если URL задан — иначе значок
@@ -91,9 +91,6 @@ export default function Contacts() {
           </AssocLink>
           <AssocLink url={c.contacts.ifsUrl}>
             <IfsLogo />
-          </AssocLink>
-          <AssocLink url={c.contacts.emdrEuropeUrl}>
-            <EmdrEuropeLogo />
           </AssocLink>
         </div>
         © 2026 Алина Дубовская · психолог, EMDR- и IFS-терапевт

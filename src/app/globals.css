@@ -429,10 +429,6 @@ header.scrolled {
   width: 40px;
   height: 28px;
 }
-.assoc svg.emdr-europe-badge {
-  width: auto;
-  height: 14px;
-}
 /* Значки-кнопки: единый стиль с .chip-btn (контурная пилюля вместо
    разрозненных лого разных цветов/шрифтов). */
 .assoc-icon {
