@@ -4,6 +4,7 @@ import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import FloatingContact from "@/components/FloatingContact";
 import CookieBanner from "@/components/CookieBanner";
+import { BookingPopupProvider } from "@/lib/bookingPopup";
 
 // Заголовки — Playfair Display (засечный), основной текст — Inter.
 const playfair = Playfair_Display({
@@ -37,10 +38,12 @@ export default function RootLayout({
       className={`${playfair.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <SiteHeader />
-        {children}
-        <FloatingContact />
-        <CookieBanner />
+        <BookingPopupProvider>
+          <SiteHeader />
+          {children}
+          <FloatingContact />
+          <CookieBanner />
+        </BookingPopupProvider>
       </body>
     </html>
   );

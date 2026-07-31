@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from "react";
 import BookingForm from "./BookingForm";
+import { useBookingPopup } from "@/lib/bookingPopup";
 
 export default function FloatingContact() {
-  const [open, setOpen] = useState(false);
+  const { open, setOpen } = useBookingPopup();
   const [attention, setAttention] = useState(false);
 
   // Через минуту на сайте кнопка начинает мерцать

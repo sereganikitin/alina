@@ -3,11 +3,13 @@
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useContent, useContentReady } from "@/lib/useContent";
+import { useBookingPopup } from "@/lib/bookingPopup";
 import { RichText } from "@/lib/richText";
 
 function BlogPostContent() {
   const c = useContent();
   const ready = useContentReady();
+  const { setOpen } = useBookingPopup();
   const slug = useSearchParams().get("slug") || "";
   const post = c.blog.posts.find((p) => p.slug === slug);
 
@@ -50,9 +52,9 @@ function BlogPostContent() {
 
         <div className="article-cta">
           <p className="article-cta-text">Остались вопросы после прочтения?</p>
-          <a href="/#contacts" className="btn btn-primary">
+          <button type="button" onClick={() => setOpen(true)} className="btn btn-primary">
             Написать мне
-          </a>
+          </button>
         </div>
       </div>
     </section>
