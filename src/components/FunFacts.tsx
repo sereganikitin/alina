@@ -1,26 +1,49 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useContent } from "@/lib/useContent";
 
 const AUTOPLAY_MS = 5000;
+const FADE_MS = 350;
 
 export default function FunFacts() {
   const c = useContent();
   const items = c.funFacts.items;
   const [idx, setIdx] = useState(0);
+  const [fading, setFading] = useState(false);
+  const pendingRef = useRef<number | null>(null);
+
+  // Переход на новый факт: сперва гасим текущий (текст+фото вместе), меняем
+  // контент, пока он невидим, затем проявляем — фото и текст всегда меняются
+  // одним кадром, никогда не рассинхронизированы.
+  const goTo = (next: number) => {
+    const n = (next + items.length) % items.length;
+    if (n === idx || pendingRef.current !== null) return;
+    // прогреваем кэш браузера, чтобы новое фото уже было готово к моменту проявления
+    if (items[n]?.image) {
+      const img = new Image();
+      img.src = items[n].image;
+    }
+    pendingRef.current = n;
+    setFading(true);
+    setTimeout(() => {
+      setIdx(n);
+      pendingRef.current = null;
+      setFading(false);
+    }, FADE_MS);
+  };
 
   // Автолистание, пока пользователь не листает сам — сбрасывается на любой ручной переход.
   useEffect(() => {
     if (items.length < 2) return;
-    const t = setInterval(() => setIdx((v) => (v + 1) % items.length), AUTOPLAY_MS);
+    const t = setInterval(() => goTo(idx + 1), AUTOPLAY_MS);
     return () => clearInterval(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items.length, idx]);
 
   if (!items.length) return null;
 
   const current = items[idx];
-  const go = (next: number) => setIdx((next + items.length) % items.length);
 
   // Переносим последние два слова заголовка ("обо мне") на вторую строку.
   const titleWords = c.funFacts.title.split(" ");
@@ -33,18 +56,20 @@ export default function FunFacts() {
         <div className="kicker">Факты</div>
         <div className="fun-facts-panel">
           <div className="fun-facts-circle-photo">
-            {current.image ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={current.image} alt="" />
-            ) : (
-              <div className="fun-facts-photo-empty" />
-            )}
+            <div className={`fun-facts-fade${fading ? " is-hidden" : ""}`}>
+              {current.image ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={current.image} alt="" />
+              ) : (
+                <div className="fun-facts-photo-empty" />
+              )}
+            </div>
             {items.length > 1 && (
               <>
-                <button type="button" onClick={() => go(idx - 1)} aria-label="Предыдущий факт" className="gallery-nav gallery-nav-prev">
+                <button type="button" onClick={() => goTo(idx - 1)} aria-label="Предыдущий факт" className="gallery-nav gallery-nav-prev">
                   ‹
                 </button>
-                <button type="button" onClick={() => go(idx + 1)} aria-label="Следующий факт" className="gallery-nav gallery-nav-next">
+                <button type="button" onClick={() => goTo(idx + 1)} aria-label="Следующий факт" className="gallery-nav gallery-nav-next">
                   ›
                 </button>
               </>
@@ -61,7 +86,9 @@ export default function FunFacts() {
                 )}
                 {titleLine2}
               </h2>
-              <p className="fun-facts-text">{current.text}</p>
+              <div className={`fun-facts-fade${fading ? " is-hidden" : ""}`}>
+                <p className="fun-facts-text">{current.text}</p>
+              </div>
               {items.length > 1 && (
                 <div className="gallery-dots" style={{ marginTop: "22px" }}>
                   {items.map((_, i) => (
@@ -69,7 +96,7 @@ export default function FunFacts() {
                       key={i}
                       type="button"
                       aria-label={`Факт ${i + 1}`}
-                      onClick={() => go(i)}
+                      onClick={() => goTo(i)}
                       className={`gallery-dot${i === idx ? " active" : ""}`}
                     />
                   ))}
