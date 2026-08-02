@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useContent } from "@/lib/useContent";
 
 const AUTOPLAY_MS = 5000;
-const FADE_MS = 450;
+const FADE_MS = 1000;
 
 function Photo({ image }: { image: string }) {
   return image ? (
@@ -28,16 +28,27 @@ export default function FunFacts() {
   const goTo = (next: number) => {
     const n = (next + items.length) % items.length;
     if (n === idx) return;
-    // прогреваем кэш браузера, чтобы новое фото не мигало пустотой при проявлении
-    if (items[n]?.image) {
-      const img = new Image();
-      img.src = items[n].image;
-    }
     if (outTimerRef.current) clearTimeout(outTimerRef.current);
     setOutIdx(idx);
     setIdx(n);
     outTimerRef.current = setTimeout(() => setOutIdx(null), FADE_MS);
   };
+
+  // Прогреваем кэш браузера сразу всеми фото факта — иначе то, что грузится
+  // именно в момент своего появления (не только следующее по очереди),
+  // проступает поверх кроссфейда вместо того, чтобы быть готовым заранее.
+  useEffect(() => {
+    const imgs = items.map((it) => {
+      if (!it.image) return null;
+      const img = new Image();
+      img.src = it.image;
+      return img;
+    });
+    return () => {
+      imgs.forEach((img) => { if (img) img.src = ""; });
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items.map((it) => it.image).join("|")]);
 
   useEffect(() => () => {
     if (outTimerRef.current) clearTimeout(outTimerRef.current);
