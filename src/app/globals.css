@@ -868,6 +868,9 @@ a.assoc-icon:hover {
   position: relative;
   width: 50%;
   border-radius: 0 999px 999px 0;
+  border: 1.5px solid var(--terra);
+  /* Контур — на этом внешнем контейнере, а не на слоях внутри .fun-facts-stack,
+     поэтому кроссфейд фото его не задевает (граница всегда полностью непрозрачна). */
   overflow: hidden;
 }
 .fun-facts-circle-photo img {
@@ -904,23 +907,58 @@ a.assoc-icon:hover {
   font-size: 1rem;
   line-height: 1.65;
   color: #4a4032;
+}
+/* Кроссфейд фото/факта: уходящий и новый слой наложены друг на друга и
+   анимируются одновременно (уходящий — на затухание, новый — на
+   проявление), поэтому пустого кадра между ними нет. Оба слоя всегда
+   меняются в один и тот же момент (общее состояние в компоненте) —
+   исключает рассинхронизацию фото и текста. */
+.fun-facts-stack {
+  position: relative;
+}
+.fun-facts-text-stack {
+  margin-top: 18px;
   /* Резерв под ~3 строки — факты разной длины не должны сдвигать
      заголовок (блок вертикально центрирован, поэтому важна стабильная
      общая высота, а не только высота этого абзаца). */
   min-height: 4.95rem;
 }
-/* Плавная смена фото/факта: скрываем оба слоя одновременно, меняем
-   контент, пока непрозрачность на нуле, затем проявляем — гарантирует
-   синхронность (не полагается на то, что фото успеет загрузиться). */
-.fun-facts-fade {
-  transition: opacity 0.35s ease;
+.fun-facts-text-stack .fun-facts-text {
+  margin-top: 0;
 }
-.fun-facts-fade.is-hidden {
-  opacity: 0;
+.fun-facts-fade-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 }
-.fun-facts-circle-photo .fun-facts-fade {
+.fun-facts-circle-photo .fun-facts-stack,
+.fun-facts-circle-photo .fun-facts-fade-layer {
+  inset: 0;
   width: 100%;
   height: 100%;
+}
+.fun-facts-fade-layer.is-in {
+  animation: fun-facts-fade-in 0.45s ease forwards;
+}
+.fun-facts-fade-layer.is-out {
+  animation: fun-facts-fade-out 0.45s ease forwards;
+}
+@keyframes fun-facts-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fun-facts-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 @media (max-width: 760px) {
   .fun-facts-panel {

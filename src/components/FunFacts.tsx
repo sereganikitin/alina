@@ -4,34 +4,44 @@ import { useEffect, useRef, useState } from "react";
 import { useContent } from "@/lib/useContent";
 
 const AUTOPLAY_MS = 5000;
-const FADE_MS = 350;
+const FADE_MS = 450;
+
+function Photo({ image }: { image: string }) {
+  return image ? (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src={image} alt="" />
+  ) : (
+    <div className="fun-facts-photo-empty" />
+  );
+}
 
 export default function FunFacts() {
   const c = useContent();
   const items = c.funFacts.items;
   const [idx, setIdx] = useState(0);
-  const [fading, setFading] = useState(false);
-  const pendingRef = useRef<number | null>(null);
+  // Индекс факта, с которого только что ушли — держим его на экране ещё
+  // FADE_MS, пока он гаснет, одновременно с проявлением нового (кроссфейд:
+  // оба слоя наложены друг на друга, без пустого кадра между ними).
+  const [outIdx, setOutIdx] = useState<number | null>(null);
+  const outTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Переход на новый факт: сперва гасим текущий (текст+фото вместе), меняем
-  // контент, пока он невидим, затем проявляем — фото и текст всегда меняются
-  // одним кадром, никогда не рассинхронизированы.
   const goTo = (next: number) => {
     const n = (next + items.length) % items.length;
-    if (n === idx || pendingRef.current !== null) return;
-    // прогреваем кэш браузера, чтобы новое фото уже было готово к моменту проявления
+    if (n === idx) return;
+    // прогреваем кэш браузера, чтобы новое фото не мигало пустотой при проявлении
     if (items[n]?.image) {
       const img = new Image();
       img.src = items[n].image;
     }
-    pendingRef.current = n;
-    setFading(true);
-    setTimeout(() => {
-      setIdx(n);
-      pendingRef.current = null;
-      setFading(false);
-    }, FADE_MS);
+    if (outTimerRef.current) clearTimeout(outTimerRef.current);
+    setOutIdx(idx);
+    setIdx(n);
+    outTimerRef.current = setTimeout(() => setOutIdx(null), FADE_MS);
   };
+
+  useEffect(() => () => {
+    if (outTimerRef.current) clearTimeout(outTimerRef.current);
+  }, []);
 
   // Автолистание, пока пользователь не листает сам — сбрасывается на любой ручной переход.
   useEffect(() => {
@@ -56,13 +66,15 @@ export default function FunFacts() {
         <div className="kicker">Факты</div>
         <div className="fun-facts-panel">
           <div className="fun-facts-circle-photo">
-            <div className={`fun-facts-fade${fading ? " is-hidden" : ""}`}>
-              {current.image ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={current.image} alt="" />
-              ) : (
-                <div className="fun-facts-photo-empty" />
+            <div className="fun-facts-stack">
+              {outIdx !== null && (
+                <div key={`p${outIdx}`} className="fun-facts-fade-layer is-out">
+                  <Photo image={items[outIdx].image} />
+                </div>
               )}
+              <div key={`c${idx}`} className="fun-facts-fade-layer is-in">
+                <Photo image={current.image} />
+              </div>
             </div>
             {items.length > 1 && (
               <>
@@ -86,8 +98,15 @@ export default function FunFacts() {
                 )}
                 {titleLine2}
               </h2>
-              <div className={`fun-facts-fade${fading ? " is-hidden" : ""}`}>
-                <p className="fun-facts-text">{current.text}</p>
+              <div className="fun-facts-stack fun-facts-text-stack">
+                {outIdx !== null && (
+                  <div key={`pt${outIdx}`} className="fun-facts-fade-layer is-out">
+                    <p className="fun-facts-text">{items[outIdx].text}</p>
+                  </div>
+                )}
+                <div key={`ct${idx}`} className="fun-facts-fade-layer is-in">
+                  <p className="fun-facts-text">{current.text}</p>
+                </div>
               </div>
               {items.length > 1 && (
                 <div className="gallery-dots" style={{ marginTop: "22px" }}>
