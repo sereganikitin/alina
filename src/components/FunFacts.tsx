@@ -6,6 +6,25 @@ import { useContent } from "@/lib/useContent";
 const AUTOPLAY_MS = 6000;
 const FADE_MS = 1500;
 
+// Тонкий двойной шеврон — обводкой, в тон рамке блока, а не жирным
+// символом шрифта.
+function Chevrons({ flip }: { flip?: boolean }) {
+  return (
+    <svg
+      viewBox="0 0 30 48"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      style={flip ? { transform: "scaleX(-1)" } : undefined}
+    >
+      <path d="M20 6 8 24l12 18" />
+      <path d="M29 6 17 24l12 18" />
+    </svg>
+  );
+}
+
 function Photo({ image }: { image: string }) {
   return image ? (
     // eslint-disable-next-line @next/next/no-img-element
@@ -128,10 +147,10 @@ export default function FunFacts() {
         {items.length > 1 && (
           <div className="fun-facts-nav-row">
             <button type="button" onClick={() => goTo(idx - 1)} aria-label="Предыдущий факт" className="fun-facts-nav">
-              «
+              <Chevrons />
             </button>
             <button type="button" onClick={() => goTo(idx + 1)} aria-label="Следующий факт" className="fun-facts-nav">
-              »
+              <Chevrons flip />
             </button>
           </div>
         )}
