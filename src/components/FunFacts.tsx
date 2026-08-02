@@ -87,16 +87,6 @@ export default function FunFacts() {
                 <Photo image={current.image} />
               </div>
             </div>
-            {items.length > 1 && (
-              <>
-                <button type="button" onClick={() => goTo(idx - 1)} aria-label="Предыдущий факт" className="gallery-nav gallery-nav-prev">
-                  ‹
-                </button>
-                <button type="button" onClick={() => goTo(idx + 1)} aria-label="Следующий факт" className="gallery-nav gallery-nav-next">
-                  ›
-                </button>
-              </>
-            )}
           </div>
           <div className="fun-facts-circle-text">
             <div className="fun-facts-content">
@@ -135,6 +125,16 @@ export default function FunFacts() {
             </div>
           </div>
         </div>
+        {items.length > 1 && (
+          <div className="fun-facts-nav-row">
+            <button type="button" onClick={() => goTo(idx - 1)} aria-label="Предыдущий факт" className="fun-facts-nav">
+              «
+            </button>
+            <button type="button" onClick={() => goTo(idx + 1)} aria-label="Следующий факт" className="fun-facts-nav">
+              »
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

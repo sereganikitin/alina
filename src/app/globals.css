@@ -960,6 +960,29 @@ a.assoc-icon:hover {
     opacity: 0;
   }
 }
+/* Перелистывание фактов — под панелью, по центру (на стыке окружностей),
+   без кружка-подложки: просто крупные террактовые двойные шевроны. */
+.fun-facts-nav-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 56px;
+  margin-top: 28px;
+}
+.fun-facts-nav {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--terra);
+  font-size: 3rem;
+  line-height: 1;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.fun-facts-nav:hover {
+  opacity: 0.7;
+  transform: scale(1.06);
+}
 @media (max-width: 760px) {
   .fun-facts-panel {
     aspect-ratio: auto;
