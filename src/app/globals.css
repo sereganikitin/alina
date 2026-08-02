@@ -939,10 +939,10 @@ a.assoc-icon:hover {
   height: 100%;
 }
 .fun-facts-fade-layer.is-in {
-  animation: fun-facts-fade-in 1s ease forwards;
+  animation: fun-facts-fade-in 1.5s ease forwards;
 }
 .fun-facts-fade-layer.is-out {
-  animation: fun-facts-fade-out 1s ease forwards;
+  animation: fun-facts-fade-out 1.5s ease forwards;
 }
 @keyframes fun-facts-fade-in {
   from {

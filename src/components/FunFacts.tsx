@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useContent } from "@/lib/useContent";
 
-const AUTOPLAY_MS = 5000;
-const FADE_MS = 1000;
+const AUTOPLAY_MS = 6000;
+const FADE_MS = 1500;
 
 function Photo({ image }: { image: string }) {
   return image ? (
