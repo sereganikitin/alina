@@ -238,6 +238,8 @@ header.scrolled {
 .badges {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  grid-auto-flow: column;
   gap: clamp(14px, 2vw, 26px) clamp(20px, 3vw, 40px);
   max-width: min(520px, 50%);
 }
@@ -301,6 +303,8 @@ header.scrolled {
   }
   .badges {
     grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-auto-flow: row;
     gap: 16px;
     max-width: 230px;
   }

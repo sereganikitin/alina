@@ -36,15 +36,16 @@ const PersonIcon = (
   </svg>
 );
 
-const LockIcon = (
+const CapIcon = (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={iconCls}>
-    <rect x="5" y="10.5" width="14" height="9.5" rx="2.2" />
-    <path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" />
-    <circle cx="12" cy="15" r="1.1" />
+    <path d="M12 5 22 9.5 12 14 2 9.5Z" />
+    <path d="M6.2 11.9v3.6c0 1.6 2.6 2.8 5.8 2.8s5.8-1.2 5.8-2.8v-3.6" />
+    <path d="M12 9.5l6.8 2.2v4.2" />
+    <path d="M18.8 15.9l-.9 2.6h1.8Z" />
   </svg>
 );
 
-const STAT_ICONS = [HandshakeIcon, ClockIcon, PersonIcon];
+const STAT_ICONS = [HandshakeIcon, ClockIcon, PersonIcon, CapIcon];
 
 export default function Hero() {
   const c = useContent();
@@ -71,7 +72,7 @@ export default function Hero() {
         </figure>
 
         <ul className="badges">
-          {c.hero.stats.slice(0, 3).map((s, i) => (
+          {c.hero.stats.slice(0, 4).map((s, i) => (
             <li key={s.label} className="badge">
               <span className="ic">{STAT_ICONS[i]}</span>
               <span>
@@ -80,13 +81,6 @@ export default function Hero() {
               </span>
             </li>
           ))}
-          <li className="badge">
-            <span className="ic">{LockIcon}</span>
-            <span>
-              <span className="n">{c.hero.security.title}</span>
-              <span className="l">{c.hero.security.note}</span>
-            </span>
-          </li>
         </ul>
 
         <div className="hero-cta">
