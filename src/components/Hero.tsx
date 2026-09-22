@@ -36,16 +36,19 @@ const PersonIcon = (
   </svg>
 );
 
+// Шапочка выпускника (срисована с i.webp): доска, тулья, кисточка слева
 const CapIcon = (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={iconCls}>
-    <path d="M12 5 22 9.5 12 14 2 9.5Z" />
-    <path d="M6.2 11.9v3.6c0 1.6 2.6 2.8 5.8 2.8s5.8-1.2 5.8-2.8v-3.6" />
-    <path d="M12 9.5l6.8 2.2v4.2" />
-    <path d="M18.8 15.9l-.9 2.6h1.8Z" />
+    <path d="M7 11.3 2 9l10.2-4.5L22 9.3l-4.2 2" />
+    <path d="M7 11.3Q12.4 9.6 17.8 11.3V15.6M7 11.3V15.6" />
+    <ellipse cx="12.4" cy="15.6" rx="5.4" ry="1.5" />
+    <path d="M4.5 10.2v4.4" />
+    <circle cx="4.5" cy="15.2" r=".6" />
+    <path d="M4.5 15.8l-.9 2.7h1.8Z" />
   </svg>
 );
 
-const STAT_ICONS = [HandshakeIcon, ClockIcon, PersonIcon, CapIcon];
+const STAT_ICONS = [CapIcon, HandshakeIcon, ClockIcon, PersonIcon];
 
 export default function Hero() {
   const c = useContent();
