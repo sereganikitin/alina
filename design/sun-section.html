@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>с чем я работаю — схема-солнышко</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f0e3; --card: #f0e7d8; --line: #d8c9b3; --ink: #2a2118; --muted: #7a6e5c;
+    --terra: #9b5d46; --terra-d: #854c38; --ochre: #b6883a;
+    --text-soft: #4a4032; --text-card: #3f362a;
+    --serif: "Playfair Display", Georgia, serif;
+    --sans: "Inter", system-ui, sans-serif;
+    --container: 1120px; --section-y: 100px; --gutter: 30px;
+    --kicker-gap: 14px; --kicker-rule: 46px; --radius-card: 22px;
+    --stroke-accent: 1.5px; --stroke-hair: 1px;
+    --paper: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='n' x='0' y='0' width='400' height='400' filterUnits='userSpaceOnUse'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='11' stitchTiles='stitch' result='t'/><feColorMatrix in='t' type='matrix' values='0 0 0 0 0.55  0 0 0 0 0.49  0 0 0 0 0.4  0 0 0 0.7 0'/></filter><rect width='400' height='400' filter='url(%23n)'/></svg>");
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    color-scheme: light;
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background-color: var(--bg); background-image: var(--paper); background-blend-mode: multiply;
+    color: var(--ink); font-family: var(--sans); line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== Секция «с чем я работаю» ===== */
+  .sun-section {
+    background-color: var(--bg); background-image: var(--paper); background-blend-mode: multiply;
+  }
+  .sun-section .wrap { max-width: var(--container); margin: 0 auto; padding: var(--section-y) var(--gutter); }
+  .sun-section .kicker {
+    display: flex; align-items: center; justify-content: center; gap: var(--kicker-gap);
+    font-size: 0.76rem; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--terra); font-weight: 600; margin: 0;
+  }
+  .sun-section .kicker::before,
+  .sun-section .kicker::after { content: ""; width: var(--kicker-rule); height: 1px; background: var(--terra); }
+
+  .sun-section h2, .sun-section h3 {
+    font-family: var(--serif); font-weight: 600; letter-spacing: -0.01em;
+    text-transform: lowercase; margin: 0;
+  }
+
+  /* Центр солнышка */
+  .sun-core {
+    position: relative; z-index: 2;
+    width: 200px; height: 200px; margin: 40px auto 0;
+    border-radius: 50%;
+    background-color: var(--bg); background-image: var(--paper); background-blend-mode: multiply;
+    border: var(--stroke-accent) solid var(--terra);
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    padding: 24px;
+  }
+  /* второе тонкое кольцо — «сияние» */
+  .sun-core::before {
+    content: ""; position: absolute; inset: -12px; border-radius: 50%;
+    border: var(--stroke-hair) solid var(--line);
+  }
+  .sun-core h2 { font-size: 1.85rem; line-height: 1.1; color: var(--ink); }
+
+  /* Лучи-разделы */
+  .sun-rays { list-style: none; margin: 0; padding: 0; }
+  .sun-ray h3 { font-size: 1.28rem; line-height: 1.15; color: var(--ink); }
+  .sun-ray .idx {
+    display: block; font-family: var(--serif); font-style: italic; font-size: 1.1rem;
+    line-height: 1; color: var(--ochre); margin-bottom: 8px;
+  }
+  .sun-ray h4 {
+    font-family: var(--serif); font-weight: 600; text-transform: lowercase;
+    font-size: 1.02rem; line-height: 1.2; color: var(--ink); margin: 12px 0 0;
+  }
+  .sun-ray ul { list-style: none; margin: 12px 0 0; padding: 0; }
+  .sun-ray li {
+    position: relative; padding-left: 20px;
+    color: var(--text-card); font-size: 0.9rem; line-height: 1.38;
+  }
+  .sun-ray li + li { margin-top: 5px; }
+  .sun-ray li::before {
+    content: "—"; position: absolute; left: 0; top: 0; color: var(--ochre);
+  }
+  .sun-ray h4 + ul { margin-top: 6px; }
+
+  /* ===== Телефон и планшет: лучи сверху вниз ===== */
+  .sun-stage { position: relative; }
+  .sun-lines { display: none; }
+
+  .sun-rays {
+    position: relative; margin-top: 12px; padding-top: 28px;
+  }
+  /* вертикальный луч от центра через все карточки */
+  .sun-rays::before {
+    content: ""; position: absolute; top: 0; bottom: 28px; left: 50%;
+    width: var(--stroke-accent); background: var(--terra); transform: translateX(-50%);
+  }
+  .sun-ray {
+    position: relative; max-width: 460px; margin: 0 auto;
+    background-color: var(--card); background-image: var(--paper); background-blend-mode: multiply;
+    border: var(--stroke-hair) solid var(--line); border-radius: var(--radius-card);
+    padding: 28px 26px 30px;
+  }
+  .sun-ray + .sun-ray { margin-top: 28px; }
+
+  /* ===== Десктоп: солнышко ===== */
+  /* ===== От 900px: солнышко, которое пропорционально ужимается под ширину колонки ===== */
+  @media (min-width: 900px) {
+    .sun-scale { container-type: inline-size; margin-top: 40px; }
+    .sun-stage {
+      /* 1 «пиксель макета»: 1px на полной ширине 1060, меньше — в узкой колонке */
+      --u: min(1px, calc(100cqw / 1060));
+      width: calc(1060 * var(--u)); height: calc(1345 * var(--u)); margin: 0 auto;
+    }
+    .sun-lines {
+      display: block; position: absolute; inset: 0; width: 100%; height: 100%;
+      overflow: visible; pointer-events: none;
+    }
+    .sun-lines line { stroke: var(--terra); stroke-width: 1.5; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+
+    .sun-core {
+      position: absolute; margin: 0;
+      left: calc(var(--cx) * var(--u)); top: calc(var(--cy) * var(--u));
+      width: calc(200 * var(--u)); height: calc(200 * var(--u));
+      padding: calc(24 * var(--u));
+      transform: translate(-50%, -50%);
+    }
+    .sun-core::before { inset: calc(-12 * var(--u)); }
+    .sun-core h2 { font-size: calc(29.6 * var(--u)); }
+
+    .sun-rays { position: static; margin: 0; padding: 0; }
+    .sun-rays::before { display: none; }
+
+    .sun-ray {
+      position: absolute; margin: 0; max-width: none; padding: 0;
+      left: calc(var(--x) * var(--u)); top: calc(var(--y) * var(--u));
+      width: calc(var(--d) * var(--u)); height: calc(var(--d) * var(--u));
+      transform: translate(-50%, -50%);
+      border: var(--stroke-accent) solid var(--terra);
+      border-radius: 50%;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+    }
+    .sun-ray + .sun-ray { margin-top: 0; }
+    .sun-ray .body { width: calc(var(--w) * var(--u)); }
+    .sun-ray h3, .sun-ray .idx { text-align: center; }
+    .sun-ray .idx { font-size: calc(17.6 * var(--u)); margin-bottom: calc(8 * var(--u)); }
+    .sun-ray h3 { font-size: calc(20.5 * var(--u)); }
+    .sun-ray h4 { font-size: calc(16.3 * var(--u)); margin-top: calc(12 * var(--u)); }
+    .sun-ray ul { margin-top: calc(12 * var(--u)); }
+    .sun-ray h4 + ul { margin-top: calc(6 * var(--u)); }
+    .sun-ray li { font-size: calc(14.4 * var(--u)); padding-left: calc(20 * var(--u)); }
+    .sun-ray li + li { margin-top: calc(5 * var(--u)); }
+
+    /* — Ховер: кружок приподнимается, вокруг загорается ореол, луч к центру становится ярче — */
+    .sun-ray { transition: transform 0.25s, background-color 0.25s; }
+    .sun-ray::before {
+      content: ""; position: absolute; inset: 0; border-radius: 50%; pointer-events: none;
+      border: var(--stroke-hair) solid var(--terra); opacity: 0;
+      transition: inset 0.25s, opacity 0.25s;
+    }
+    .sun-ray:hover { transform: translate(-50%, -50%) scale(1.03); background-color: var(--bg); }
+    .sun-ray:hover::before { inset: calc(-12 * var(--u)); opacity: 0.5; }
+    .sun-ray .idx { transition: color 0.25s; }
+    .sun-ray:hover .idx { color: var(--terra); }
+
+    .sun-lines line { transition: stroke-width 0.25s, stroke 0.25s; }
+    .sun-stage:has(.sun-ray:nth-child(1):hover) .sun-lines line:nth-of-type(1),
+    .sun-stage:has(.sun-ray:nth-child(2):hover) .sun-lines line:nth-of-type(2),
+    .sun-stage:has(.sun-ray:nth-child(3):hover) .sun-lines line:nth-of-type(3),
+    .sun-stage:has(.sun-ray:nth-child(4):hover) .sun-lines line:nth-of-type(4),
+    .sun-stage:has(.sun-ray:nth-child(5):hover) .sun-lines line:nth-of-type(5),
+    .sun-stage:has(.sun-ray:nth-child(6):hover) .sun-lines line:nth-of-type(6) { stroke: var(--terra-d); stroke-width: 3; }
+
+
+    @media (prefers-reduced-motion: reduce) {
+      .sun-ray:hover { transform: translate(-50%, -50%); }
+    }
+  }
+
+  /* Ховер в варианте карточек */
+  @media (max-width: 899px) {
+    .sun-ray { transition: border-color 0.25s, background-color 0.25s; }
+    .sun-ray:hover { border-color: var(--terra); background-color: var(--bg); }
+    .sun-ray .idx { transition: color 0.25s; }
+    .sun-ray:hover .idx { color: var(--terra); }
+  }
+</style>
+</head>
+<body>
+
+<section class="sun-section" aria-labelledby="sun-title">
+  <div class="wrap">
+    <p class="kicker">Запросы</p>
+
+    <!-- Макет 1060×1345 (числа — в «пикселях макета», масштабируются через --u), центр 545/675. Шесть кружков-лучей: 270°, 328°, 33°, 92°, 148°, 210°. -->
+    <div class="sun-scale">
+    <div class="sun-stage" style="--cx:545; --cy:675;">
+      <svg class="sun-lines" viewBox="0 0 1060 1345" aria-hidden="true">
+        <!-- от внешнего кольца центра (r 112) до края кружка -->
+        <line x1="545" y1="563" x2="545" y2="405"/>
+        <line x1="640" y1="616" x2="740" y2="553"/>
+        <line x1="639" y1="736" x2="723" y2="790"/>
+        <line x1="541" y1="787" x2="536" y2="940"/>
+        <line x1="450" y1="734" x2="354" y2="794"/>
+        <line x1="448" y1="619" x2="386" y2="583"/>
+      </svg>
+
+      <div class="sun-core">
+        <h2 id="sun-title">с чем я работаю</h2>
+      </div>
+
+      <ol class="sun-rays">
+        <!-- 01 -->
+        <li class="sun-ray" style="--x:545; --y:205; --d:400; --w:262;">
+          <div class="body">
+            <span class="idx">01</span>
+            <h3>Отношения и границы</h3>
+            <ul>
+              <li>Трудности в отношениях <span class="note">(партнёрских, детско-родительских, сиблинговых, дружеских, рабочих)</span></li>
+              <li>Созависимые отношения</li>
+              <li>Тема личных границ</li>
+              <li>Сепарация от родителей</li>
+              <li>Травма привязанности</li>
+              <li>Ранняя травма</li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- 02 -->
+        <li class="sun-ray" style="--x:880; --y:466; --d:330; --w:220;">
+          <div class="body">
+            <span class="idx">02</span>
+            <h3>Насилие и абьюз</h3>
+            <ul>
+              <li>Насилие и абьюз: эмоциональный, физический, сексуальный</li>
+              <li>Последствия пережитого насилия</li>
+              <li>Работа с авторами насилия</li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- 03 -->
+        <li class="sun-ray" style="--x:876; --y:890; --d:366; --w:244;">
+          <div class="body">
+            <span class="idx">03</span>
+            <h3>Травматический опыт и утрата</h3>
+            <ul>
+              <li>Травматический опыт <span class="note">(аварии, болезни и другие события)</span></li>
+              <li>ПТСР и КПТСР</li>
+              <li>Потеря и горе</li>
+              <li>Жизненные кризисы и значимые изменения</li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- 04 -->
+        <li class="sun-ray" style="--x:529; --y:1140; --d:400; --w:262;">
+          <div class="body">
+            <span class="idx">04</span>
+            <h3>Отношения с собой</h3>
+            <ul>
+              <li>Поиск себя</li>
+              <li>Самооценка и самоценность</li>
+              <li>Принятие себя</li>
+              <li>Чувство стыда и вины <span class="note">(работа с внутренним критиком)</span></li>
+              <li>Поиск ресурса и мотивации</li>
+              <li>Нейроотличия</li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- 05 -->
+        <li class="sun-ray" style="--x:219; --y:879; --d:320; --w:222;">
+          <div class="body">
+            <span class="idx">05</span>
+            <h3>Отношения с телом</h3>
+            <ul>
+              <li>Принятие тела</li>
+              <li>РПП</li>
+              <li>Психосоматика / телесные проявления эмоциональных состояний</li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- 06 -->
+        <li class="sun-ray" style="--x:207; --y:480; --d:412; --w:270;">
+          <div class="body">
+            <span class="idx">06</span>
+            <h3>Трудные эмоциональные состояния</h3>
+            <ul>
+              <li>Тревога и тревожные состояния</li>
+              <li>Панические атаки</li>
+              <li>Страхи и фобии</li>
+              <li>Депрессивные состояния</li>
+              <li>Суицидальные мысли</li>
+              <li>Трудности с эмоциональной регуляцией</li>
+              <li>Сильные или трудно переносимые эмоции</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

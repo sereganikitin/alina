@@ -52,23 +52,72 @@ const DEFAULTS = {
     ],
   },
   principles: {
-    requests: [
-      "Травма любого характера",
-      "Травма привязанности",
-      "Потеря и горе",
-      "Абьюз (моральный / физический / сексуализированный)",
-      "ПТСР",
-      "РПП",
-      "Тема границ",
-      "Чувство стыда и вины",
-      "Созависимые отношения",
-      "Сепарация от родителей",
-      "Поиск ресурса",
-      "Психосоматика",
-      "Принятие тела",
+    sun: [
+      {
+        title: "Отношения и границы",
+        items: [
+          "Трудности в отношениях (партнёрских, детско-родительских, сиблинговых, дружеских, рабочих)",
+          "Созависимые отношения",
+          "Тема личных границ",
+          "Сепарация от родителей",
+          "Травма привязанности",
+          "Ранняя травма",
+        ],
+      },
+      {
+        title: "Насилие и абьюз",
+        items: [
+          "Насилие и абьюз: эмоциональный, физический, сексуальный",
+          "Последствия пережитого насилия",
+          "Работа с авторами насилия",
+        ],
+      },
+      {
+        title: "Травматический опыт и утрата",
+        items: [
+          "Травматический опыт (аварии, болезни и другие события)",
+          "ПТСР и КПТСР",
+          "Потеря и горе",
+          "Жизненные кризисы и значимые изменения",
+        ],
+      },
+      {
+        title: "Отношения с собой",
+        items: [
+          "Поиск себя",
+          "Самооценка и самоценность",
+          "Принятие себя",
+          "Чувство стыда и вины (работа с внутренним критиком)",
+          "Поиск ресурса и мотивации",
+          "Нейроотличия",
+        ],
+      },
+      {
+        title: "Отношения с телом",
+        items: [
+          "Принятие тела",
+          "РПП",
+          "Психосоматика / телесные проявления эмоциональных состояний",
+        ],
+      },
+      {
+        title: "Трудные эмоциональные состояния",
+        items: [
+          "Тревога и тревожные состояния",
+          "Панические атаки",
+          "Страхи и фобии",
+          "Депрессивные состояния",
+          "Суицидальные мысли",
+          "Трудности с эмоциональной регуляцией",
+          "Сильные или трудно переносимые эмоции",
+        ],
+      },
     ],
+    withWhomTitle: "С кем я работаю",
     withWhom:
       "Со взрослыми людьми в долгосрочной онлайн-терапии. Подробности об условиях и форматах — в разделе «Консультация».",
+    notWithWhomTitle: "С кем я не работаю",
+    notWithWhom: "С химическими зависимостями, со сложной психиатрией (остальное — в сопровождении психиатра).",
     image: "/photos/principles.jpg",
     circles: ["Круг 1", "Круг 2", "Круг 3"],
     side: {
@@ -482,6 +531,7 @@ function listObj(label, arr, fields, factory) {
         else if (f.type === "rich") card.append(fRich(f.label, item, f.key));
         else if (f.type === "scan") card.append(fMedia(f.label, item, f.key, "image/*,application/pdf"));
         else if (f.type === "gallery") card.append(fGallery(f.label, item, f.key, "image/*,application/pdf"));
+        else if (f.type === "list") card.append(listText(f.label, item[f.key]));
         else card.append(fText(f.label, item, f.key));
       }
       card.append(h("button", { class: "btn-ghost btn-sm", type: "button", style: "margin-top:8px", onclick: () => { arr.splice(i, 1); render(); } }, "Удалить"));
@@ -493,6 +543,9 @@ function listObj(label, arr, fields, factory) {
   const add = h("button", { class: "btn-ghost btn-sm", type: "button", onclick: () => { arr.push(factory()); render(); } }, "+ добавить");
   box.append(list, add);
   return box;
+}
+function note(text) {
+  return h("p", { class: "hint", style: "margin:2px 0 10px;font-size:12px;line-height:1.5;color:#7a6e5c" }, text);
 }
 function section(title, ...nodes) {
   return h("div", { class: "card" }, h("h3", {}, title), ...nodes);
@@ -513,8 +566,16 @@ function renderContent() {
     section("Образование", fRich("Вступление", c.education, "lead"),
       listObj("Дипломы", c.education.diplomas, [{ key: "title", label: "Название" }, { key: "images", label: "Страницы скана (можно несколько — пролистывание в попапе)", type: "gallery" }], () => ({ title: "", images: [] })),
       listText("Доп. строки", c.education.extra)),
-    section("Принципы работы", listText("Запросы (с чем работаю)", c.principles.requests), fRich("С кем я работаю", c.principles, "withWhom"), fMedia("Фото (дуга сверху)", c.principles, "image", "image/*"),
-      listText("Подписи в кругах под фото (используются первые 3)", c.principles.circles),
+    section("Принципы работы",
+      note("Схема «с чем я работаю»: шесть разделов вокруг центра. Порядок разделов = порядок кругов на схеме, по часовой стрелке от верхнего. ⚠️ Круги и лучи нарисованы под эти шесть разделов и под текущую длину текста: если добавить раздел или сильно удлинить пункты, текст вылезет за край круга — нужна правка вёрстки."),
+      listObj("Схема «с чем я работаю» — разделы", c.principles.sun, [{ key: "title", label: "Заголовок раздела" }, { key: "items", label: "Пункты", type: "list" }], () => ({ title: "", items: [] })),
+      fArea("Колонка слева — заголовок", c.principles, "withWhomTitle"),
+      fRich("Колонка слева — текст", c.principles, "withWhom"),
+      fArea("Колонка справа — заголовок", c.principles, "notWithWhomTitle"),
+      fRich("Колонка справа — текст", c.principles, "notWithWhom"),
+      note("Фото-арка в «Принципах» больше не выводится — схема заняла всю ширину колонки. Поле ниже оставлено на случай возврата."),
+      fMedia("Фото (дуга сверху) — сейчас не выводится", c.principles, "image", "image/*"),
+      listText("Подписи в кругах под фото (сейчас не выводятся)", c.principles.circles),
       fArea("Блок у фото — заголовок", c.principles.side, "title"),
       listObj("Блок у фото — пункты", c.principles.side.items, [{ key: "title", label: "Заголовок пункта" }, { key: "text", label: "Текст пункта", type: "rich" }], () => ({ title: "", text: "" }))),
     section("О подходе", fRich("Вводный текст (у первой буквы — крупная буквица)", c.approach, "intro"), fMedia("Фото справа от текста", c.approach, "image", "image/*"), listRich("Абзацы", c.approach.paragraphs)),
