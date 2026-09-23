@@ -789,19 +789,37 @@ a.assoc-icon:hover {
   background-blend-mode: multiply;
 }
 .approach-top {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 40px;
-  align-items: start;
 }
-@media (min-width: 820px) {
-  .approach-top {
-    grid-template-columns: 1.1fr 0.9fr;
-  }
+.approach-top::after {
+  content: "";
+  display: block;
+  clear: both;
 }
 .approach-photo {
+  /* На мобиле фото под текстом (в DOM оно идёт первым — см. Approach.tsx) */
+  order: 2;
   border-radius: 24px;
   overflow: hidden;
   aspect-ratio: 4 / 3;
+}
+@media (min-width: 820px) {
+  .approach-top {
+    /* Не grid: фото обтекается текстом, чтобы абзацы ниже него
+       шли во всю ширину блока, а не в узкую колонку */
+    display: block;
+  }
+  .approach-photo {
+    float: right;
+    width: 45%;
+    margin: 0 0 28px 40px;
+  }
+  /* Каждый абзац после первого начинается под фото — на полную ширину */
+  .approach-intro p + p {
+    clear: right;
+  }
 }
 .approach-photo img {
   width: 100%;

@@ -9,6 +9,14 @@ export default function Approach() {
     <section id="approach" className="approach-section">
       <div className="wrap">
         <div className="approach-top">
+          {/* Фото идёт раньше текста в DOM: на десктопе оно обтекается (float), */}
+          {/* поэтому абзацы ниже него занимают всю ширину блока */}
+          {c.approach.image && (
+            <div className="approach-photo">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={c.approach.image} alt="" />
+            </div>
+          )}
           <div className="approach-head">
             <div className="kicker">О подходе</div>
             <h2 className="section-h">Как проходит работа</h2>
@@ -17,12 +25,6 @@ export default function Approach() {
               <RichText html={c.approach.intro} className="approach-intro" />
             )}
           </div>
-          {c.approach.image && (
-            <div className="approach-photo">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={c.approach.image} alt="" />
-            </div>
-          )}
         </div>
 
         <div className="approach-cards">
