@@ -24,7 +24,7 @@ export default function DiplomaList({ diplomas }: { diplomas: Diploma[] }) {
           <div key={d.title} className="edu-row" onClick={() => openDiploma(d.images, d.title)}>
             <span className="idx">{String(i + 1).padStart(2, "0")}</span>
             <span className="t">{d.title}</span>
-            <span className="go">{d.images.length ? "скан →" : ""}</span>
+            <span className="go">{d.images.length ? "→" : ""}</span>
           </div>
         ))}
       </div>

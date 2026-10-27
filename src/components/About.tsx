@@ -14,7 +14,7 @@ export default function About() {
         </div>
         <div>
           <div className="kicker">Обо мне</div>
-          <div className="role">{c.about.title}</div>
+          {c.about.title && <div className="role">{c.about.title}</div>}
           <RichText
             html={c.about.lead}
             className="muted"
@@ -33,6 +33,9 @@ export default function About() {
               )
             )}
           </div>
+          <a href="#fun-facts" className="about-more">
+            Интересное обо мне →
+          </a>
         </div>
       </div>
     </section>

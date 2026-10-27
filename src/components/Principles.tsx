@@ -85,16 +85,10 @@ export default function Principles() {
           </div>
         </div>
 
-        {/* Две колонки под схемой: с кем работаю / с кем не работаю */}
-        <div className="prin-whom">
-          <div className="prin-whom-col">
-            <h3 className="prin-h">{c.principles.withWhomTitle}</h3>
-            <RichText html={c.principles.withWhom} className="with" />
-          </div>
-          <div className="prin-whom-col">
-            <h3 className="prin-h">{c.principles.notWithWhomTitle}</h3>
-            <RichText html={c.principles.notWithWhom} className="with" />
-          </div>
+        {/* Плашка под схемой: с чем я не работаю */}
+        <div className="prin-not">
+          <h3 className="prin-h">С чем я не работаю</h3>
+          <RichText html={c.principles.notWithWhom} className="with" />
         </div>
 
         <div className="prin-full">
