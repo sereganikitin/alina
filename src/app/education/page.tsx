@@ -19,7 +19,9 @@ export default function EducationPage() {
           </a>
           <div className="kicker">Образование</div>
           <h1 className="section-h">Дипломы и квалификация</h1>
-          <RichText html={c.education.lead} className="lead" />
+          {c.education.lead.replace(/<[^>]*>|&nbsp;/g, "").trim() && (
+            <RichText html={c.education.lead} className="lead" />
+          )}
 
           <DiplomaList diplomas={c.education.diplomas} />
         </div>

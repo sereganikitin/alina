@@ -483,6 +483,23 @@ a.assoc-icon:hover {
   font-family: var(--serif);
   font-size: 1.35rem;
 }
+.edu-row .edu-subtitle {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.edu-row.edu-sub {
+  padding-left: 28px;
+}
+.edu-row.edu-sub .t {
+  font-size: 1.15rem;
+}
+.edu-row .idx {
+  min-width: 2.4ch;
+}
 .edu-row .go {
   font-size: 0.74rem;
   letter-spacing: 0.1em;

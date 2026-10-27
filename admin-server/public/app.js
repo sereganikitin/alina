@@ -38,12 +38,12 @@ const DEFAULTS = {
     lead:
       "Непрерывный профессиональный путь: в профессии с 17 лет, более 10 лет практики. Дипломы государственного образца — ниже.",
     diplomas: [
-      { title: "Высшее психологическое образование", images: [] },
-      { title: "Преподаватель психологии", images: [] },
-      { title: "EMDR-терапевт", images: [] },
-      { title: "IFS-терапевт", images: [] },
-      { title: "Танцевально-двигательный терапевт", images: [] },
-      { title: "Действительный член Национальной ассоциации EMDR", images: [] },
+      { title: "Высшее психологическое образование", images: [], num: "", subtitle: "специальность: психолог, преподаватель психологии" },
+      { title: "Повышение квалификации в области психологии и психотерапии", images: [], num: "", subtitle: "специальность: интегративный танцевально-двигательный терапевт и тренер" },
+      { title: "EMDR-терапия", images: [], num: "", subtitle: "1 и 2 модуль, европейская аккредитация практика, супервизорский курс, членство в Ассоциации" },
+      { title: "Конференции и повышение квалификации в подходе", images: [], num: "3.1", subtitle: "" },
+      { title: "IFS-терапия", images: [], num: "", subtitle: "3 модуля" },
+      { title: "Другие модальности", images: [], num: "", subtitle: "" },
     ],
     extra: [
       "Регулярное ежегодное повышение квалификации",
@@ -316,6 +316,12 @@ function sanitizeRichHtml(htmlStr) {
   out = out.replace(/<!--[\s\S]*?-->/g, "");
   out = out.replace(/<\/?([a-zA-Z0-9]+)[^>]*>/g, (match, tag) => {
     const t = String(tag).toLowerCase();
+    if (t === "a") {
+      // Только внутренние якоря вида #principles (как на сайте).
+      if (match.startsWith("</")) return "</a>";
+      const href = /href\s*=\s*["'](#[\w-]+)["']/i.exec(match);
+      return href ? `<a href="${href[1]}">` : "";
+    }
     if (!RICH_ALLOWED_TAGS.has(t)) return "";
     return match.startsWith("</") ? `</${t}>` : `<${t}>`;
   });
@@ -564,7 +570,7 @@ function renderContent() {
     section("Обо мне", fArea("Заголовок", c.about, "title"), fRich("Подпись", c.about, "lead"), listText("Методы", c.about.methods), fMedia("Фото в арке", c.about, "image", "image/*"),
       listObj("Кнопки-ссылки (ассоциации)", c.about.links, [{ key: "label", label: "Текст на кнопке" }, { key: "url", label: "Ссылка" }], () => ({ label: "", url: "" }))),
     section("Образование", fRich("Вступление", c.education, "lead"),
-      listObj("Дипломы", c.education.diplomas, [{ key: "title", label: "Название" }, { key: "images", label: "Страницы скана (можно несколько — пролистывание в попапе)", type: "gallery" }], () => ({ title: "", images: [] })),
+      listObj("Дипломы", c.education.diplomas, [{ key: "title", label: "Название" }, { key: "num", label: "Номер (например 3.1; пусто — по порядку)" }, { key: "subtitle", label: "Пояснение под названием (серым)" }, { key: "images", label: "Страницы скана (можно несколько — пролистывание в попапе)", type: "gallery" }], () => ({ title: "", num: "", subtitle: "", images: [] })),
       listText("Доп. строки", c.education.extra)),
     section("Принципы работы",
       note("Схема «с чем я работаю»: шесть разделов вокруг центра. Порядок разделов = порядок кругов на схеме, по часовой стрелке от верхнего. ⚠️ Круги и лучи нарисованы под эти шесть разделов и под текущую длину текста: если добавить раздел или сильно удлинить пункты, текст вылезет за край круга — нужна правка вёрстки."),

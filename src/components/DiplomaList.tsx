@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 
-export type Diploma = { title: string; images: string[] };
+/** num — своя нумерация («3.1»); пусто — порядковый номер. subtitle — серая подпись под названием. */
+export type Diploma = { title: string; images: string[]; num?: string; subtitle?: string };
 
 /** Список дипломов + попап-галерея со сканом — общий для главной ("первые 5" +
     ссылка "Смотреть ещё") и отдельной страницы /education (весь список). */
@@ -21,9 +22,16 @@ export default function DiplomaList({ diplomas }: { diplomas: Diploma[] }) {
     <>
       <div className="edu-list">
         {diplomas.map((d, i) => (
-          <div key={d.title} className="edu-row" onClick={() => openDiploma(d.images, d.title)}>
-            <span className="idx">{String(i + 1).padStart(2, "0")}</span>
-            <span className="t">{d.title}</span>
+          <div
+            key={d.title}
+            className={`edu-row${d.num && d.num.includes(".") ? " edu-sub" : ""}`}
+            onClick={() => openDiploma(d.images, d.title)}
+          >
+            <span className="idx">{d.num || String(i + 1).padStart(2, "0")}</span>
+            <span className="t">
+              {d.title}
+              {d.subtitle && <span className="edu-subtitle">{d.subtitle}</span>}
+            </span>
             <span className="go">{d.images.length ? "→" : ""}</span>
           </div>
         ))}

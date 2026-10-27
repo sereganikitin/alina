@@ -16,6 +16,12 @@ function sanitizeRichHtml(html: string): string {
   out = out.replace(/<!--[\s\S]*?-->/g, "");
   out = out.replace(/<\/?([a-zA-Z0-9]+)[^>]*>/g, (match, tag) => {
     const t = String(tag).toLowerCase();
+    if (t === "a") {
+      // Только внутренние якоря вида #principles — внешние ссылки не пропускаем.
+      if (match.startsWith("</")) return "</a>";
+      const href = /href\s*=\s*["'](#[\w-]+)["']/i.exec(match);
+      return href ? `<a href="${href[1]}">` : "";
+    }
     if (!ALLOWED_TAGS.has(t)) return "";
     return match.startsWith("</") ? `</${t}>` : `<${t}>`;
   });

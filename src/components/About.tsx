@@ -34,7 +34,7 @@ export default function About() {
             )}
           </div>
           <a href="#fun-facts" className="about-more">
-            Интересное обо мне →
+            Узнать больше в разделе «Интересное обо мне» →
           </a>
         </div>
       </div>
