@@ -2,6 +2,7 @@
 
 // ---- defaults (структура должна совпадать с сайтом) ----
 const DEFAULTS = {
+  novemberRevision: false,
   hero: {
     quote: "«Тебе нужно больше помощи, чем ты думаешь»",
     image: "/photos/hero-beige-2.jpg",
@@ -18,6 +19,7 @@ const DEFAULTS = {
     },
   },
   about: {
+    afterPrinciples: "",
     title:
       "Психолог, EMDR-терапевт, IFS-терапевт, танцевально-двигательный терапевт",
     lead: "Действительный член Национальной ассоциации EMDR.",
@@ -38,12 +40,12 @@ const DEFAULTS = {
     lead:
       "Непрерывный профессиональный путь: в профессии с 17 лет, более 10 лет практики. Дипломы государственного образца — ниже.",
     diplomas: [
-      { title: "Высшее психологическое образование", images: [], num: "", subtitle: "специальность: психолог, преподаватель психологии" },
-      { title: "Повышение квалификации в области психологии и психотерапии", images: [], num: "", subtitle: "специальность: интегративный танцевально-двигательный терапевт и тренер" },
-      { title: "EMDR-терапия", images: [], num: "", subtitle: "1 и 2 модуль, европейская аккредитация практика, супервизорский курс, членство в Ассоциации" },
-      { title: "Конференции и повышение квалификации в подходе", images: [], num: "3.1", subtitle: "" },
-      { title: "IFS-терапия", images: [], num: "", subtitle: "3 модуля" },
-      { title: "Другие модальности", images: [], num: "", subtitle: "" },
+      { title: "Высшее психологическое образование", images: [] },
+      { title: "Преподаватель психологии", images: [] },
+      { title: "EMDR-терапевт", images: [] },
+      { title: "IFS-терапевт", images: [] },
+      { title: "Танцевально-двигательный терапевт", images: [] },
+      { title: "Действительный член Национальной ассоциации EMDR", images: [] },
     ],
     extra: [
       "Регулярное ежегодное повышение квалификации",
@@ -144,6 +146,8 @@ const DEFAULTS = {
   },
   approach: {
     intro: "",
+    closing: "",
+    support: "",
     image: "/photos/hero-beige-3.jpg",
     paragraphs: [
       "В работе я опираюсь на запрос: мы вместе держим в фокусе то, ради чего вы пришли, и сверяемся с этим на каждой сессии. Если мы от запроса отходим — я говорю об этом и объясняю, зачем.",
@@ -152,6 +156,9 @@ const DEFAULTS = {
     ],
   },
   consultation: {
+    formats: [],
+    cancellationRules: "",
+    image: "/photos/hero-beige-2.jpg",
     facts: [
       { label: "Формат", value: "Онлайн, из любой точки мира" },
       { label: "Язык", value: "Русскоязычная терапия" },
@@ -162,6 +169,7 @@ const DEFAULTS = {
       "Записаться можно в Telegram или WhatsApp — отвечаю лично. Или оставьте заявку через форму на сайте.",
   },
   funFacts: {
+    blogUrl: "",
     title: "Интересные факты обо мне",
     items: [
       { text: "У меня СДВГ и РАС", image: "" },
@@ -307,7 +315,7 @@ function fArea(label, obj, key) {
 // Тот же формат, что понимает richTextToHtml на сайте: если в строке уже
 // есть теги — это HTML из этого редактора; если нет — старый простой текст
 // с абзацами через пустую строку.
-const RICH_ALLOWED_TAGS = new Set(["p", "b", "strong", "i", "em", "u", "br", "div", "ul", "ol", "li"]);
+const RICH_ALLOWED_TAGS = new Set(["p", "b", "strong", "i", "em", "u", "br", "div", "ul", "ol", "li", "h2"]);
 function escapeHtmlText(s) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
@@ -316,12 +324,6 @@ function sanitizeRichHtml(htmlStr) {
   out = out.replace(/<!--[\s\S]*?-->/g, "");
   out = out.replace(/<\/?([a-zA-Z0-9]+)[^>]*>/g, (match, tag) => {
     const t = String(tag).toLowerCase();
-    if (t === "a") {
-      // Только внутренние якоря вида #principles (как на сайте).
-      if (match.startsWith("</")) return "</a>";
-      const href = /href\s*=\s*["'](#[\w-]+)["']/i.exec(match);
-      return href ? `<a href="${href[1]}">` : "";
-    }
     if (!RICH_ALLOWED_TAGS.has(t)) return "";
     return match.startsWith("</") ? `</${t}>` : `<${t}>`;
   });
@@ -368,30 +370,6 @@ function fRich(label, obj, key) {
     document.execCommand("insertText", false, text);
   });
   return h("div", {}, h("label", {}, label), toolbar, editor);
-}
-function listRich(label, arr) {
-  const box = h("div", {}, h("label", {}, label));
-  const list = h("div");
-  function render() {
-    list.innerHTML = "";
-    arr.forEach((val, i) => {
-      const item = { text: val };
-      const field = fRich("", item, "text");
-      const del = h("button", { class: "btn-ghost btn-sm", type: "button", style: "margin-top:6px", onclick: () => { arr.splice(i, 1); render(); } }, "Удалить");
-      const sync = () => { arr[i] = item.text; };
-      const ed = field.querySelector(".rich-editor");
-      ed.addEventListener("input", sync);
-      ed.addEventListener("blur", sync);
-      const handle = dragHandle();
-      const row = h("div", { class: "item drag-row" }, h("div", { class: "row", style: "justify-content:space-between;align-items:center" }, handle, reorderControls(i, arr, render)), field, del);
-      attachDrag(row, handle, i, arr, render);
-      list.append(row);
-    });
-  }
-  render();
-  const add = h("button", { class: "btn-ghost btn-sm", type: "button", onclick: () => { arr.push(""); render(); } }, "+ добавить");
-  box.append(list, add);
-  return box;
 }
 function fMedia(label, obj, key, accept) {
   const wrap = h("div", {}, h("label", {}, label));
@@ -567,30 +545,27 @@ function renderContent() {
       fArea("Кнопка (текст)", c.hero.cta, "primary"),
       fArea("Ссылка рядом (текст)", c.hero.cta, "secondary"),
       fMedia("Фото шапки", c.hero, "image", "image/*")),
-    section("Обо мне", fArea("Заголовок", c.about, "title"), fRich("Подпись", c.about, "lead"), listText("Методы", c.about.methods), fMedia("Фото в арке", c.about, "image", "image/*"),
+    section("Обо мне", fRich("Текст перед ссылкой «Подробнее про принципы работы»", c.about, "lead"), fRich("Текст после ссылки", c.about, "afterPrinciples"), fMedia("Фото в арке", c.about, "image", "image/*"),
       listObj("Кнопки-ссылки (ассоциации)", c.about.links, [{ key: "label", label: "Текст на кнопке" }, { key: "url", label: "Ссылка" }], () => ({ label: "", url: "" }))),
     section("Образование", fRich("Вступление", c.education, "lead"),
-      listObj("Дипломы", c.education.diplomas, [{ key: "title", label: "Название" }, { key: "num", label: "Номер (например 3.1; пусто — по порядку)" }, { key: "subtitle", label: "Пояснение под названием (серым)" }, { key: "images", label: "Страницы скана (можно несколько — пролистывание в попапе)", type: "gallery" }], () => ({ title: "", num: "", subtitle: "", images: [] })),
+      listObj("Дипломы", c.education.diplomas, [{ key: "number", label: "Номер пункта" }, { key: "title", label: "Название" }, { key: "detail", label: "Серая подпись в скобках" }, { key: "images", label: "Страницы скана (можно несколько — пролистывание в попапе)", type: "gallery" }], () => ({ number: "", title: "", detail: "", images: [] })),
       listText("Доп. строки", c.education.extra)),
     section("Принципы работы",
       note("Схема «с чем я работаю»: шесть разделов вокруг центра. Порядок разделов = порядок кругов на схеме, по часовой стрелке от верхнего. ⚠️ Круги и лучи нарисованы под эти шесть разделов и под текущую длину текста: если добавить раздел или сильно удлинить пункты, текст вылезет за край круга — нужна правка вёрстки."),
       listObj("Схема «с чем я работаю» — разделы", c.principles.sun, [{ key: "title", label: "Заголовок раздела" }, { key: "items", label: "Пункты", type: "list" }], () => ({ title: "", items: [] })),
-      fArea("Колонка слева — заголовок", c.principles, "withWhomTitle"),
-      fRich("Колонка слева — текст", c.principles, "withWhom"),
-      fArea("Колонка справа — заголовок", c.principles, "notWithWhomTitle"),
-      fRich("Колонка справа — текст", c.principles, "notWithWhom"),
-      note("Фото-арка в «Принципах» больше не выводится — схема заняла всю ширину колонки. Поле ниже оставлено на случай возврата."),
-      fMedia("Фото (дуга сверху) — сейчас не выводится", c.principles, "image", "image/*"),
-      listText("Подписи в кругах под фото (сейчас не выводятся)", c.principles.circles),
-      fArea("Блок у фото — заголовок", c.principles.side, "title"),
-      listObj("Блок у фото — пункты", c.principles.side.items, [{ key: "title", label: "Заголовок пункта" }, { key: "text", label: "Текст пункта", type: "rich" }], () => ({ title: "", text: "" }))),
-    section("О подходе", fRich("Вводный текст (у первой буквы — крупная буквица)", c.approach, "intro"), fMedia("Фото справа от текста", c.approach, "image", "image/*"), listRich("Абзацы", c.approach.paragraphs)),
+      fRich("Плашка «с чем я не работаю» — текст", c.principles, "notWithWhom"),
+      fArea("Подзаголовок", c.principles.side, "title"),
+      listObj("Чего от меня ожидать", c.principles.side.items, [{ key: "title", label: "Заголовок пункта" }, { key: "text", label: "Текст пункта", type: "rich" }], () => ({ title: "", text: "" }))),
+    section("Принципы работы", fRich("Текст перед ссылкой «О EMDR»", c.approach, "intro"), fRich("Текст после ссылки «О EMDR»", c.approach, "closing"), fArea("Центральная плашка", c.approach, "support"), fMedia("Фото справа от текста", c.approach, "image", "image/*")),
     section("Консультация",
-      listObj("Факты", c.consultation.facts, [{ key: "label", label: "Заголовок" }, { key: "value", label: "Значение" }], () => ({ label: "", value: "" })),
-      fRich("Примечание", c.consultation, "note")),
-    section("Интересные факты обо мне (перед FAQ)",
+      listText("Форматы", c.consultation.formats),
+      listObj("Условия", c.consultation.facts, [{ key: "label", label: "Заголовок" }, { key: "value", label: "Значение", type: "area" }], () => ({ label: "", value: "" })),
+      fRich("Правила отмен и переносов сессии", c.consultation, "cancellationRules"),
+      fMedia("Фото рядом с условиями", c.consultation, "image", "image/*")),
+    section("Интересные факты обо мне",
       fText("Заголовок", c.funFacts, "title"),
-      listObj("Факты (карусель — у каждого своя фотография)", c.funFacts.items, [{ key: "text", label: "Факт" }, { key: "image", label: "Фото", type: "image" }], () => ({ text: "", image: "" }))),
+      listObj("Карточки", c.funFacts.items, [{ key: "title", label: "Заголовок" }, { key: "text", label: "Текст", type: "area" }, { key: "image", label: "Фото", type: "image" }], () => ({ title: "", text: "", image: "" })),
+      fText("Ссылка на личный блог", c.funFacts, "blogUrl")),
     section("FAQ", fMedia("Фото справа от блока FAQ (необязательно)", c, "faqImage", "image/*"),
       listObj("Вопросы", c.faq, [{ key: "q", label: "Вопрос" }, { key: "a", label: "Ответ", type: "rich" }], () => ({ q: "", a: "" }))),
     section("Контакты", fRich("Текст", c.contacts, "note"),
@@ -685,10 +660,29 @@ async function loadBookings() {
 
 // ---- init ----
 async function loadAll() {
-  const r = await api("/api/content");
-  content = deepMerge(DEFAULTS, await r.json());
-  renderContent();
-  renderBlog();
+  try {
+    const [r, { updateLegacyContent, applyEditorialUpdates }, articleResponse] = await Promise.all([
+      api("/api/content"),
+      import("/november-content.js"),
+      fetch("/emdr-article.json"),
+    ]);
+    if (!r.ok || !articleResponse.ok) throw new Error("Content request failed");
+    const updated = updateLegacyContent(deepMerge(DEFAULTS, await r.json()), await articleResponse.json());
+    content = applyEditorialUpdates(updated);
+    renderContent();
+    renderBlog();
+  } catch (error) {
+    if (error instanceof Error && error.message === "unauth") return;
+    for (const tab of ["content", "blog"]) {
+      document.getElementById("tab-" + tab).replaceChildren(
+        h("div", { class: "card", role: "alert" },
+          h("p", {}, "Не удалось загрузить содержимое."),
+          h("button", { class: "btn", type: "button", onclick: () => location.reload() }, "Обновить страницу"),
+        ),
+      );
+    }
+    console.error("Не удалось загрузить содержимое админки", error);
+  }
 }
 (async function init() {
   try {

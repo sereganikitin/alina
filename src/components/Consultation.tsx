@@ -1,10 +1,13 @@
 "use client";
 
+import { useRef } from "react";
 import { useContent } from "@/lib/useContent";
 import { RichText } from "@/lib/richText";
 
 export default function Consultation() {
   const c = useContent();
+  const rules = useRef<HTMLDetailsElement>(null);
+  const { consultation } = c;
   return (
     <>
       <section id="consult" className="consult">
@@ -12,27 +15,35 @@ export default function Consultation() {
           <div className="kicker">Консультация</div>
           <h2 className="section-h">Формат и условия</h2>
 
-          <div className="facts">
-            {c.consultation.facts.map((f, i) => {
-              const count = c.consultation.facts.length;
-              const hasOddTail = count % 2 === 1;
-              const totalRows = Math.floor(count / 2) + (hasOddTail ? 1 : 0);
-              const isTail = hasOddTail && i === count - 1;
-              const row = isTail ? totalRows - 1 : Math.floor(i / 2);
-              const isLeftCol = !isTail && i % 2 === 0;
-              const isLastRow = row === totalRows - 1;
-              const classes = ["fact"];
-              if (isTail) classes.push("fact-full");
-              if (isLeftCol) classes.push("fact-border-r");
-              if (!isLastRow) classes.push("fact-border-b");
-              return (
-                <div key={f.label} className={classes.join(" ")}>
-                  <div className="k">{f.label}</div>
-                  <div className="v">{f.value}</div>
-                </div>
-              );
-            })}
+          <div className={consultation.image ? "consult-layout with-photo" : "consult-layout"}>
+            <div>
+              {!!consultation.formats.length && (
+                <ul className="consult-formats">
+                  {consultation.formats.map((format) => <li key={format}>{format}</li>)}
+                </ul>
+              )}
+              <dl className="facts">
+                {consultation.facts.map(({ label, value }) => (
+                  <div className="fact" key={label}>
+                    <dt className="k">{label}</dt>
+                    <dd className="v">{value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+            {consultation.image && (
+              <div className="consult-photo">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={consultation.image} alt="Алина Дубовская" loading="lazy" />
+              </div>
+            )}
           </div>
+          {consultation.cancellationRules && (
+            <details id="session-rules" className="session-rules" ref={rules}>
+              <summary className="btn btn-primary">Правила отмен и переносов сессии</summary>
+              <RichText html={consultation.cancellationRules} />
+            </details>
+          )}
         </div>
       </section>
 
@@ -52,7 +63,14 @@ export default function Consultation() {
                     </summary>
                     <div className="faq-pill faq-pill-a">
                       <span className="faq-letter">A</span>
-                      <RichText html={item.a} className="faq-text ans" />
+                      <div className="faq-text ans">
+                        <RichText html={item.a} />
+                        {consultation.cancellationRules && item.q === "Можно ли пропускать сессии?" && (
+                          <a href="#session-rules" className="section-text-link" onClick={() => {
+                            if (rules.current) rules.current.open = true;
+                          }}>Правила отмен и переносов</a>
+                        )}
+                      </div>
                     </div>
                   </details>
                 ))}

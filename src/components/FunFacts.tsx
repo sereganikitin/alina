@@ -25,10 +25,10 @@ function Chevrons({ flip }: { flip?: boolean }) {
   );
 }
 
-function Photo({ image }: { image: string }) {
+function Photo({ image, stock }: { image: string; stock?: boolean }) {
   return image ? (
     // eslint-disable-next-line @next/next/no-img-element
-    <img src={image} alt="" />
+    <img src={image} alt="" className={stock ? "fun-facts-stock" : undefined} />
   ) : (
     <div className="fun-facts-photo-empty" />
   );
@@ -38,6 +38,7 @@ export default function FunFacts() {
   const c = useContent();
   const items = c.funFacts.items;
   const [idx, setIdx] = useState(0);
+  const [paused, setPaused] = useState(false);
   // Индекс факта, с которого только что ушли — держим его на экране ещё
   // FADE_MS, пока он гаснет, одновременно с проявлением нового (кроссфейд:
   // оба слоя наложены друг на друга, без пустого кадра между ними).
@@ -75,58 +76,55 @@ export default function FunFacts() {
 
   // Автолистание, пока пользователь не листает сам — сбрасывается на любой ручной переход.
   useEffect(() => {
-    if (items.length < 2) return;
+    if (items.length < 2 || paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const t = setInterval(() => goTo(idx + 1), AUTOPLAY_MS);
     return () => clearInterval(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [items.length, idx]);
+  }, [items.length, idx, paused]);
 
   if (!items.length) return null;
 
   const current = items[idx];
 
-  // Переносим последние два слова заголовка ("обо мне") на вторую строку.
-  const titleWords = c.funFacts.title.split(" ");
-  const titleLine1 = titleWords.slice(0, -2).join(" ");
-  const titleLine2 = titleWords.slice(-2).join(" ");
-
   return (
-    <section id="fun-facts" className="fun-facts-section">
+    <section id="fun-facts" className="fun-facts-section"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false);
+      }}
+    >
       <div className="wrap">
-        <div className="kicker">Факты</div>
+        <h2 className="section-h">{c.funFacts.title}</h2>
         <div className="fun-facts-panel">
           <div className="fun-facts-circle-photo">
             <div className="fun-facts-stack">
               {outIdx !== null && (
                 <div key={`p${outIdx}`} className="fun-facts-fade-layer is-out">
-                  <Photo image={items[outIdx].image} />
+                  <Photo image={items[outIdx].image} stock={items[outIdx].stock} />
                 </div>
               )}
               <div key={`c${idx}`} className="fun-facts-fade-layer is-in">
-                <Photo image={current.image} />
+                <Photo image={current.image} stock={current.stock} />
               </div>
             </div>
           </div>
           <div className="fun-facts-circle-text">
             <div className="fun-facts-content">
-              <h2 className="fun-facts-title">
-                {titleLine1 && (
-                  <>
-                    {titleLine1}
-                    <br />
-                  </>
-                )}
-                {titleLine2}
-              </h2>
-              <div className="fun-facts-stack fun-facts-text-stack">
-                {outIdx !== null && (
-                  <div key={`pt${outIdx}`} className="fun-facts-fade-layer is-out">
-                    <p className="fun-facts-text">{items[outIdx].text}</p>
+              <div className="fun-facts-text-stack">
+                {items.map((item, i) => (
+                  <div
+                    key={i}
+                    className={`fun-fact-copy ${i === idx ? "is-in" : i === outIdx ? "is-out" : ""}`}
+                    aria-hidden={i !== idx}
+                  >
+                    {item.title && <h3 className="fun-facts-title">{item.title}</h3>}
+                    {item.text.split(/\r?\n+/).map((line) => line.trim()).filter(Boolean).map((line, index) => (
+                      <p key={index} className="fun-facts-text">{line}</p>
+                    ))}
                   </div>
-                )}
-                <div key={`ct${idx}`} className="fun-facts-fade-layer is-in">
-                  <p className="fun-facts-text">{current.text}</p>
-                </div>
+                ))}
               </div>
               {items.length > 1 && (
                 <div className="gallery-dots" style={{ marginTop: "22px" }}>
@@ -134,7 +132,8 @@ export default function FunFacts() {
                     <button
                       key={i}
                       type="button"
-                      aria-label={`Факт ${i + 1}`}
+                      aria-label={items[i].title || `Факт ${i + 1}`}
+                      aria-current={i === idx ? "true" : undefined}
                       onClick={() => goTo(i)}
                       className={`gallery-dot${i === idx ? " active" : ""}`}
                     />

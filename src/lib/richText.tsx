@@ -3,7 +3,7 @@
 import type { CSSProperties } from "react";
 
 // Базовое форматирование из админки: жирный/курсив/подчёркивание + абзацы + маркированный список.
-const ALLOWED_TAGS = new Set(["p", "b", "strong", "i", "em", "u", "br", "div", "ul", "ol", "li"]);
+const ALLOWED_TAGS = new Set(["p", "b", "strong", "i", "em", "u", "br", "div", "ul", "ol", "li", "h2", "h3"]);
 
 function escapeHtml(s: string): string {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");

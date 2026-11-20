@@ -20,6 +20,8 @@ export default function About() {
             className="muted"
             style={{ marginTop: "18px", fontSize: "1.1rem" }}
           />
+          <a href="#approach" className="section-text-link">Подробнее про принципы работы</a>
+          <RichText html={c.about.afterPrinciples} className="muted about-bio" />
           <div className="chips about-links">
             {c.about.links.map((link, i) =>
               link.url ? (
@@ -33,8 +35,8 @@ export default function About() {
               )
             )}
           </div>
-          <a href="#fun-facts" className="about-more">
-            Узнать больше в разделе «Интересное обо мне» →
+          <a href="#fun-facts" className="section-text-link">
+            Узнать больше в разделе «Интересное обо мне»
           </a>
         </div>
       </div>

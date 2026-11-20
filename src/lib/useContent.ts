@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { updateLegacyContent, applyEditorialUpdates } from "../../public/november-content";
+import emdrArticle from "../../public/emdr-article.json";
 import { DEFAULT_CONTENT, type SiteContent } from "./defaultContent";
 
 // Глубокое слияние: значения из content.json перекрывают дефолты.
@@ -26,11 +28,11 @@ function loadContent(): Promise<SiteContent> {
     promise = fetch("/content.json", { cache: "no-cache" })
       .then((r) => (r.ok ? r.json() : {}))
       .then((data) => {
-        cache = deepMerge(DEFAULT_CONTENT, data);
+        cache = applyEditorialUpdates(updateLegacyContent(deepMerge(DEFAULT_CONTENT, data), emdrArticle)) as SiteContent;
         return cache;
       })
       .catch(() => {
-        cache = DEFAULT_CONTENT;
+        cache = applyEditorialUpdates(updateLegacyContent(DEFAULT_CONTENT, emdrArticle)) as SiteContent;
         return cache;
       });
   }

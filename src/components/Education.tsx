@@ -4,7 +4,7 @@ import { useContent } from "@/lib/useContent";
 import { RichText } from "@/lib/richText";
 import DiplomaList from "./DiplomaList";
 
-const VISIBLE_COUNT = 5;
+const VISIBLE_COUNT = 7;
 
 export default function Education() {
   const c = useContent();

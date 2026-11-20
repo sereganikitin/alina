@@ -64,7 +64,6 @@ export default function Hero() {
         className="hero-photo"
         style={{
           backgroundImage: `url(${heroImage})`,
-          backgroundPosition: "72% 22%",
           backgroundColor: "var(--bg)",
         }}
       />

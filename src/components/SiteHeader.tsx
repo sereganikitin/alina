@@ -6,8 +6,8 @@ import { usePathname } from "next/navigation";
 const NAV = [
   { label: "Обо мне", href: "#about" },
   { label: "Образование", href: "#education" },
-  { label: "Принципы", href: "#principles" },
-  { label: "Подход", href: "#approach" },
+  { label: "Принципы работы", href: "#approach" },
+  { label: "Запросы", href: "#principles" },
   { label: "Консультация", href: "#consult" },
   { label: "Блог", href: "/blog" },
   { label: "Контакты", href: "#contacts" },

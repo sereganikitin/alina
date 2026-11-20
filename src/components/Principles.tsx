@@ -44,10 +44,8 @@ export default function Principles() {
   return (
     <section id="principles" className="principles">
       <div className="wrap">
-        <div className="kicker">Принципы работы</div>
+        <h2 className="section-h text-center">терапевтические запросы</h2>
 
-        {/* Схема-солнышко «с чем я работаю». Собственного кикера у неё нет —
-            секция уже открыта кикером «Принципы работы» выше. */}
         <div className="sun-scale">
           <div className="sun-stage" style={{ "--cx": 545, "--cy": 675 } as React.CSSProperties}>
             <svg className="sun-lines" viewBox="0 0 1060 1345" aria-hidden="true">
@@ -57,7 +55,7 @@ export default function Principles() {
             </svg>
 
             <div className="sun-core">
-              <h2 id="sun-title">С чем я работаю</h2>
+              <h3 id="sun-title">с чем я работаю</h3>
             </div>
 
             <ol className="sun-rays" aria-labelledby="sun-title">
@@ -91,38 +89,6 @@ export default function Principles() {
           <RichText html={c.principles.notWithWhom} className="with" />
         </div>
 
-        <div className="prin-full">
-          <h3 className="prin-h">{c.principles.side.title}</h3>
-          <div className="prin-items-grid">
-            {c.principles.side.items.map((item, i) => (
-              <div key={item.title} className="ph-side-item">
-                <p className="ph-side-item-title">
-                  <span className="ph-side-item-num">{String(i + 1).padStart(2, "0")}</span>
-                  {item.title}
-                </p>
-                <RichText html={item.text} className="ph-side-item-text" />
-                {i === 0 && (
-                  <div className="ph-circles-fit">
-                    {/* Невидимый дубль подзаголовка (с цифрой) — только чтобы
-                        обёртка приняла его фактическую ширину (fit-content),
-                        под неё же подстроится и центрируется ряд кружков. */}
-                    <p className="ph-side-item-title ph-title-ghost" aria-hidden="true">
-                      <span className="ph-side-item-num">{String(i + 1).padStart(2, "0")}</span>
-                      {item.title}
-                    </p>
-                    <div className="ph-circles ph-circles-mini">
-                      {c.principles.circles.slice(0, 3).map((label, ci) => (
-                        <div key={ci} className="ph-circle">
-                          {label}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );

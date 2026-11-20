@@ -4,37 +4,37 @@ import { useContent } from "@/lib/useContent";
 import { RichText } from "@/lib/richText";
 
 export default function Approach() {
-  const c = useContent();
+  const { approach, principles, blog } = useContent();
   return (
     <section id="approach" className="approach-section">
       <div className="wrap">
-        <div className="approach-top">
-          {/* Фото идёт раньше текста в DOM: на десктопе оно обтекается (float), */}
-          {/* поэтому абзацы ниже него занимают всю ширину блока */}
-          {c.approach.image && (
+        <h2 className="section-h">Принципы работы</h2>
+        <div className={approach.image ? "approach-layout with-photo" : "approach-layout"}>
+          <div className="approach-copy">
+            <RichText html={approach.intro} />
+            {blog.posts.some((post) => post.slug === "emdr") && (
+              <a href="/blog/post/?slug=emdr" className="section-text-link">О EMDR</a>
+            )}
+            <RichText html={approach.closing} className="approach-closing" />
+            {approach.paragraphs.map((paragraph, index) => <RichText key={index} html={paragraph} />)}
+          </div>
+          {approach.image && (
             <div className="approach-photo">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={c.approach.image} alt="" />
+              <img src={approach.image} alt="Алина Дубовская" loading="lazy" />
             </div>
           )}
-          <div className="approach-head">
-            <div className="kicker">О подходе</div>
-            <h2 className="section-h">Как проходит работа</h2>
-
-            {c.approach.intro && (
-              <RichText html={c.approach.intro} className="approach-intro" />
-            )}
-          </div>
         </div>
-
-        <div className="approach-cards">
-          {c.approach.paragraphs.map((p, i) => (
-            <div key={i} className="approach-card">
-              <div className="approach-card-num">{String(i + 1).padStart(2, "0")}</div>
-              <RichText html={p} />
-            </div>
+        <h3 className="section-h expectations-title">{principles.side.title}</h3>
+        <div className="expectations-grid">
+          {principles.side.items.map((item) => (
+            <article key={item.title} className="expectation">
+              <h4>{item.title}</h4>
+              <RichText html={item.text} />
+            </article>
           ))}
         </div>
+        {approach.support && <blockquote className="approach-credo">{approach.support}</blockquote>}
       </div>
     </section>
   );

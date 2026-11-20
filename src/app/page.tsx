@@ -16,8 +16,8 @@ export default function Home() {
         <Hero />
         <About />
         <Education />
-        <Principles />
         <Approach />
+        <Principles />
         <Consultation />
         <FunFacts />
         <BlogPreview />

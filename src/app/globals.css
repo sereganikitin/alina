@@ -41,7 +41,7 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
@@ -52,7 +52,7 @@ body {
   font-family: var(--sans);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 h1, h2, h3, .serif {
@@ -207,6 +207,7 @@ header.scrolled {
   inset: 0;
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: 72% 22%;
 }
 @media (min-width: 1024px) {
   .hero-photo {
@@ -842,7 +843,7 @@ a.assoc-icon:hover {
   border-radius: 50%;
   border: 1px solid var(--line);
 }
-.sun-core h2 {
+.sun-core h3 {
   font-size: 1.85rem;
   line-height: 1.1;
   color: var(--ink);
@@ -979,7 +980,7 @@ a.assoc-icon:hover {
   .sun-core::before {
     inset: calc(-12 * var(--u));
   }
-  .sun-core h2 {
+  .sun-core h3 {
     font-size: calc(29.6 * var(--u));
   }
 
@@ -1108,99 +1109,123 @@ a.assoc-icon:hover {
   background-image: var(--paper);
   background-blend-mode: multiply;
 }
-.approach-top {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
+.approach-layout,
+.consult-layout {
+  display: grid;
+  gap: clamp(24px, 5vw, 64px);
+  align-items: start;
+  margin-top: 32px;
 }
-.approach-top::after {
-  content: "";
-  display: block;
-  clear: both;
+@media (min-width: 821px) {
+  .approach-layout.with-photo,
+  .consult-layout.with-photo {
+    grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  }
 }
-.approach-photo {
-  /* На мобиле фото под текстом (в DOM оно идёт первым — см. Approach.tsx) */
-  order: 2;
-  border-radius: 24px;
+.approach-copy {
+  min-width: 0;
+  max-width: 68ch;
+  line-height: 1.65;
+}
+.approach-copy > .rich-text + .rich-text,
+.approach-copy p + p,
+.faq-text p + p {
+  margin-top: 0.8em;
+}
+.about-bio {
+  margin-top: .8em;
+  font-size: 1.1rem;
+}
+.about .rich-text p + p {
+  margin-top: .75em;
+}
+.approach-closing {
+  border-inline-start: 2px solid var(--terra);
+  padding-inline-start: 1.15rem;
+  margin-top: 24px;
+}
+.approach-photo,
+.consult-photo {
   overflow: hidden;
-  aspect-ratio: 4 / 3;
+  border-radius: 24px;
 }
-@media (min-width: 820px) {
-  .approach-top {
-    /* Не grid: фото обтекается текстом, чтобы абзацы ниже него
-       шли во всю ширину блока, а не в узкую колонку */
-    display: block;
-  }
-  .approach-photo {
-    float: right;
-    width: 45%;
-    margin: 0 0 28px 40px;
-  }
-  /* Каждый абзац после первого начинается под фото — на полную ширину */
-  .approach-intro p + p {
-    clear: right;
-  }
-}
-.approach-photo img {
+.approach-photo img,
+.consult-photo img {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
+  object-position: 67% center;
 }
-.approach-intro {
-  margin-top: 36px;
-  /* Ширина = ширине колонки (как у заголовка рядом), не фиксированный ch */
-  max-width: none;
-  font-size: 1.05rem;
-  color: #3f362a;
-  line-height: 1.75;
+.consult-photo img {
+  aspect-ratio: 1 / 1;
 }
-.approach-intro p:first-of-type::first-letter {
-  font-family: var(--serif);
-  font-weight: 700;
-  float: left;
-  font-size: 4.6rem;
-  line-height: 0.8;
-  padding: 8px 12px 0 0;
-  color: var(--terra);
+.section-text-link,
+.rich-text a {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--terra-d);
+  text-decoration: underline;
+  text-underline-offset: 0.24em;
 }
-.approach-cards {
-  margin-top: 44px;
+.section-text-link {
+  display: inline-block;
+  margin-top: 14px;
+}
+.section-text-link:hover,
+.rich-text a:hover {
+  color: var(--ink);
+}
+.expectations-title {
+  margin-top: clamp(40px, 7vw, 80px);
+}
+.expectations-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
+  gap: 16px;
+  margin-top: 24px;
 }
-@media (max-width: 760px) {
-  .approach-cards {
-    grid-template-columns: 1fr;
-  }
-}
-.approach-card {
-  /* Было 1/1 — высота уменьшена на 30% относительно ширины (1/0.7) */
-  aspect-ratio: 10 / 7;
+.expectation {
+  border: 1px solid var(--terra);
+  border-radius: 18px;
+  padding: 22px;
   background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 22px;
-  padding: 40px 32px;
+  transition: background-color 180ms, box-shadow 180ms, transform 180ms;
 }
-@media (max-width: 760px) {
-  .approach-card {
-    aspect-ratio: auto;
+@media (hover: hover) {
+  .expectation:hover {
+    background: var(--bg);
+    box-shadow: 0 8px 20px rgba(74, 45, 30, .12);
+    transform: translateY(-3px);
   }
 }
-.approach-card-num {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 1.2rem;
-  color: var(--terra);
+.expectation h4 {
+  font: 600 1.25rem/1.24 var(--serif);
+  color: var(--terra-d);
+  margin-bottom: 0.65em;
 }
-.approach-card p {
-  margin-top: 18px;
-  color: #3f362a;
-  font-size: 1.05rem;
-  line-height: 1.75;
+.approach-credo {
+  max-width: 52rem;
+  margin: 32px auto 0;
+  border-radius: 20px;
+  background: var(--terra-d);
+  color: #fff8ed;
+  text-align: center;
+  padding: clamp(24px, 4vw, 42px);
+  font: 500 clamp(1.25rem, 2.5vw, 1.9rem)/1.45 var(--serif);
+}
+@media (max-width: 820px) {
+  .expectations-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 520px) {
+  .expectations-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
-/* ===== ИНТЕРЕСНЫЕ ФАКТЫ (после FAQ, перед формой записи) ===== */
+/* ===== ИНТЕРЕСНОЕ ОБО МНЕ ===== */
 .fun-facts-section {
   background-color: var(--bg);
   background-image: var(--paper);
@@ -1243,18 +1268,20 @@ a.assoc-icon:hover {
   border: 1.5px solid var(--terra);
   display: flex;
   align-items: center;
-  padding: 0 8% 0 15%;
+  justify-content: center;
+  padding: 28px 5% 28px 9%;
+  text-align: center;
 }
 .fun-facts-content {
-  max-width: 100%;
+  width: 100%;
+  max-width: 42ch;
 }
 .fun-facts-title {
   font-family: var(--serif);
   font-weight: 600;
   font-size: clamp(1.5rem, 2.4vw, 2.1rem);
   line-height: 1.15;
-  margin-top: 14px;
-  text-transform: lowercase;
+  margin-bottom: 16px;
 }
 .fun-facts-text {
   margin-top: 18px;
@@ -1271,14 +1298,51 @@ a.assoc-icon:hover {
   position: relative;
 }
 .fun-facts-text-stack {
-  margin-top: 18px;
-  /* Резерв под ~3 строки — факты разной длины не должны сдвигать
-     заголовок (блок вертикально центрирован, поэтому важна стабильная
-     общая высота, а не только высота этого абзаца). */
-  min-height: 4.95rem;
+  display: grid;
 }
-.fun-facts-text-stack .fun-facts-text {
-  margin-top: 0;
+.fun-fact-copy {
+  grid-area: 1 / 1;
+  align-self: center;
+  visibility: hidden;
+}
+.fun-fact-copy.is-in,
+.fun-fact-copy.is-out {
+  visibility: visible;
+}
+.fun-fact-copy.is-in {
+  animation: fun-facts-fade-in 1.5s ease both;
+}
+.fun-fact-copy.is-out {
+  animation: fun-facts-fade-out 1.5s ease both;
+}
+.fun-facts-text {
+  margin: 0;
+}
+.fun-facts-text + .fun-facts-text::before {
+  content: "";
+  display: block;
+  width: 26px;
+  border-top: 1px solid var(--terra);
+  margin: 0.7em auto;
+}
+.fun-facts-stock {
+  filter: sepia(.23) saturate(.72);
+}
+.fun-facts-content .gallery-dots {
+  justify-content: center;
+}
+@media (prefers-reduced-motion: reduce) {
+  .fun-fact-copy.is-in,
+  .fun-facts-fade-layer.is-in {
+    animation-duration: 1ms;
+  }
+  .fun-fact-copy.is-out,
+  .fun-facts-fade-layer.is-out {
+    visibility: hidden;
+  }
+  .expectation {
+    transition: none;
+  }
 }
 .fun-facts-fade-layer {
   position: absolute;
@@ -1400,49 +1464,69 @@ a.assoc-icon:hover {
   z-index: 0;
 }
 
-.facts {
-  margin-top: 42px;
+.consult-formats {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  overflow: hidden;
+  gap: 12px;
+}
+.consult-formats li {
+  padding: 14px 18px;
+  border: 1px solid var(--terra);
+  border-radius: 14px;
+  background: var(--card);
+}
+.facts {
+  margin-top: 22px;
+  border-top: 1px solid var(--line);
 }
 .fact {
-  padding: 26px 30px;
-}
-.fact-border-r {
-  border-right: 1px solid var(--line);
-}
-.fact-border-b {
+  display: grid;
+  grid-template-columns: minmax(7rem, 30%) minmax(0, 1fr);
+  gap: 12px;
+  padding: 14px 0;
   border-bottom: 1px solid var(--line);
-}
-.fact-full {
-  grid-column: 1 / -1;
+  align-items: baseline;
 }
 .fact .k {
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 0.85rem;
   color: var(--muted);
 }
 .fact .v {
   font-family: var(--serif);
-  font-size: 1.2rem;
-  margin-top: 8px;
+  font-size: 1.15rem;
+  white-space: pre-line;
 }
-@media (max-width: 600px) {
-  .facts {
-    grid-template-columns: 1fr;
+.session-rules {
+  margin-top: 24px;
+  scroll-margin-top: 90px;
+}
+.session-rules summary {
+  list-style: none;
+  text-align: center;
+  cursor: pointer;
+}
+.session-rules summary::-webkit-details-marker {
+  display: none;
+}
+.session-rules > .rich-text {
+  margin: 20px 0 0;
+  padding: clamp(16px, 4vw, 28px);
+  max-width: 74ch;
+  overflow-wrap: anywhere;
+  background: var(--card);
+  border-radius: 18px;
+  line-height: 1.6;
+}
+.session-rules p + p {
+  margin-top: .75em;
+}
+@media (max-width: 760px) {
+  .session-rules > summary {
+    display: flex;
+    width: fit-content;
+    margin-inline: auto;
   }
-  .fact-border-r {
-    border-right: none;
-  }
-  .fact:not(.fact-full) {
-    border-bottom: 1px solid var(--line);
-  }
-  .fact:last-child {
-    border-bottom: none;
+  .session-rules > .rich-text {
+    margin-inline: auto;
   }
 }
 .note {
@@ -1461,9 +1545,6 @@ a.assoc-icon:hover {
   .faq-row {
     grid-template-columns: 1fr;
   }
-  .faq-photo {
-    margin-top: 0;
-  }
 }
 .faq-photo {
   width: min(224px, 100%);
@@ -1474,6 +1555,11 @@ a.assoc-icon:hover {
   /* Поднимаем арку, чтобы верхний край выровнялся по kicker'у над .faq-row
      (44px отступ строки + собственная высота kicker'а). */
   margin-top: -64px;
+}
+@media (max-width: 760px) {
+  .faq-photo {
+    margin-top: 0;
+  }
 }
 .faq-photo img {
   width: 100%;
@@ -1709,6 +1795,11 @@ a.assoc-icon:hover {
   line-height: 1.7;
   color: #3f362a;
 }
+.article-body :is(h2, h3) {
+  text-transform: none;
+  margin: 1.75em 0 0.6em;
+  font: 600 clamp(1.25rem, 2vw, 1.55rem)/1.25 var(--serif);
+}
 .article-body p {
   margin: 0 0 20px 0;
 }
@@ -1833,17 +1924,6 @@ footer {
 .lead p,
 .with p,
 .note p,
-.approach-intro p {
-  margin: 0 0 12px 0;
-}
-
-.lead p:last-child,
-.with p:last-child,
-.note p:last-child,
-.approach-intro p:last-child {
-  margin-bottom: 0;
-}
-
 /* Маркированный список из rich-редактора (везде, где рендерится RichText) */
 .rich-text ul,
 .rich-text ol {
@@ -1942,4 +2022,44 @@ footer {
   font-family: var(--serif);
   font-style: italic;
   color: var(--ochre);
+}
+
+@media (max-width: 720px) {
+  .hero {
+    min-height: 0;
+    padding-top: 58px;
+    background: var(--bg);
+  }
+  .hero-photo {
+    position: relative;
+    inset: auto;
+    aspect-ratio: 4 / 3;
+    background-position: 92% 22%;
+  }
+  .hero-scrim {
+    display: none;
+  }
+  .hero-inner {
+    min-height: 0;
+    padding: 24px clamp(18px, 5vw, 30px) 70px;
+  }
+  .hero-quote {
+    max-width: none;
+    font-size: clamp(1.05rem, 4.4vw, 1.3rem);
+  }
+  .badges {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, auto);
+    grid-auto-flow: column;
+    width: 100%;
+    max-width: none;
+    gap: 14px 10px;
+  }
+  .badge .ic {
+    width: clamp(32px, 9vw, 42px);
+    height: clamp(32px, 9vw, 42px);
+  }
+  .badge .n {
+    white-space: normal;
+  }
 }

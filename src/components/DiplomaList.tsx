@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 /** num — своя нумерация («3.1»); пусто — порядковый номер. subtitle — серая подпись под названием. */
-export type Diploma = { title: string; images: string[]; num?: string; subtitle?: string };
+export type Diploma = { title: string; images: string[]; num?: string; subtitle?: string; number?: string; detail?: string };
 
 /** Список дипломов + попап-галерея со сканом — общий для главной ("первые 5" +
     ссылка "Смотреть ещё") и отдельной страницы /education (весь список). */
@@ -21,20 +21,25 @@ export default function DiplomaList({ diplomas }: { diplomas: Diploma[] }) {
   return (
     <>
       <div className="edu-list">
-        {diplomas.map((d, i) => (
-          <div
-            key={d.title}
-            className={`edu-row${d.num && d.num.includes(".") ? " edu-sub" : ""}`}
-            onClick={() => openDiploma(d.images, d.title)}
-          >
-            <span className="idx">{d.num || String(i + 1).padStart(2, "0")}</span>
-            <span className="t">
-              {d.title}
-              {d.subtitle && <span className="edu-subtitle">{d.subtitle}</span>}
-            </span>
-            <span className="go">{d.images.length ? "→" : ""}</span>
-          </div>
-        ))}
+        {diplomas.map((d, i) => {
+          const number = d.number || d.num || String(i + 1).padStart(2, "0");
+          const subtitle = d.detail ? `(${d.detail})` : d.subtitle;
+          const { title } = d;
+          return (
+            <div
+              key={title}
+              className={`edu-row${number.includes(".") ? " edu-sub" : ""}`}
+              onClick={() => openDiploma(d.images, title)}
+            >
+              <span className="idx">{number}</span>
+              <span className="t">
+                {title}
+                {subtitle && <span className="edu-subtitle">{subtitle}</span>}
+              </span>
+              <span className="go">{d.images.length ? "→" : ""}</span>
+            </div>
+          );
+        })}
       </div>
 
       {/* Попап-галерея со сканом */}

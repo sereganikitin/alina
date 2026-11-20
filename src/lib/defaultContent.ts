@@ -22,6 +22,7 @@ export const DEFAULT_CONTENT = {
     },
   },
   about: {
+    afterPrinciples: "",
     title:
       "Психолог, EMDR-терапевт, IFS-терапевт, танцевально-двигательный терапевт",
     lead: "Действительный член Национальной ассоциации EMDR.",
@@ -158,6 +159,8 @@ export const DEFAULT_CONTENT = {
     },
   },
   approach: {
+    closing: "",
+    support: "",
     // Вводный текст под заголовком, с буквицей (первая буква крупная).
     // Пока пусто — заполняется через админку.
     intro: "",
@@ -171,6 +174,9 @@ export const DEFAULT_CONTENT = {
     ],
   },
   consultation: {
+    formats: [] as string[],
+    cancellationRules: "",
+    image: "/photos/hero-beige-2.jpg",
     facts: [
       { label: "Формат", value: "Онлайн, из любой точки мира" },
       { label: "Язык", value: "Русскоязычная терапия" },
@@ -191,7 +197,7 @@ export const DEFAULT_CONTENT = {
       { text: "Говорю на нескольких языках", image: "" },
       { text: "У меня дипломная работа по буддизму и этнопсихологии", image: "" },
       { text: "Люблю людей, и мне кажется, что мир интересный.", image: "" },
-    ] as { text: string; image: string }[],
+    ] as { title?: string; text: string; image: string; stock?: boolean }[],
   },
   blog: {
     posts: [] as {
