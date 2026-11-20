@@ -1299,11 +1299,21 @@ a.assoc-icon:hover {
 }
 .fun-facts-text-stack {
   display: grid;
+  grid-template-rows: auto auto;
 }
 .fun-fact-copy {
-  grid-area: 1 / 1;
-  align-self: center;
+  display: grid;
+  grid-area: 1 / 1 / 3 / 2;
+  grid-template-rows: subgrid;
   visibility: hidden;
+}
+.fun-fact-copy .fun-facts-title {
+  grid-row: 1;
+  align-self: end;
+}
+.fun-facts-body {
+  grid-row: 2;
+  align-self: start;
 }
 .fun-fact-copy.is-in,
 .fun-fact-copy.is-out {

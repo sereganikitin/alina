@@ -120,9 +120,11 @@ export default function FunFacts() {
                     aria-hidden={i !== idx}
                   >
                     {item.title && <h3 className="fun-facts-title">{item.title}</h3>}
-                    {item.text.split(/\r?\n+/).map((line) => line.trim()).filter(Boolean).map((line, index) => (
-                      <p key={index} className="fun-facts-text">{line}</p>
-                    ))}
+                    <div className="fun-facts-body">
+                      {item.text.split(/\r?\n+/).map((line) => line.trim()).filter(Boolean).map((line, index) => (
+                        <p key={index} className="fun-facts-text">{line}</p>
+                      ))}
+                    </div>
                   </div>
                 ))}
               </div>
