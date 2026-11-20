@@ -96,7 +96,7 @@ export default function FunFacts() {
       }}
     >
       <div className="wrap">
-        <h2 className="section-h">{c.funFacts.title}</h2>
+        <h2 className="kicker">{c.funFacts.title}</h2>
         <div className="fun-facts-panel">
           <div className="fun-facts-circle-photo">
             <div className="fun-facts-stack">
