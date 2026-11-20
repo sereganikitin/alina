@@ -1684,7 +1684,9 @@ a.assoc-icon:hover {
 }
 .bp-card {
   flex: 0 0 auto;
-  width: 260px;
+  width: min(290px, 100%);
+  border-inline-start: 1px solid var(--terra);
+  padding: 6px 0 6px 18px;
   scroll-snap-align: start;
   display: block;
 }
@@ -1703,16 +1705,25 @@ a.assoc-icon:hover {
   transform: scale(1.04);
 }
 .bp-title {
-  margin-top: 14px;
   font-family: var(--serif);
   font-weight: 600;
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   line-height: 1.3;
-  text-transform: lowercase;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  text-transform: none;
+  overflow-wrap: anywhere;
+}
+.bp-cover + .bp-title {
+  margin-top: 14px;
+}
+.bp-card .blog-read {
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--terra-d);
+  text-decoration: underline;
+  text-underline-offset: .22em;
+}
+.bp-card:is(:hover, :focus-visible) .blog-read {
+  text-decoration-thickness: 2px;
 }
 .bp-date {
   margin-top: 6px;

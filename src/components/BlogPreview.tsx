@@ -55,8 +55,9 @@ export default function BlogPreview() {
                   <img src={p.cover} alt="" />
                 </div>
               )}
-              <div className="bp-title">{p.title}</div>
-              <div className="bp-date muted">{p.date}</div>
+              <h3 className="bp-title">{p.title}</h3>
+              {p.date && <div className="bp-date muted">{p.date}</div>}
+              <span className="blog-read">Читать <span aria-hidden="true">→</span></span>
             </a>
           ))}
         </div>
